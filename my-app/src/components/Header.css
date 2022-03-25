@@ -1,0 +1,25 @@
+.bgcolor{
+    background-color: #0072bc;
+}
+
+.md {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.container-fluid a {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.button {
+    background-color: #ffffff;
+    border-radius: 5px;
+    color: #0072bc;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+}
