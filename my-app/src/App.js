@@ -17,6 +17,9 @@ import News from "./pages/New/New";
 import Signin from './pages/Signin/Signin'
 import Home from './pages/Home/Home'
 
+import Product from "./pages/Product/Product";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
+
 function App() {
   return (
     <div className="App">
@@ -44,6 +47,12 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/" element={<Home/>} />
+        </Routes>
+        <Routes>
+          <Route path="/Product" element={<Product />} />
+        </Routes>
+        <Routes>
+          <Route path="/ProductDetail" element={<ProductDetail />} />
         </Routes>
       </Router>
     </div>

@@ -257,7 +257,12 @@ function User() {
                   <div className="col-12">
                     <div className="row">
                       <div className="col-2">
-                        <img src={Phone} alt="phone"></img>
+                        <img
+                          src={Phone}
+                          alt="phone"
+                          className=".img-fluid"
+                          style={{ width: "48px", height: "48px" }}
+                        ></img>
                       </div>
                       <div className="col-7">
                         <div
@@ -291,7 +296,11 @@ function User() {
                   <div className="col-12 mt-3">
                     <div className="row">
                       <div className="col-2">
-                        <img src={Mail} alt="mail"></img>
+                        <img
+                          src={Mail}
+                          alt="mail"
+                          style={{ width: "48px", height: "48px" }}
+                        ></img>
                       </div>
                       <div className="col-7">
                         <div
@@ -326,7 +335,11 @@ function User() {
                   <div className="col-12">
                     <div className="row">
                       <div className="col-2">
-                        <img src={Lock} alt="lock"></img>
+                        <img
+                          src={Lock}
+                          alt="lock"
+                          style={{ width: "48px", height: "48px" }}
+                        ></img>
                       </div>
                       <div className="col-7">
                         <div
