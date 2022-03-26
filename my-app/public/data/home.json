@@ -1,0 +1,45 @@
+{
+    "phone": [
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/42/230521/iphone-13-pro-sierra-blue-600x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/42/226935/samsung-galaxy-z-fold-3-silver-1-600x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xam-new-600x600-600x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/42/235838/Galaxy-S22-Ultra-White-600x600.jpg"
+        }
+    ],
+    "laptop": [
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/44/239552/macbook-air-m1-2020-gray-600x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/44/231255/macbook-pro-m1-2020-gray-600x600.jpg"
+        },
+        {
+            "url": "https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/10/20/637703174146015116_macbook-pro-16-2021-xam-dd.jpg"
+        },
+        {
+            "url": "https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/1/21/637783749304687285_acer-triton-gaming-pt516-51s-xam-dd.jpg"
+        }
+    ],
+    "watch": [
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/7077/239477/apple-watch-s6-lte-44mm-vien-thep-day-cao-su-xanh-duong-660x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/7077/250638/apple-watch-s7-gps-45mm-den-thumb-660x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/7077/248765/samsung-galaxy-watch-4-lte-classic-46mm-den-1-600x600.jpg"
+        },
+        {
+            "url": "https://cdn.tgdd.vn/Products/Images/7077/262620/redmi-watch-2-lite-600x600.jpg"
+        }
+    ]
+    
+}

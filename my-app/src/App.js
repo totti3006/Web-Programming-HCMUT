@@ -14,6 +14,9 @@ import Signup from "./pages/Signup/Signup";
 import IntroPage from "./pages/Introduce/Introduce";
 import News from "./pages/New/New";
 
+import Signin from './pages/Signin/Signin'
+import Home from './pages/Home/Home'
+
 function App() {
   return (
     <div className="App">
@@ -35,6 +38,12 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/new" element={<News />} />
+        </Routes>
+        <Routes>
+          <Route path="/signin" element={<Signin/>} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Home/>} />
         </Routes>
       </Router>
     </div>
