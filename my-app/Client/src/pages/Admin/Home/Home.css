@@ -1,0 +1,11 @@
+.admin-home-img div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-home-img img{
+    width: 60%;
+    height: 60%;
+}
