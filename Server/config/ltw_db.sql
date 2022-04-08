@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 29, 2022 lúc 04:52 PM
+-- Thời gian đã tạo: Th4 08, 2022 lúc 03:37 PM
 -- Phiên bản máy phục vụ: 8.0.26
 -- Phiên bản PHP: 7.4.26
 
@@ -51,6 +51,32 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
+INSERT INTO `comment` (`id`, `user_id`, `product_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 2, 15, 'Rất chất lượng', '2022-04-08 12:07:02', '2022-04-08 19:07:45'),
+(2, 2, 15, 'Rất chất lượng2', '2022-04-08 12:07:02', '2022-04-08 19:07:02'),
+(3, 3, 15, 'tooi chio tex thoi yhahaha', '2022-04-08 12:07:02', '2022-04-08 19:07:02'),
+(5, 3, 16, 'ngon múp rụp nước', '2022-04-08 12:07:02', '2022-04-08 19:07:02'),
+(7, 2, 15, 'Hi', '2022-04-08 12:53:13', '2022-04-08 19:53:13');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `news`
 --
 
@@ -70,6 +96,53 @@ INSERT INTO `news` (`id`, `title`, `content`, `thumbnail`) VALUES
 (2, 'Hi', 'blabla', 'youtube.com'),
 (3, 'Hello', 'Hi', 'youtube.com'),
 (4, 'Hello', 'Hi', 'youtube.com');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` varchar(16) NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `order_date` datetime DEFAULT NULL,
+  `status` int DEFAULT NULL,
+  `total_money` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `note`, `order_date`, `status`, `total_money`) VALUES
+('ORD624f071b911e8', 2, '', '2021-11-13 16:00:14', 0, 0),
+('ORD624f1e296e8bc', 2, 'Hello', '2022-04-08 12:04:53', 0, 1000000),
+('ORD624f1e68a75d6', 2, 'Hello', '2022-04-08 12:04:56', 0, 1000000);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `id` int NOT NULL,
+  `order_id` varchar(16) DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `num` int DEFAULT NULL,
+  `total_money` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `num`, `total_money`) VALUES
+(3, 'ORD624f1e296e8bc', 15, 2, 500000),
+(4, 'ORD624f1e68a75d6', 15, 1, 500000),
+(5, 'ORD624f1e68a75d6', 16, 1, 500000);
 
 -- --------------------------------------------------------
 
@@ -143,7 +216,8 @@ CREATE TABLE `user_infos` (
 --
 
 INSERT INTO `user_infos` (`user_id`, `fullname`, `phone_number`, `address`, `avatar`) VALUES
-(4, 'Thinhj', '123456789', 'HCMUT', 'youtube.com');
+(4, 'Thinhj', '123456789', 'HCMUT', 'youtube.com'),
+(5, 'Thinh Nguyen', '0123456789', 'HCM', 'https://i.pinimg.com/564x/2b/12/d2/2b12d24004fa07adff784b4829e6c0ac.jpg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -156,10 +230,33 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Chỉ mục cho bảng `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Chỉ mục cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -191,10 +288,22 @@ ALTER TABLE `category`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
+-- AUTO_INCREMENT cho bảng `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
@@ -211,6 +320,26 @@ ALTER TABLE `users`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Các ràng buộc cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Các ràng buộc cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
 --
 -- Các ràng buộc cho bảng `product`

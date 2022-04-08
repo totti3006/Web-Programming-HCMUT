@@ -17,7 +17,7 @@ class ProductController{
             return json_encode(["data" => $rows]);
         }
 
-        throw new NotFoundError("Categories not found!!!");
+        throw new NotFoundError("Products not found!!!");
     }
     //////////////////////////////////////////////////////////////
     //Create Product

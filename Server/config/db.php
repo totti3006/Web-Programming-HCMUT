@@ -18,7 +18,6 @@ class db {
     }
 
     public function connect() {
-
         try {
             $conn = new PDO("mysql:host=$this->servername;dbname=$this->db_name", $this->username, $this->db_password);
             // set the PDO error mode to exception
@@ -29,7 +28,6 @@ class db {
         catch(PDOException $e) {
             //echo "Database connection failed: " . $e->getMessage();
         }
-
     }
 }
 
