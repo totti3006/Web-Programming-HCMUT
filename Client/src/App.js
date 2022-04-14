@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,8 +7,8 @@ import Contac from "./components/Contac";
 import User from "./components/Users";
 import Price from "./components/Price";
 
-// import Header from "./components/Header";
-// import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 import Signup from "./pages/Signup/Signup";
 import IntroPage from "./pages/Introduce/Introduce";
@@ -19,37 +19,45 @@ import Home from './pages/Home/Home'
 
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-
-import AdminHome from "./pages/Admin/Home/Home"
-import Category from "./pages/Admin/Category/Category";
-import AdminRouter from "./pages/Admin/AdminRouter";
-
+import Cart from "./pages/Cart/Cart";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/contact" element={<Contac />} />
-      
-        <Route path="/user" element={<User />} />
-      
-        <Route path="/price" element={<Price />} />
-      
-        <Route path="/signup" element={<Signup />} />
-      
-        <Route path="/intro" element={<IntroPage />} />
-      
-        <Route path="/new" element={<News />} />
-      
-        <Route path="/signin" element={<Signin/>} />
-     
-        <Route path="/" element={<Home/>} />
-      
-        <Route path="/Product" element={<Product />} />
-      
-        <Route path="/ProductDetail" element={<ProductDetail />} />
-      
-        <Route path="/Admin/*" element={<AdminRouter />} />
-      </Routes>
+      <Router>
+        <Routes>
+          <Route path="/contact" element={<Contac />} />
+        </Routes>
+        <Routes>
+          <Route path="/user" element={<User />} />
+        </Routes>
+        <Routes>
+          <Route path="/price" element={<Price />} />
+        </Routes>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+        <Routes>
+          <Route path="/intro" element={<IntroPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/new" element={<News />} />
+        </Routes>
+        <Routes>
+          <Route path="/signin" element={<Signin/>} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+        </Routes>
+        <Routes>
+          <Route path="/Product" element={<Product />} />
+        </Routes>
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        <Routes>
+          <Route path="/ProductDetail" element={<ProductDetail />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

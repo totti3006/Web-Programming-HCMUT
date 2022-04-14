@@ -1,0 +1,16 @@
+img {
+    width: 200px;
+    height: 200px;
+}
+
+
+.container{
+    margin-top: 70px;
+
+}
+
+.navi {
+    display: flex;
+    justify-content: end;   
+}
+

@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
     margin: 0 auto;
-    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(255, 255, 255));
+    background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(85, 83, 83));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
     width: 60%;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 5px 5px 10px 10px rgb(148, 148, 148);
+    box-shadow: 5px 5px 10px 10px rgb(226, 225, 225);
     display: flex;
 }
 

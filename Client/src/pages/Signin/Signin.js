@@ -1,62 +1,20 @@
 import './Signin.css'
 import image from './images/signin-img.png'
-import axios from 'axios'
-import environment from '../../components/Environment/Environment'
-import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
 
 const Signin  = () => {
-    const location = useNavigate();
-
-    const logged = () => {
-        if(localStorage.getItem("role") === "user"){
-            location('/')
-        }
-        else if(localStorage.getItem("role") === "admin"){
-            location('/admin')
-        }
-    }
-
-    useEffect(() => {
-        logged();
-    })
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const loginData = new FormData(e.target)
-        const data = {
-            username: loginData.get('username'),
-            password: loginData.get('password'),
-        }
-        await axios.post(`${process.env.REACT_APP_API_URL}/ltw-api/users/login`, data).then(res => {
-            localStorage.setItem("id", JSON.stringify(res.data.data.id));
-            localStorage.setItem("token", res.data.data.token);
-            localStorage.setItem("role", res.data.data.role);
-            environment.headers = {
-              headers: {
-                "x-access-token": localStorage.getItem("token"),
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            };
-            logged()
-        }).catch(err => {})
-    }
-
     return(
         <div id="signin-container">
             <div id="signin-box">
                 <div id="signin-box-col1">
                     <img src={image} alt="Signin"/>
                 </div>
-                <form onSubmit={handleSubmit} id="signin-box-col2">
+                <div id="signin-box-col2">
                     <h2>Đăng nhập</h2>
                     <div className="signin-box-col2-input">
-                        <input name="username" type="text" placeholder="Tên đăng nhập"></input>
+                        <input type="text" placeholder="Tên đăng nhập"></input>
                     </div>
                     <div className="signin-box-col2-input">
-                        <input name="password" type="password" placeholder="Mật khẩu"></input>
+                        <input type="password" placeholder="Mật khẩu"></input>
                     </div>
                     <div className="signin-box-col2-input">
                         <button type="submit" className="btn btn-primary">Đăng nhập</button>
@@ -65,7 +23,7 @@ const Signin  = () => {
                         <p>Bạn chưa có tài khoản?</p>  
                         <a href="https://www.youtube.com/">Đăng kí ngay bây giờ</a>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
