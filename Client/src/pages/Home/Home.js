@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
-import './Home.css'
-import Slider from '../../components/Home/Slider/Slider'
-import Content from '../../components/Home/Content/Content'
+import './Home.css';
+import Slider from '../../components/Home/Slider/Slider';
+import Content from '../../components/Home/Content/Content';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import axios from 'axios';
+
 
 const Home = () => {
 
@@ -26,10 +30,14 @@ const Home = () => {
     },[])
 
     return(
-        <div className={className}>
-            <Slider />
-            <Content />
-        </div>
+        <>
+            <Header />
+            <div className={className}>
+                <Slider />
+                <Content />
+            </div>
+            <Footer />
+        </>
     )
 }
 

@@ -15,11 +15,9 @@ function User() {
 
   const getData = async () => {
     await axios
-      .get(`http://localhost:80/ltw-api/news/getall`, environment.headers)
+      .get(`http://localhost/ltw-api/user`, environment.headers)
       .then((res) => {
-        if (res.data.data) {
-          setData(res.data.data);
-        }
+        setData(res.data.data);
       });
   };
 

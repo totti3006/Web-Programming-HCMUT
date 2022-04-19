@@ -108,7 +108,7 @@
     }
     #home-content-banner{
         height: 60vh;
-        margin: 4vh auto;
+        margin: 5vh auto;
     }
     #home-content-banner-row1{
         height: 40vh;
@@ -129,7 +129,7 @@
     }
     #home-content-banner{
         height: 80vh;
-        margin: 4vh auto;
+        margin: 5vh auto;
     }
     #home-content-banner-row1{
         height: 50vh;
@@ -146,6 +146,7 @@
 @media (min-width: 1200px) {
     #home-content-banner{
         height: 120vh;
+        margin: 7vh auto;
     }
     
     #home-content-banner-row1{

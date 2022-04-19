@@ -28,25 +28,45 @@ function App() {
       <Router>
         <Routes>
           <Route path="/contact" element={<Contac />} />
+        </Routes>
 
+        <Routes>
           <Route path="/user" element={<User />} />
+        </Routes>
 
+        <Routes>
           <Route path="/price" element={<Price />} />
+        </Routes>
 
+        <Routes>
           <Route path="/signup" element={<Signup />} />
+        </Routes>
 
+        <Routes>
           <Route path="/intro" element={<IntroPage />} />
+        </Routes>
 
+        <Routes>
           <Route path="/new" element={<News />} />
+        </Routes>
 
+        <Routes>
           <Route path="/signin" element={<Signin />} />
+        </Routes>
 
+        <Routes>
           <Route path="/" element={<Home />} />
+        </Routes>
 
+        <Routes>
           <Route path="/Product" element={<Product />} />
+        </Routes>
 
+        <Routes>
           <Route path="/ProductDetail" element={<ProductDetail />} />
+        </Routes>
 
+        <Routes>
           <Route path="/admin/user" element={<Admin />} />
         </Routes>
       </Router>
