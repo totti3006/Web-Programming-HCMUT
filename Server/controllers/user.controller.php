@@ -42,6 +42,26 @@ class UserController{
     }
 
     /////////////////////////////////////////////////////////////////////////////////////
+    // Change Password
+    /////////////////////////////////////////////////////////////////////////////////////
+    public static function changePassword($username, $password){
+        $temp = new User();
+
+        $user = $temp->getUserByUsername($username);
+
+        if($user->rowCount() > 0){
+            
+            $password = password_hash($password, PASSWORD_BCRYPT);
+
+            $new_user = $temp->changePassword($username, $password);
+
+            return json_encode(["message" => "Successfully!!!"]);
+        }
+
+        throw new NotFoundError('Username not found!!!');
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////
     // Signup
     /////////////////////////////////////////////////////////////////////////////////////
     public static function signup($username, $password){

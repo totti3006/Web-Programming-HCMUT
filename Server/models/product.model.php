@@ -14,7 +14,7 @@ class Product{
 
     public function getAllProduct(){
         try{
-            $query = "SELECT * FROM product";
+            $query = "SELECT product.id, category_id, name as category_name, title, price, discount, thumbnail, description FROM product join category on product.category_id = category.id";
 
             $result = $this->conn->prepare($query);
 

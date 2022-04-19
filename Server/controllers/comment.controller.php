@@ -43,7 +43,7 @@ class CommentController{
 
         $new_comment = $temp->createComment($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Update Comment
@@ -59,7 +59,7 @@ class CommentController{
 
         $new_comment = $temp->updateComment($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Delete Comment
@@ -75,7 +75,7 @@ class CommentController{
 
         $new_comment = $temp->deleteComment($comment_id);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 ?>

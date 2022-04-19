@@ -33,7 +33,7 @@ class CategoryController{
 
         $new_category = $temp->createCategory($name);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Update Category
@@ -49,7 +49,7 @@ class CategoryController{
 
         $new_category = $temp->updateCategory($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Delete Category
@@ -65,7 +65,7 @@ class CategoryController{
 
         $new_category = $temp->deleteCategory($category_id);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 ?>
