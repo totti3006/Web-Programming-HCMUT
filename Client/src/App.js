@@ -20,39 +20,34 @@ import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 
+import Admin from "./pages/Admin/User/User";
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/contact" element={<Contac />} />
-        </Routes>
-        <Routes>
+
           <Route path="/user" element={<User />} />
-        </Routes>
-        <Routes>
+
           <Route path="/price" element={<Price />} />
-        </Routes>
-        <Routes>
+
           <Route path="/signup" element={<Signup />} />
-        </Routes>
-        <Routes>
+
           <Route path="/intro" element={<IntroPage />} />
-        </Routes>
-        <Routes>
+
           <Route path="/new" element={<News />} />
-        </Routes>
-        <Routes>
+
           <Route path="/signin" element={<Signin />} />
-        </Routes>
-        <Routes>
+
           <Route path="/" element={<Home />} />
-        </Routes>
-        <Routes>
+
           <Route path="/Product" element={<Product />} />
-        </Routes>
-        <Routes>
+
           <Route path="/ProductDetail" element={<ProductDetail />} />
+
+          <Route path="/admin/user" element={<Admin />} />
         </Routes>
       </Router>
     </div>

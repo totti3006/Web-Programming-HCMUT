@@ -4,10 +4,30 @@ import Phone from "../images/phone.png";
 import Mail from "../images/email.png";
 import Lock from "../images/lock.png";
 import Data from "./DummyData";
+import axios from "axios";
+import environment from "./Environment/Environment";
 // import "./Users.css";
 
 function User() {
   const [infoData, setInfoData] = React.useState(Data[0]);
+
+  const [data, setData] = React.useState("");
+
+  const getData = async () => {
+    await axios
+      .get(`http://localhost:80/ltw-api/news/getall`, environment.headers)
+      .then((res) => {
+        if (res.data.data) {
+          setData(res.data.data);
+        }
+      });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data);
 
   function handleChange(event) {
     const { name, value, type, checked, id } = event.target;
@@ -27,11 +47,17 @@ function User() {
 
   console.log(infoData);
 
-  function clickPhone() {}
+  function closePhone() {}
 
-  function clickMail() {}
+  function closeMail() {}
 
-  function clickPassword() {}
+  function closePassword() {}
+
+  function submitPhone() {}
+
+  function submitMail() {}
+
+  function submitPassword() {}
 
   return (
     <div className="container py-5 mt-5">
@@ -283,10 +309,75 @@ function User() {
                             <button
                               type="submit"
                               className="btn btn-outline-secondary"
-                              onClick={clickPhone}
+                              data-bs-toggle="modal"
+                              data-bs-target="#staticPhone"
                             >
                               Cập nhật
                             </button>
+
+                            <div
+                              className="modal fade"
+                              id="staticPhone"
+                              data-bs-backdrop="static"
+                              data-bs-keyboard="false"
+                              tabIndex="-1"
+                              aria-labelledby="staticPhoneLabel"
+                              aria-hidden="true"
+                            >
+                              <div className="modal-dialog modal-dialog-centered">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h5
+                                      className="modal-title"
+                                      id="staticPhoneLabel"
+                                    >
+                                      Cập nhật số điện thoại
+                                    </h5>
+                                    <button
+                                      type="button"
+                                      className="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                      onClick={closePhone}
+                                    ></button>
+                                  </div>
+                                  <div className="modal-body">
+                                    <label
+                                      htmlFor="phone"
+                                      className="form-label"
+                                    >
+                                      Số điện thoại
+                                    </label>
+                                    <input
+                                      required
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Số điện thoại"
+                                      name="phone"
+                                      value={infoData.phone}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
+                                  <div className="modal-footer">
+                                    <button
+                                      type="button"
+                                      className="btn btn-secondary"
+                                      data-bs-dismiss="modal"
+                                      onClick={closePhone}
+                                    >
+                                      Đóng
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-primary"
+                                      onClick={submitPhone}
+                                    >
+                                      Hoàn thành
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -321,10 +412,57 @@ function User() {
                             <button
                               type="submit"
                               className="btn btn-outline-secondary"
-                              onClick={clickMail}
+                              data-bs-toggle="modal"
+                              data-bs-target="#staticMail"
                             >
                               Cập nhật
                             </button>
+
+                            <div
+                              className="modal fade"
+                              id="staticMail"
+                              data-bs-backdrop="static"
+                              data-bs-keyboard="false"
+                              tabIndex="-1"
+                              aria-labelledby="staticMailLabel"
+                              aria-hidden="true"
+                            >
+                              <div className="modal-dialog modal-dialog-centered">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h5
+                                      className="modal-title"
+                                      id="staticMailLabel"
+                                    >
+                                      Cập nhật email
+                                    </h5>
+                                    <button
+                                      type="button"
+                                      className="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                    ></button>
+                                  </div>
+                                  <div className="modal-body">...</div>
+                                  <div className="modal-footer">
+                                    <button
+                                      type="button"
+                                      className="btn btn-secondary"
+                                      data-bs-dismiss="modal"
+                                    >
+                                      Đóng
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-primary"
+                                      onClick={submitMail}
+                                    >
+                                      Hoàn thành
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -360,10 +498,57 @@ function User() {
                             <button
                               type="submit"
                               className="btn btn-outline-secondary"
-                              onClick={clickPassword}
+                              data-bs-toggle="modal"
+                              data-bs-target="#staticPassword"
                             >
                               Cập nhật
                             </button>
+
+                            <div
+                              className="modal fade"
+                              id="staticPassword"
+                              data-bs-backdrop="static"
+                              data-bs-keyboard="false"
+                              tabIndex="-1"
+                              aria-labelledby="staticPasswordLabel"
+                              aria-hidden="true"
+                            >
+                              <div className="modal-dialog modal-dialog-centered">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h5
+                                      className="modal-title"
+                                      id="staticPasswordLabel"
+                                    >
+                                      Đổi mật khẩu
+                                    </h5>
+                                    <button
+                                      type="button"
+                                      className="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                    ></button>
+                                  </div>
+                                  <div className="modal-body">...</div>
+                                  <div className="modal-footer">
+                                    <button
+                                      type="button"
+                                      className="btn btn-secondary"
+                                      data-bs-dismiss="modal"
+                                    >
+                                      Đóng
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-primary"
+                                      onClick={submitPassword}
+                                    >
+                                      Hoàn thành
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
