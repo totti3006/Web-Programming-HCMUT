@@ -27,7 +27,7 @@ class ProductController{
 
         $new_product = $temp->createProduct($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Update Product
@@ -43,7 +43,7 @@ class ProductController{
 
         $new_product = $temp->updateProduct($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Delete Product
@@ -59,7 +59,7 @@ class ProductController{
 
         $new_product = $temp->deleteProduct($product_id);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 ?>

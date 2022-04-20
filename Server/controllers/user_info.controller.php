@@ -4,6 +4,22 @@ include_once './models/user_info.model.php';
 include_once './middleware/error/custom_error.php';
 
 class UserInfoController{
+    //////////////////////////////////////////////////////////////
+    //Get All User Info
+    //////////////////////////////////////////////////////////////
+    public static function getAllUserInfos(){
+        $temp = new UserInfo();
+
+        $user_info = $temp->getAllUserInfos();
+
+        if($user_info->rowCount() > 0){
+            $rows = $user_info->fetchAll(PDO::FETCH_ASSOC);
+
+            return json_encode(["data" => $rows]);
+        }
+
+        throw new NotFoundError("User info not found!!!");
+    }
 
     //////////////////////////////////////////////////////////////
     //Get User Info By User
@@ -36,7 +52,7 @@ class UserInfoController{
 
         $new_user_info = $temp->updateUserInfo($user_id, $info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
 
     }
 
@@ -54,7 +70,7 @@ class UserInfoController{
 
         $user_info = $temp->createUserInfo($user_id, $info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 

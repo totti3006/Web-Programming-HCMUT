@@ -47,5 +47,22 @@ class User{
 
     }
 
+    public function changePassword($username, $password){
+
+        try {
+            $query = "UPDATE users SET password = '$password' WHERE username = '$username'";
+
+            $result = $this->conn->prepare($query);
+
+            $result->execute();
+            
+            return $result;
+        }
+        catch (PDOException $e){
+            throw new InternalServerError('Server Error!!!');
+        }
+
+    }
+
 }
 ?>

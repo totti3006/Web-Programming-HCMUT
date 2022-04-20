@@ -75,7 +75,7 @@ class OrderController{
 
         $new_order = $temp->createOrder($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 ?>

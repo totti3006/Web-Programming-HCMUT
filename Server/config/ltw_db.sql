@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 08, 2022 lúc 03:37 PM
+-- Thời gian đã tạo: Th4 19, 2022 lúc 05:08 PM
 -- Phiên bản máy phục vụ: 8.0.26
 -- Phiên bản PHP: 7.4.26
 
@@ -95,7 +95,8 @@ INSERT INTO `news` (`id`, `title`, `content`, `thumbnail`) VALUES
 (1, 'Hi', 'Hi', 'youtube.com'),
 (2, 'Hi', 'blabla', 'youtube.com'),
 (3, 'Hello', 'Hi', 'youtube.com'),
-(4, 'Hello', 'Hi', 'youtube.com');
+(4, 'Hello', 'Hi', 'youtube.com'),
+(8, 'Hello', 'Hi', 'youtube.com');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,8 @@ INSERT INTO `product` (`id`, `category_id`, `title`, `price`, `discount`, `thumb
 (17, 18, 'iPhone 11 Pro Max 64GB', 20050000, NULL, 'https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-11-pro-max-trang.jpg', 'Được Apple giới thiệu từ 2019, iPhone 11 Pro Max là siêu phẩm được rất nhiều người mong chờ vì có thiết kế sang trọng bậc nhất kết hợp với màn hình lớn, cấu hình mạnh mẽ. Dù đã trải qua một thời gian nhưng đến nay, iPhone 11 Pro Max cũ vẫn luôn là sự lựa chọn hàng đầu khi nghĩ đến một chiếc Flagship cũ. '),
 (18, 19, 'Điện thoại Samsung Galaxy M22', 4300000, NULL, 'https://cdn.mobilecity.vn/mobilecity-vn/images/2021/10/w300/galaxy-m22-den.jpg', 'Samsung Galaxy M22 tiếp tục là một mẫu điện thoại tầm trung thuộc dòng Galaxy M của nhà Samsung. Điện thoại Samsung Galaxy M22 sở hữu màn hình lớn, cấu hình mạnh trong phân khúc.'),
 (19, 19, 'Điện thoại Samsung Galaxy M12', 3650000, NULL, 'https://cdn.mobilecity.vn/mobilecity-vn/images/2021/10/w300/samsung-galaxy-m12-den.jpg', 'Smartphone thuộc dòng Galaxy M vốn được ưa chuộng bởi hiệu năng vượt trội và cấu hình ấn tượng trong phân khúc giá rẻ. Chiếc smartphone này được nâng cấp mạnh mẽ không chỉ sở hữu cấu hình ấn tượng với vi xử lý 8 nhân kết hợp tần số quét 90Hz đầu tiên trong phân khúc, mà Samsung Galaxy M12 còn có dung lượng pin bền bỉ 5000mAh có hỗ trợ sạc siêu tốc và bộ 4 camera 48MP đỉnh cao.'),
-(23, 18, 'Hello', 10000, 1, 'youtube.com', 'Hello');
+(24, 18, 'Hello', 10000, NULL, 'youtube.com', 'Hello'),
+(25, 18, 'Hello', 10000, 100, 'youtube.com', 'Hello');
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
 (4, 'thinhnguyenhls', '$2y$10$NDmYtZYFx0auBPtfcWa6z./SeoDlfzTTar2N9M7GCSJ4unB7QiT82', 'user'),
 (5, 'admin', '$2y$10$B74HCWBw90vM1g.JFjSrCezxxsbg2L0BEPhCjagRZq8CwG7HuvQJW', 'admin'),
 (6, 'user1', '$2y$10$21Xmxynpev5aXIj0UqjsEO14pxVUahMsH1LWif/wez42Ia0xZ5Zl2', 'user'),
-(7, 'user2', '$2y$10$YQON7Ubb.HvFEq6.hVe58ODayBg6O2kNXDbs6teaRtZk6zPlF1H2C', 'user');
+(7, 'user2', '$2y$10$YQON7Ubb.HvFEq6.hVe58ODayBg6O2kNXDbs6teaRtZk6zPlF1H2C', 'user'),
+(8, 'user3', '$2y$10$ZTNvk.BwMJxr7YpeK1R2wepW2b3g4qaxkNsB0npwdNCf572EWl1SG', 'user');
 
 -- --------------------------------------------------------
 
@@ -208,16 +211,18 @@ CREATE TABLE `user_infos` (
   `fullname` varchar(255) NOT NULL,
   `phone_number` varchar(10) NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `avatar` varchar(255) NOT NULL
+  `avatar` varchar(255) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `dateofbirth` date NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `user_infos`
 --
 
-INSERT INTO `user_infos` (`user_id`, `fullname`, `phone_number`, `address`, `avatar`) VALUES
-(4, 'Thinhj', '123456789', 'HCMUT', 'youtube.com'),
-(5, 'Thinh Nguyen', '0123456789', 'HCM', 'https://i.pinimg.com/564x/2b/12/d2/2b12d24004fa07adff784b4829e6c0ac.jpg');
+INSERT INTO `user_infos` (`user_id`, `fullname`, `phone_number`, `address`, `avatar`, `gender`, `dateofbirth`, `email`) VALUES
+(3, 'Thinh', '123456789', 'HCMUT', 'youtube.com', 'Nam', '2001-01-01', 'thinh@gmail.com');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -297,7 +302,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `order_detail`
@@ -309,13 +314,13 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

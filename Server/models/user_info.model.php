@@ -12,6 +12,21 @@ class UserInfo{
 
         $this->conn = $conn;
     }
+    
+    public function getAllUserInfos(){
+        try{
+            $query = "SELECT user_id, username, fullname, gender, dateofbirth, phone_number, email, address, avatar FROM user_infos join users on user_infos.user_id = users.id";
+
+            $result = $this->conn->prepare($query);
+
+            $result->execute();
+
+            return $result;
+        }
+        catch (PDOException $e){
+            throw new InternalServerError('Server Error!!!');
+        }
+    }
 
     public function getUserInfoByUserId($user_id){
         try{
@@ -38,7 +53,13 @@ class UserInfo{
 
             $avatar = $info['avatar'];
 
-            $query = "UPDATE user_infos SET fullname = '$fullname', phone_number = '$phone_number', address = '$address', avatar = '$avatar' WHERE user_id = '$user_id'";
+            $gender = $info['gender'];
+
+            $dateofbirth = $info['dateofbirth'];
+
+            $email = $info['email'];
+
+            $query = "UPDATE user_infos SET fullname = '$fullname', phone_number = '$phone_number', address = '$address', avatar = '$avatar', gender = '$gender', dateofbirth = '$dateofbirth', email = '$email' WHERE user_id = '$user_id'";
 
             $result = $this->conn->prepare($query);
 
@@ -60,7 +81,13 @@ class UserInfo{
 
             $avatar = $info['avatar'];
 
-            $query = "INSERT INTO user_infos VALUES ('$user_id', '$fullname', '$phone_number', '$address', '$avatar')";
+            $gender = $info['gender'];
+
+            $dateofbirth = $info['dateofbirth'];
+
+            $email = $info['email'];
+
+            $query = "INSERT INTO user_infos VALUES ('$user_id', '$fullname', '$phone_number', '$address', '$avatar', '$gender', '$dateofbirth', '$email')";
 
             $result = $this->conn->prepare($query);
 

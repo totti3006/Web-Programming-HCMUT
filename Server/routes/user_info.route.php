@@ -8,7 +8,24 @@
 
     session_start();
 
-    if(!array_key_exists('3', $url)){
+    if(array_key_exists('3', $url)){
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Get User Info By User
+        /////////////////////////////////////////////////////////////////////////////////////
+        if($url['3'] == 'getall' and $method == 'GET'){
+            try{
+                $auth = Auth::checkAuth(['admin']);
+
+                echo UserInfoController::getAllUserInfos();
+                http_response_code(200);
+            }
+            catch(CustomError $e){
+                echo json_encode(['message' => $e->getMessage()]);
+                http_response_code($e->getStatusCode());
+            }
+        }
+    }
+    else if(!array_key_exists('3', $url)){
         /////////////////////////////////////////////////////////////////////////////////////
         // Get User Info By User
         /////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +48,7 @@
             try{
                 $data = (array) json_decode(file_get_contents('php://input'));
                 
-                if($data != [] and array_key_exists('fullname', $data) and array_key_exists('phone_number', $data) and array_key_exists('address', $data) and array_key_exists('avatar', $data)){
+                if($data != [] and array_key_exists('fullname', $data) and array_key_exists('phone_number', $data) and array_key_exists('address', $data) and array_key_exists('avatar', $data) and array_key_exists('gender', $data) and array_key_exists('dateofbirth', $data) and array_key_exists('email', $data)){
 
                     $auth = Auth::checkAuth(['user']);
 
@@ -55,7 +72,7 @@
             try{
                 $data = (array) json_decode(file_get_contents('php://input'));
 
-                if($data != [] and array_key_exists('fullname', $data) and array_key_exists('phone_number', $data) and array_key_exists('address', $data) and array_key_exists('avatar', $data)){
+                if($data != [] and array_key_exists('fullname', $data) and array_key_exists('phone_number', $data) and array_key_exists('address', $data) and array_key_exists('avatar', $data) and array_key_exists('gender', $data) and array_key_exists('dateofbirth', $data) and array_key_exists('email', $data)){
                     
                     $auth = Auth::checkAuth(['user']);
 

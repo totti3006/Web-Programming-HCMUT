@@ -44,7 +44,7 @@ class NewsController{
 
         $new_news = $temp->createNews($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Update News
@@ -60,7 +60,7 @@ class NewsController{
 
         $new_news = $temp->updateNews($info);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
     //////////////////////////////////////////////////////////////
     //Delete News
@@ -76,7 +76,7 @@ class NewsController{
 
         $new_news = $temp->deleteNews($news_id);
 
-        return json_encode(["message" => "Successful!!!"]);
+        return json_encode(["message" => "Successfully!!!"]);
     }
 }
 
