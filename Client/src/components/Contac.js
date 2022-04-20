@@ -20,7 +20,7 @@ function Contac() {
   //   console.log(formData);
 
   return (
-    <div className="container py-5">
+    <div className="container py-5 mt-5">
       <div className="row">
         <div className="col-lg-3"></div>
         <div className="col-lg-6">

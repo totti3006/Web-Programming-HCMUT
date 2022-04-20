@@ -9,15 +9,15 @@ import environment from "./Environment/Environment";
 // import "./Users.css";
 
 function User() {
-  const [infoData, setInfoData] = React.useState(Data[0]);
+  const [infoData, setInfoData] = React.useState("");
 
-  const [data, setData] = React.useState("");
+  // const [data, setData] = React.useState("");
 
   const getData = async () => {
     await axios
       .get(`http://localhost/ltw-api/user`, environment.headers)
       .then((res) => {
-        setData(res.data.data);
+        setInfoData(res.data.data);
       });
   };
 
@@ -25,7 +25,7 @@ function User() {
     getData();
   }, []);
 
-  console.log(data);
+  console.log(infoData);
 
   function handleChange(event) {
     const { name, value, type, checked, id } = event.target;
@@ -43,7 +43,15 @@ function User() {
     });
   }
 
-  console.log(infoData);
+  // console.log(infoData);
+
+  const saveChange = async () => {
+    await axios
+      .put(`http://localhost/ltw-api/user`, { ...infoData })
+      .then((res) => {
+        setInfoData(res.data.data);
+      });
+  };
 
   function closePhone() {}
 
@@ -77,7 +85,7 @@ function User() {
                 <div className="row pt-2">
                   <div className="col-3">
                     <img
-                      src={NoUser}
+                      src={infoData.avatar}
                       alt={NoUser}
                       className="img-fluid rounded-circle border border-primary border-5"
                     ></img>
@@ -99,8 +107,8 @@ function User() {
                             type="text"
                             className="form-control"
                             id="user-name"
-                            name="name"
-                            value={infoData.name}
+                            name="fullname"
+                            value={infoData.fullname}
                             onChange={handleChange}
                           ></input>
                         </div>
@@ -270,7 +278,11 @@ function User() {
                 </div>
 
                 <div className="d-grid col-4 py-2 mx-auto mt-5">
-                  <button type="submit" className="btn btn-primary">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={saveChange}
+                  >
                     Lưu thay đổi
                   </button>
                 </div>
@@ -352,7 +364,7 @@ function User() {
                                       className="form-control"
                                       placeholder="Số điện thoại"
                                       name="phone"
-                                      value={infoData.phone}
+                                      value={infoData.phone_number}
                                       onChange={handleChange}
                                     />
                                   </div>

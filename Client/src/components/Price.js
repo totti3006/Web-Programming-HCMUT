@@ -1,10 +1,25 @@
 import React, { Fragment } from "react";
+import axios from "axios";
 import Data from "./DummyProduct";
 
 function Price() {
-  const [products, setProducts] = React.useState(Data);
+  const [products, setProducts] = React.useState([]);
+
+  const getData = async () => {
+    await axios.get(`http://localhost/ltw-api/product/getall`).then((res) => {
+      setProducts(res.data.data);
+    });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="container py-5">
+    <div className="container py-5 mt-3">
+      <div className="text-center py-2 mt-3">
+        <h3>Bảng giá sản phẩm</h3>
+      </div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -20,8 +35,8 @@ function Price() {
             <Fragment>
               <tr>
                 <th scope="row">{product.id}</th>
-                <td>{product.name}</td>
-                <td>{product.brand}</td>
+                <td>{product.title}</td>
+                <td>{product.category_id}</td>
                 <td>{product.price}</td>
                 <td>{product.description}</td>
               </tr>

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Contac from "./components/Contac";
+import Contac from "./pages/Contact/Contact";
 import User from "./pages/User/User";
-import Price from "./components/Price";
+import Price from "./pages/Price/Price";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
