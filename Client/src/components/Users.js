@@ -3,21 +3,29 @@ import NoUser from "../images/no_user.png";
 import Phone from "../images/phone.png";
 import Mail from "../images/email.png";
 import Lock from "../images/lock.png";
-import Data from "./DummyData";
 import axios from "axios";
 import environment from "./Environment/Environment";
 // import "./Users.css";
 
 function User() {
-  const [infoData, setInfoData] = React.useState("");
+  const [infoData, setInfoData] = React.useState({});
 
-  // const [data, setData] = React.useState("");
+  const [birth, setBirth] = React.useState("");
+
+  const [phone, setPhone] = React.useState("");
+
+  const [mail, setMail] = React.useState("");
+
+  const [avatar, setAvatar] = React.useState("");
 
   const getData = async () => {
     await axios
       .get(`http://localhost/ltw-api/user`, environment.headers)
       .then((res) => {
         setInfoData(res.data.data);
+        setBirth(res.data.data.dateofbirth);
+        setPhone(res.data.data.phone_number);
+        setMail(res.data.data.email);
       });
   };
 
@@ -25,45 +33,94 @@ function User() {
     getData();
   }, []);
 
-  console.log(infoData);
+  // console.log(birth.slice(4));
 
   function handleChange(event) {
     const { name, value, type, checked, id } = event.target;
     setInfoData((prevInfoData) => {
-      if (name !== "dateofbirth") {
-        return {
-          ...prevInfoData,
-          [name]: type === "checkbox" ? checked : value,
-        };
-      }
       return {
         ...prevInfoData,
-        [name]: { ...prevInfoData.dateofbirth, [id]: value },
+        [name]: type === "checkbox" ? checked : value,
+      };
+    });
+    if (name === "dateofbirth") {
+      setBirth(value);
+    }
+  }
+
+  function changePhone(event) {
+    const { name, value } = event.target;
+    setPhone(value);
+  }
+
+  function changeMail(event) {
+    const { name, value } = event.target;
+    setMail(value);
+  }
+
+  function changeAvatar(event) {
+    const { name, value } = event.target;
+    setAvatar(value);
+  }
+
+  console.log(infoData);
+  // console.log(birth);
+
+  const saveChange = async () => {
+    await axios
+      .put(
+        `http://localhost/ltw-api/user`,
+        { ...infoData },
+        environment.headers
+      )
+      .then((res) => {
+        getData();
+      })
+      .catch((res) => alert(res));
+  };
+
+  function closePhone() {
+    setPhone(infoData.phone_number);
+  }
+
+  function closeMail() {
+    setMail(infoData.email);
+  }
+
+  function closeAvatar() {
+    setAvatar(infoData.avatar);
+  }
+
+  // function closePassword() {}
+
+  function submitPhone() {
+    setInfoData((prevInfoData) => {
+      return {
+        ...prevInfoData,
+        phone_number: phone,
       };
     });
   }
 
-  // console.log(infoData);
+  function submitMail() {
+    setInfoData((prevInfoData) => {
+      return {
+        ...prevInfoData,
+        email: mail,
+      };
+    });
+  }
 
-  const saveChange = async () => {
-    await axios
-      .put(`http://localhost/ltw-api/user`, { ...infoData })
-      .then((res) => {
-        setInfoData(res.data.data);
-      });
-  };
+  // function submitAvatar() {
+  //   setInfoData((prevInfoData) => {
+  //     return {
+  //       ...prevInfoData,
+  //       avatar: avatar,
+  //     };
+  //   });
+  // }
 
-  function closePhone() {}
-
-  function closeMail() {}
-
-  function closePassword() {}
-
-  function submitPhone() {}
-
-  function submitMail() {}
-
-  function submitPassword() {}
+  // function submitPassword() {}
 
   return (
     <div className="container py-5 mt-5">
@@ -84,11 +141,81 @@ function User() {
                 <h5>Thông tin cá nhân</h5>
                 <div className="row pt-2">
                   <div className="col-3">
-                    <img
-                      src={infoData.avatar}
-                      alt={NoUser}
-                      className="img-fluid rounded-circle border border-primary border-5"
-                    ></img>
+                    <div>
+                      <button
+                        className="btn btn-light rounded-circle"
+                        type="submit"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticAvatar"
+                      >
+                        <img
+                          src={infoData.avatar}
+                          alt={NoUser}
+                          className="img-fluid rounded-circle w-100"
+                        />
+                      </button>
+
+                      <div
+                        className="modal fade"
+                        id="staticAvatar"
+                        data-bs-backdrop="static"
+                        data-bs-keyboard="false"
+                        tabIndex="-1"
+                        aria-labelledby="staticAvatarLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog modal-dialog-centered">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5
+                                className="modal-title"
+                                id="staticAvatarLabel"
+                              >
+                                Ảnh đại diện
+                              </h5>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                // onClick={closeAvatar}
+                              ></button>
+                            </div>
+                            <div className="modal-body">
+                              <label htmlFor="phone" className="form-label">
+                                Link
+                              </label>
+                              <input
+                                required
+                                type="text"
+                                className="form-control"
+                                placeholder="Link"
+                                name="avatar"
+                                value={infoData.avatar}
+                                onChange={handleChange}
+                              />
+                            </div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                                // onClick={closeAvatar}
+                              >
+                                Hoàn thành
+                              </button>
+                              {/* <button
+                                type="button"
+                                className="btn btn-primary"
+                                // onClick={submitAvatar}
+                              >
+                                Hoàn thành
+                              </button> */}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-9">
                     <form>
@@ -124,41 +251,41 @@ function User() {
                           className="form-select"
                           aria-label="Default select example"
                           id="d"
-                          value={infoData.dateofbirth.d}
+                          value={birth}
                           onChange={handleChange}
                           name="dateofbirth"
                         >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                          <option value="13">13</option>
-                          <option value="14">14</option>
-                          <option value="15">15</option>
-                          <option value="16">16</option>
-                          <option value="17">17</option>
-                          <option value="18">18</option>
-                          <option value="19">19</option>
-                          <option value="20">20</option>
-                          <option value="21">21</option>
-                          <option value="22">22</option>
-                          <option value="23">23</option>
-                          <option value="24">24</option>
-                          <option value="25">25</option>
-                          <option value="26">26</option>
-                          <option value="27">27</option>
-                          <option value="28">28</option>
-                          <option value="29">29</option>
-                          <option value="30">30</option>
-                          <option value="31">31</option>
+                          <option value={birth.slice(0, 8) + "01"}>1</option>
+                          <option value={birth.slice(0, 8) + "02"}>2</option>
+                          <option value={birth.slice(0, 8) + "03"}>3</option>
+                          <option value={birth.slice(0, 8) + "04"}>4</option>
+                          <option value={birth.slice(0, 8) + "05"}>5</option>
+                          <option value={birth.slice(0, 8) + "06"}>6</option>
+                          <option value={birth.slice(0, 8) + "07"}>7</option>
+                          <option value={birth.slice(0, 8) + "08"}>8</option>
+                          <option value={birth.slice(0, 8) + "09"}>9</option>
+                          <option value={birth.slice(0, 8) + "10"}>10</option>
+                          <option value={birth.slice(0, 8) + "11"}>11</option>
+                          <option value={birth.slice(0, 8) + "12"}>12</option>
+                          <option value={birth.slice(0, 8) + "13"}>13</option>
+                          <option value={birth.slice(0, 8) + "14"}>14</option>
+                          <option value={birth.slice(0, 8) + "15"}>15</option>
+                          <option value={birth.slice(0, 8) + "16"}>16</option>
+                          <option value={birth.slice(0, 8) + "17"}>17</option>
+                          <option value={birth.slice(0, 8) + "18"}>18</option>
+                          <option value={birth.slice(0, 8) + "19"}>19</option>
+                          <option value={birth.slice(0, 8) + "20"}>20</option>
+                          <option value={birth.slice(0, 8) + "21"}>21</option>
+                          <option value={birth.slice(0, 8) + "22"}>22</option>
+                          <option value={birth.slice(0, 8) + "23"}>23</option>
+                          <option value={birth.slice(0, 8) + "24"}>24</option>
+                          <option value={birth.slice(0, 8) + "25"}>25</option>
+                          <option value={birth.slice(0, 8) + "26"}>26</option>
+                          <option value={birth.slice(0, 8) + "27"}>27</option>
+                          <option value={birth.slice(0, 8) + "28"}>28</option>
+                          <option value={birth.slice(0, 8) + "29"}>29</option>
+                          <option value={birth.slice(0, 8) + "30"}>30</option>
+                          <option value={birth.slice(0, 8) + "31"}>31</option>
                         </select>
                       </div>
                       <div className="col-3">
@@ -166,22 +293,70 @@ function User() {
                           className="form-select"
                           aria-label="Default select example"
                           id="m"
-                          value={infoData.dateofbirth.m}
+                          value={birth}
                           onChange={handleChange}
                           name="dateofbirth"
                         >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
+                          <option
+                            value={birth.slice(0, 5) + "01" + birth.slice(7)}
+                          >
+                            1
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "02" + birth.slice(7)}
+                          >
+                            2
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "03" + birth.slice(7)}
+                          >
+                            3
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "04" + birth.slice(7)}
+                          >
+                            4
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "05" + birth.slice(7)}
+                          >
+                            5
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "06" + birth.slice(7)}
+                          >
+                            6
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "07" + birth.slice(7)}
+                          >
+                            7
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "08" + birth.slice(7)}
+                          >
+                            8
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "09" + birth.slice(7)}
+                          >
+                            9
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "10" + birth.slice(7)}
+                          >
+                            10
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "11" + birth.slice(7)}
+                          >
+                            11
+                          </option>
+                          <option
+                            value={birth.slice(0, 5) + "12" + birth.slice(7)}
+                          >
+                            12
+                          </option>
                         </select>
                       </div>
                       <div className="col-3">
@@ -189,14 +364,14 @@ function User() {
                           className="form-select"
                           aria-label="Default select example"
                           id="y"
-                          value={infoData.dateofbirth.y}
+                          value={birth}
                           onChange={handleChange}
                           name="dateofbirth"
                         >
-                          <option value="2000">2000</option>
-                          <option value="2001">2001</option>
-                          <option value="2002">2002</option>
-                          <option value="2003">2003</option>
+                          <option value={"2000" + birth.slice(4)}>2000</option>
+                          <option value={"2001" + birth.slice(4)}>2001</option>
+                          <option value={"2002" + birth.slice(4)}>2002</option>
+                          <option value={"2003" + birth.slice(4)}>2003</option>
                         </select>
                       </div>
                     </div>
@@ -306,7 +481,7 @@ function User() {
                           style={{ height: "48px" }}
                         >
                           <p className="col-12" style={{ margin: "0" }}>
-                            {infoData.phone}
+                            {infoData.phone_number}
                           </p>
                         </div>
                       </div>
@@ -321,6 +496,7 @@ function User() {
                               className="btn btn-outline-secondary"
                               data-bs-toggle="modal"
                               data-bs-target="#staticPhone"
+                              onClick={closePhone}
                             >
                               Cập nhật
                             </button>
@@ -363,9 +539,9 @@ function User() {
                                       type="text"
                                       className="form-control"
                                       placeholder="Số điện thoại"
-                                      name="phone"
-                                      value={infoData.phone_number}
-                                      onChange={handleChange}
+                                      name="phone_number"
+                                      value={phone}
+                                      onChange={changePhone}
                                     />
                                   </div>
                                   <div className="modal-footer">
@@ -424,6 +600,7 @@ function User() {
                               className="btn btn-outline-secondary"
                               data-bs-toggle="modal"
                               data-bs-target="#staticMail"
+                              onClick={closeMail}
                             >
                               Cập nhật
                             </button>
@@ -451,14 +628,32 @@ function User() {
                                       className="btn-close"
                                       data-bs-dismiss="modal"
                                       aria-label="Close"
+                                      onClick={closeMail}
                                     ></button>
                                   </div>
-                                  <div className="modal-body">...</div>
+                                  <div className="modal-body">
+                                    <label
+                                      htmlFor="phone"
+                                      className="form-label"
+                                    >
+                                      Email
+                                    </label>
+                                    <input
+                                      required
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Số điện thoại"
+                                      name="email"
+                                      value={mail}
+                                      onChange={changeMail}
+                                    />
+                                  </div>
                                   <div className="modal-footer">
                                     <button
                                       type="button"
                                       className="btn btn-secondary"
                                       data-bs-dismiss="modal"
+                                      onClick={closeMail}
                                     >
                                       Đóng
                                     </button>
@@ -551,7 +746,6 @@ function User() {
                                     <button
                                       type="button"
                                       className="btn btn-primary"
-                                      onClick={submitPassword}
                                     >
                                       Hoàn thành
                                     </button>

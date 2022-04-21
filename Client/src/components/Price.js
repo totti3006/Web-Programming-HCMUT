@@ -36,7 +36,7 @@ function Price() {
               <tr>
                 <th scope="row">{product.id}</th>
                 <td>{product.title}</td>
-                <td>{product.category_id}</td>
+                <td>{product.category_name}</td>
                 <td>{product.price}</td>
                 <td>{product.description}</td>
               </tr>

@@ -1,9 +1,12 @@
 import React from "react";
 import TableUser from "../../../components/Admin/TableUser";
-import Data from "../../../components/DummyData";
+import axios from "axios";
+import environment from "../../../components/Environment/Environment";
 
 function User() {
-  const [users, setUsers] = React.useState(Data);
+  const [users, setUsers] = React.useState({});
+
+  const [data, setData] = React.useState([]);
 
   const [user, setUser] = React.useState({
     fullname: "",
@@ -13,6 +16,20 @@ function User() {
     address: "",
     password: "",
   });
+
+  const getData = async () => {
+    await axios
+      .get(`http://localhost/ltw-api/user/getall`, environment.headers)
+      .then((res) => {
+        setData(res.data.data);
+      });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data);
 
   function handleClose() {
     setUser({
@@ -42,14 +59,14 @@ function User() {
     setUser((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleEdit(id) {
+  function handleDelete(id) {
     var option = window.confirm("Bạn có chắc muốn xóa thành viên này?");
     if (option) {
       //   deleteUser(id);
     }
   }
 
-  function handleDelete(id, user) {
+  function handleEdit(id, user) {
     setUser({ ...user, password: "" });
     document.querySelector(".openmodal").click();
   }
@@ -195,7 +212,7 @@ function User() {
 
         <div className="overflow-auto">
           <TableUser
-            users={users}
+            users={data}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
