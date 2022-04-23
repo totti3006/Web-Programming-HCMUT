@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import AdminHome from "./Home/Home";
 import Category from "./Category/Category";
+import User from "./User/User";
 import { useEffect, useState } from "react";
 
 function AdminRouter() {
@@ -29,9 +30,11 @@ function AdminRouter() {
           <Route path="/" element={<AdminHome />} />
 
           <Route path="/Category" element={<Category />} />
+
+          <Route path="/User" element={<User />} />
         </Routes>
       ) : (
-        ""
+        "Loading..."
       )}
     </>
   );

@@ -1,46 +1,91 @@
 import React from "react";
 import "./Header.css";
 
-const Header  = () =>{
+const Header = () => {
   return (
-      <header class="fixed-top ">
-    <nav class="navbar navbar-expand-lg navbar-light bgcolor">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white md" href="#">PINE@APPLE</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="d-flex align-items-center">
-        <div class="collapse navbar-collapse ">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="">Trang chủ</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="/intro">Giới thiệu</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="/intro">Sản phẩm</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="/intro">Bảng giá</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="/new">Tin tức</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-white" aria-current="page" href="#">Liên hệ</a>
-            </li>
-        </ul>
-        <button type="button" class="button">
-          Login
-        </button>
+    <header className="fixed-top ">
+      <nav className="navbar navbar-expand-lg navbar-light bgcolor">
+        <div className="container-fluid">
+          <a className="navbar-brand text-white md" href="#">
+            PINE@APPLE
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="d-flex align-items-center">
+            <div className="collapse navbar-collapse ">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/"
+                  >
+                    Trang chủ
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/intro"
+                  >
+                    Giới thiệu
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/product"
+                  >
+                    Sản phẩm
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/price"
+                  >
+                    Bảng giá
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/new"
+                  >
+                    Tin tức
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white"
+                    aria-current="page"
+                    href="/contact"
+                  >
+                    Liên hệ
+                  </a>
+                </li>
+              </ul>
+              <a href="/signin">
+                <button type="button" className="button">
+                  Login
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
-        
-    </div>
-    </div>
-    </nav>
+      </nav>
     </header>
   );
-}
+};
 export default Header;

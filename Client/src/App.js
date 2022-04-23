@@ -19,8 +19,7 @@ import Home from "./pages/Home/Home";
 
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-
-import Admin from "./pages/Admin/User/User";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (
@@ -63,11 +62,11 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/ProductDetail" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
 
         <Routes>
-          <Route path="/admin/user" element={<Admin />} />
+          <Route path="/ProductDetail" element={<ProductDetail />} />
         </Routes>
       </Router>
     </div>
