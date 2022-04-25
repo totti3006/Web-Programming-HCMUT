@@ -52,12 +52,7 @@ const ProductPage = () => {
                   >
                     Xiaomi
                   </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Xiaomi
-                  </a>
+
                   <a
                     href="#"
                     className="list-group-item list-group-item-action"

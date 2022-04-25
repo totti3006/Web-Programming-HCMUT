@@ -81,6 +81,14 @@ const Header = () => {
                   Login
                 </button>
               </a>
+              <a href="/cart">
+                <button
+                  className={"btn btn-outline-secondary position-relative ms-4"}
+                  onClick={{}}
+                >
+                  <i className="bi bi-cart"></i>
+                </button>
+              </a>
             </div>
           </div>
         </div>
