@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Contac from "./components/Contac";
+import Contact from "./pages/Contact/Contact";
 import User from "./components/Users";
-import Price from "./components/Price";
+import PricePage from "./pages/Price/Price";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -25,13 +25,13 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/contact" element={<Contac />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Routes>
           <Route path="/user" element={<User />} />
         </Routes>
         <Routes>
-          <Route path="/price" element={<Price />} />
+          <Route path="/price" element={<PricePage />} />
         </Routes>
         <Routes>
           <Route path="/signup" element={<Signup />} />

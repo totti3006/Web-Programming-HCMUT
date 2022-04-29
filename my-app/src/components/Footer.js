@@ -1,5 +1,10 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from 'react-router-dom'
+import { AiFillFacebook } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
+import {AiFillLinkedin} from "react-icons/ai";
+import { AiFillGithub } from "react-icons/ai";
 
 const Footer  = () =>{
   return (
@@ -20,14 +25,19 @@ const Footer  = () =>{
             </div>
             <div className="col-lg-3">
             <h4><b>Kết nối với chúng tôi</b></h4>
-            <div class="social-links mt-3">
-              <ul>
-              <li><a href="#" class="twitter">Twitter</a></li>
-              <li><a href="#" class="facebook">Facebook</a></li>
-              <li><a href="#" class="instagram">Github</a></li>
-              <li><a href="#" class="linkedin">Linkedin</a></li>
-              </ul>
-              
+            <div className="d-flex">
+            <Link to="">
+              <AiFillFacebook style={{color: 'black', fontSize: '30px'}}/>
+            </Link> 
+            <Link to="">
+              <AiFillInstagram style={{color: 'black', fontSize: '30px'}}/>
+            </Link> 
+            <Link to="">
+              <AiFillLinkedin style={{color: 'black', fontSize: '30px'}}/>
+            </Link> 
+            <Link to="">
+              <AiFillGithub style={{color: 'black', fontSize: '30px'}}/>
+            </Link> 
             </div>
             </div>
             </div>

@@ -1,62 +1,142 @@
-import React from "react";
-import "./New.css";
+import React, { useContext, useState } from "react";
+//import { Data } from "../Context";
+import "./News.css";
+import CardNews from "../components/CardNews";
+import Pagination from "./Pagination";
 
 function NewsPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [news, setNews] = useState({
+    title: "",
+    content: "",
+  });
+  //const { newsList } = useContext(Data);
+  // if (newsList.length === 0) return <span>Loading...</span>;
+  // else {
+  //   const itemPerPage = 4;
+  //   const numberPage = Math.ceil((newsList.length - 4) / itemPerPage);
+  //   const currDisplay = newsList
+  //     .slice(3, newsList.length - 1)
+  //     .slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage);
     return (
-      <div className="newspage bg-light">
-        <div className="container">
-                <div className="col-lg-3">
-                  <div className="d-flex position-relative float-left " style={{ marginTop: "60px" }}>
-                    <h3 className="section-title">Tin tức mới</h3>
+      <div className="newspage">
+        <div className="container" style={{ marginTop: "4rem" }}>
+          <div className="row align-middle">
+            <div className="col-lg-4">
+              <div className="d-flex position-relative float-left">
+                <h3 className="section-title">Tin tức mới</h3>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6 col-md-12 mb-5 mb-sm-5">
+              <div className="position-relative image-hover">
+                <img
+                  //src={newsList[0].thumbnail}
+                  className="img-fluid"
+                  alt="world-news"
+                />
+                <span className="thumb-title">NEWS</span>
+              </div>
+              <h5
+                className="font-weight-bold mt-3"
+                style={{ fontFamily: "Montserrat", fontSize: "30px" }}
+              >
+                {/* {newsList[0].title} */}
+              </h5>
+
+              <button
+                className=" btn btn-outline-primary"
+                style={{
+                  fontFamily: "Montserrat",
+                  textDecoration: "none",
+                }}
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                // onClick={() => setNews(newsList[0])}
+              >
+                Xem chi tiết <span className="bi bi-arrow-right"></span>
+              </button>
+            </div>
+            <div className="col-lg-6  col-md-11 mb-5 mb-sm-2">
+              <div className="row">
+                <div
+                  className="col-md-12 col-lg-12 column"
+                  style={{ height: "20vh" }}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // onClick={() => setNews(newsList[1])}
+                >
+                  <div
+                    className="card gr-1"
+                    style={{
+                      height: "11vh",
+                    }}
+                  >
+                    <div className="col-lg-8 txt">
+                      {/* <h1>{newsList[1].title.slice(0, 58).trim()}...</h1> */}
+                    </div>
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <small className="txt">
+                          <span className="bi bi-alarm"></span>{" "}
+                          {/* {newsList[1].updated_at} */}
+                        </small>
+                      </div>
+                    </div>
                   </div>
                 </div>
-            <div class="row d-flex justify-content-center">
-              <div class="col-12">  
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-themes-summer-sale.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">35% discount for premium Bootstrap Themes, Templates, UI Kits</h5>
-                                      <p class="card-text">We’re getting nearer to the end of summer and because we know that this period can make a serious dent in your pocket..</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/gpt-3-tailwind-css-code-generator.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">We built an OpenAI powered Tailwind CSS code generator using GPT-3</h5>
-                                      <p class="card-text">A couple of days ago we got access to the OpenAI’s Beta API platform and I had the occasion to play around with it...</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without jQuery</h5>
-                                      <p class="card-text">We’re getting nearer to the end of summer and because we know that this period can make a serious dent in your pocket..</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without jQuery</h5>
-                                      <p class="card-text">We’re getting nearer to the end of summer and because we know that this period can make a serious dent in your pocket..</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              </div>
+              <div className="row">
+                <div
+                  className="col-md-12 col-lg-12 column"
+                  style={{ height: "20vh" }}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // onClick={() => setNews(newsList[2])}
+                >
+                  <div className="card gr-2" style={{ height: "10vh" }}>
+                    <div className="col-lg-8 txt">
+                      {/* <h1>{newsList[2].title.slice(0, 58).trim()}...</h1> */}
+                    </div>
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <small className="txt">
+                          <span className="bi bi-alarm"></span>{" "}
+                          {/* {newsList[2].updated_at} */}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div className="row">
+                <div
+                  className="col-md-12 col-lg-12 column"
+                  style={{ height: "20vh" }}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  // onClick={() => setNews(newsList[3])}
+                >
+                  <div className="card gr-3" style={{ height: "10vh" }}>
+                    <div className="col-lg-8 txt">
+                      {/* <h1>{newsList[3].title.slice(0, 58).trim()}...</h1> */}
+                    </div>
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <small className="txt">
+                          <span className="bi bi-alarm"></span>{" "}
+                          {/* {newsList[3].updated_at} */}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div style={{ marginTop: "3rem" }}>
           <section className="wrapper mb-5 mt-5">
             <div className="container">
               <div className="row align-middle">
@@ -66,60 +146,65 @@ function NewsPage() {
                   </div>
                 </div>
               </div>
-              <div>
-          <div class="container">
-          <div class="row d-flex justify-content-center">
-              <div class="col-12">
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-themes-summer-sale.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">35% discount for premium Bootstrap Themes, Templates, UI Kits</h5>
-                                      <p class="card-text">We’re getting nearer to the end of summer and because we know that this period can make a serious dent in your pocket..</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/gpt-3-tailwind-css-code-generator.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">We built an OpenAI powered Tailwind CSS code generator using GPT-3</h5>
-                                      <p class="card-text">A couple of days ago we got access to the OpenAI’s Beta API platform and I had the occasion to play around with it...</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/bootstrap-5-tutorial/bootstrap-5-tutorial.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">Bootstrap 5 tutorial: learn how to get started without jQuery</h5>
-                                      <p class="card-text">We’re getting nearer to the end of summer and because we know that this period can make a serious dent in your pocket..</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-xl-3 mb-4">
-                                <div class="card mr-3">
-                                    <img src="https://themesberg.s3.us-east-2.amazonaws.com/public/posts/angular-10/angular-10-officially-released-dropping-ie-9-10.jpg" class="card-img-top" alt="..."></img>
-                                    <div class="card-body">
-                                      <h5 class="card-title">Angular 10 officially released deprecating support for IE 9 and 10</h5>
-                                      <p class="card-text">If you’ve been using Angular for your web projects I’m glad to let you know that following this major update to version...</p>
-                                      <a href="#" class="btn btn-primary">Read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div className="row">
+                {/* {currDisplay.map((item) => (
+                  <CardNews news={item} setNews={setNews} key={item.id} />
+                ))} */}
               </div>
-          </div>
+              <div className="pagination mt-3 d-flex justify-content-center">
+                {/* {numberPage > 1 ? (
+                  <Pagination
+                    numberPage={numberPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                ) : null} */}
+              </div>
+            </div>
           </section>
         </div>
 
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            className="modal-dialog modal-dialog-scrollable"
+            style={{ maxWidth: "75%" }}
+          >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  {news.title}
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div
+                className="modal-body"
+                dangerouslySetInnerHTML={{ __html: news.content }}
+              ></div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
+//}
 export default NewsPage;

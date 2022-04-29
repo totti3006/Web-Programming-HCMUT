@@ -1,53 +1,15 @@
 import React from "react";
 import image from ".././images/1.jpg";
 import "./Product.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Product = () => {
   return (
     <div>
-      <header className="section-header">
-        <section className="header-main border-bottom">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-2 col-4">
-                <a href="#" className="brand-wrap">
-                  PineApple
-                </a>
-              </div>
-              <div className="col-lg-6 col-sm-12">
-                <form action="#" className="search">
-                  <div className="input-group w-100">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Tìm kiếm"
-                    />
-                    <div className="input-group-append">
-                      <button className="btn btn-primary" type="submit">
-                        <i className="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div className="col-lg-4 col-sm-6 col-12">
-                <div className="widgets-wrap float-md-right">
-                  <div className="widget-header icontext">
-                    <div className="text">
-                      <span className="text-muted">Chào mừng</span>
-                      <div>
-                        <a href="#">Đăng nhập</a> |<a href="#">Đăng ký</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </header>
+      <Header/>
 
-      <section className="section-pagetop bg">
+      <section className="section-pagetop">
         <div className="container">
           <h2 className="title-page">Danh mục sản phẩm</h2>
         </div>
@@ -399,11 +361,7 @@ const Product = () => {
         </div>
       </section>
 
-      <footer className="section-footer border-top padding-y">
-        <div className="container">
-          <p className="float-md-right">Footer......</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

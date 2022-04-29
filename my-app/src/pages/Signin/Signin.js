@@ -21,7 +21,7 @@ const Signin  = () => {
                     </div>
                     <div id="signin-box-col2-signup">
                         <p>Bạn chưa có tài khoản?</p>  
-                        <a href="https://www.youtube.com/">Đăng kí ngay bây giờ</a>
+                        <a href="/signup">Đăng kí ngay bây giờ</a>
                     </div>
                 </div>
             </div>

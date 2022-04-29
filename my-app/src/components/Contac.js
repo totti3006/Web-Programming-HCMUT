@@ -29,6 +29,7 @@ function Contac() {
             style={{
               borderRadius: "10px",
               boxShadow: "0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1)",
+              marginTop: "60px"
             }}
           >
             <h3 className="text-center">Thông tin liên hệ</h3>

@@ -1,5 +1,10 @@
 .bg {
-    background-color: #929fba;
+    background-color: rgba(128, 128, 128, 0.753);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:200px;
+
 }
 @media (max-width: 998px) {
     .col-lg-5 {
