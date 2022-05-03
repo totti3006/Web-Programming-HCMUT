@@ -1,0 +1,22 @@
+img {
+  width: 200px;
+  height: 200px;
+}
+
+.container {
+  margin-top: 70px;
+}
+
+.navi {
+  display: flex;
+  justify-content: end;
+}
+
+.card {
+  text-align: center;
+}
+
+.card:hover {
+  background-color: gray;
+  transition: 0.4s;
+}
