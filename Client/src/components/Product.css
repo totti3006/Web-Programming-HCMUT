@@ -11,3 +11,12 @@ img {
   display: flex;
   justify-content: end;
 }
+
+.card {
+  text-align: center;
+}
+
+/* .card:hover {
+  background-color: gray;
+  transition: 0.4s;
+} */

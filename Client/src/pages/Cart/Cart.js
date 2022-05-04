@@ -1,10 +1,40 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 function Cart() {
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    const data = localStorage.getItem("Cart")
+      ? JSON.parse(localStorage.getItem("Cart"))
+      : [];
+    setCart(data);
+  }, []);
+  const handleClick = (item) => {
+    setCart((prev) => [...prev, item]);
+    localStorage.setItem("Cart", JSON.stringify(cart));
+  };
+  const deleteItem = (index) => {
+    const result = cart.filter((item, i) => i !== index);
+    setCart(result);
+    localStorage.setItem("Cart", JSON.stringify(result));
+  };
+  const changeNum = (index, num) => {
+    const result = cart.map((item, i) => {
+      if (i === index) {
+        item.num = num;
+      }
+      return item;
+    });
+    setCart(result);
+    localStorage.setItem("Cart", JSON.stringify(result));
+  };
+  const totalProductMoney = cart.reduce((a, b) => a + b.price * b.num, 0);
+
+  console.log(cart);
   return (
     <div className="cart-page">
       <Header />
@@ -34,6 +64,61 @@ function Cart() {
                     </th>
                   </tr>
                 </thead>
+                <tbody>
+                  {cart.map((item, index) => (
+                    <tr key={item.id}>
+                      <th scope="row">{index + 1}</th>
+                      <td>
+                        <span className="text-danger">
+                          <i
+                            className="bi bi-trash"
+                            role="button"
+                            onClick={() => deleteItem(index)}
+                          ></i>
+                        </span>
+                      </td>
+                      <td>
+                        <img
+                          src={item.thumbnail}
+                          className="img-fluid"
+                          width="35"
+                          alt="product"
+                        />
+                      </td>
+                      <td>{item.title}</td>
+                      <td>
+                        <div className="form-group mb-0">
+                          <input
+                            type="number"
+                            className="form-control cart-qty"
+                            name="cartQty1"
+                            id="cartQty1"
+                            defaultValue={item.num}
+                            onChange={(e) => changeNum(index, e.target.value)}
+                            min="1"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <NumberFormat
+                          value={item.price}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          suffix={" ₫ "}
+                        />
+                      </td>
+                      <td className="text-right">
+                        <NumberFormat
+                          id="total"
+                          value={item.price * item.num}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          suffix={" ₫ "}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
@@ -64,43 +149,6 @@ function Cart() {
                   <table className="table table-borderless text-end">
                     <tbody>
                       <tr>
-                        <td>Tổng tiền hàng:</td>
-                        <td>
-                          <NumberFormat
-                            id="total"
-                            value={55555}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            suffix={" ₫ "}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Vận chuyển:</td>
-                        <td>
-                          {" "}
-                          <NumberFormat
-                            id="total"
-                            value={0}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            suffix={" ₫ "}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>VAT (10%):</td>
-                        <td>
-                          <NumberFormat
-                            id="total"
-                            value={55555}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                            suffix={" ₫ "}
-                          />
-                        </td>
-                      </tr>
-                      <tr>
                         <td className="">
                           <h4>Tổng:</h4>
                         </td>
@@ -109,7 +157,7 @@ function Cart() {
                             {" "}
                             <NumberFormat
                               id="total"
-                              value={55555}
+                              value={totalProductMoney}
                               displayType={"text"}
                               thousandSeparator={true}
                               suffix={" ₫ "}

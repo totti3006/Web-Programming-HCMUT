@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DummyData from "./DummyData";
 import Table from "react-bootstrap/Table";
-const TableCategory = () => {
-  const dataProduct = React.useState(DummyData[0]);
+const TableNews = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
   const getData = async () => {
   const res =  await axios
-      .get(`http://localhost/ltw-api/product/getall`)
+      .get(`http://localhost/ltw-api/news/getall`)
       setData(res.data.data);
   };
   getData();
@@ -21,10 +19,10 @@ const TableCategory = () => {
         <thead>
           <tr>
             <th>STT</th>
-            <th>Tên</th>
+            <th>Tiêu đề</th>
             <th>Hình ảnh</th>
-            <th>Giá</th>
-            <th>Hãng</th>
+            <th>Nội dung</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -39,8 +37,7 @@ const TableCategory = () => {
                 style={{ width: "70px", height: "70px" }}
               />
             </td>
-            <td>{data[index].price} đồng</td>
-            <td>{data[index].category_id}</td>
+            <td>{data[index].content}</td>
             <td>
               <button className="btn btn-warning" onClick={{}}>
                 Sửa
@@ -59,4 +56,4 @@ const TableCategory = () => {
   );
 };
 
-export default TableCategory;
+export default TableNew;

@@ -92,7 +92,7 @@ const Intro  = () =>{
       </section>
       <section
         className="testimonials text-center bg-light"
-        style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
+        style={{ paddingTop: "1rem", paddingBottom: "1rem" }}
       >
         <div className="container">
         <div class="section-title">

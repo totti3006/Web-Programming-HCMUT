@@ -27,7 +27,7 @@ function AdminRouter() {
     <>
       {auth === true ? (
         <Routes>
-          <Route path="/" element={<AdminHome />} />
+          <Route path="/admin" element={<AdminHome />} />
 
           <Route path="/Category" element={<Category />} />
 

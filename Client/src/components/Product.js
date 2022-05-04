@@ -1,7 +1,38 @@
-import React from "react";
+
 import "./Product.css";
-import ProductGrid from "./ProductGrid";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 const ProductPage = () => {
+  const [data, setData] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(`http://localhost/ltw-api/product/getall`);
+      setData(res.data.data);
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const data = localStorage.getItem("Cart")
+      ? JSON.parse(localStorage.getItem("Cart"))
+      : [];
+    setCart(data);
+  }, []);
+
+  const handleClick = (item) => {
+    const temp = [...cart];
+    const itemtemp = temp.find((i) => i.id === item.id);
+    if (itemtemp) {
+      itemtemp.num += 1;
+      localStorage.setItem("Cart", JSON.stringify(temp));
+    } else {
+      const result = [...cart, { ...item, num: 1 }];
+      setCart(result);
+      localStorage.setItem("Cart", JSON.stringify(result));
+    }
+  };
   return (
     <div className="container">
       <div className="row">
@@ -9,16 +40,8 @@ const ProductPage = () => {
           <div className="card1">
             <article className="filter-group">
               <header className="card-header">
-                <a
-                  href="#"
-                  data-toggle="collapse"
-                  data-target="#collapse_1"
-                  aria-expanded="true"
-                  className=""
-                >
                   <i className="icon-control fa fa-chevron-down"></i>
-                  <h6 className="title">Hãng</h6>
-                </a>
+                  <h5 className="title">Hãng</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_1">
                 <div className="category-list list-group">
@@ -52,12 +75,7 @@ const ProductPage = () => {
                   >
                     Xiaomi
                   </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Xiaomi
-                  </a>
+
                   <a
                     href="#"
                     className="list-group-item list-group-item-action"
@@ -75,16 +93,10 @@ const ProductPage = () => {
             </article>
             <article className="filter-group">
               <header className="card-header">
-                <a
-                  href="#"
-                  data-toggle="collapse"
-                  data-target="#collapse_3"
-                  aria-expanded="true"
-                  className=""
-                >
+                
                   <i className="icon-control fa fa-chevron-down"></i>
-                  <h6 className="title">Giá</h6>
-                </a>
+                  <h5 className="title">Giá</h5>
+                
               </header>
               <div className="filter-content collapse show" id="collapse_3">
                 <div className="category-list list-group">
@@ -125,11 +137,32 @@ const ProductPage = () => {
         </aside>
         <main className="col-md-9">
           <div className="row">
-            <ProductGrid />
-            <ProductGrid />
-            <ProductGrid />
-            <ProductGrid />
-            <ProductGrid />
+           
+          {data.map((item, index) => (
+            <div className="col-md-4">
+              <figure className="card card-product-grid">
+                <div className="img-wrap" style={{marginBottom: '5px', marginTop: '10px'}}>
+                  <img src={data[index].thumbnail} />
+                </div>
+                <figcaption className="info-wrap">
+                  <div className="fix-height" style={{marginBottom: '5px', marginTop: '5px'}}>
+                    <a href="/ProductDetail" className="title">
+                      {data[index].title}
+                    </a>
+                    <div className="price-wrap mt-2" style={{marginBottom: '0px', marginTop: '5px'}}>
+                      <span className="price">{data[index].price} VND</span>
+                    </div>
+                  </div>
+                  <button style={{marginBottom: '20px', marginTop: '20px'}}
+                    className="btn btn-outline-primary"
+                    onClick={() => handleClick(item)}
+                  >
+                    <i className="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                  </button>
+                </figcaption>
+              </figure>
+            </div>
+          ))}
           </div>
           <nav className="navi mt-4" aria-label="Page navigation sample">
             <ul className="pagination">
