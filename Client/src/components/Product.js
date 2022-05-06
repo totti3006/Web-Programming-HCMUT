@@ -1,7 +1,7 @@
-
 import "./Product.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumberFormat from "react-number-format";
 const ProductPage = () => {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
@@ -40,8 +40,8 @@ const ProductPage = () => {
           <div className="card1">
             <article className="filter-group">
               <header className="card-header">
-                  <i className="icon-control fa fa-chevron-down"></i>
-                  <h5 className="title">Hãng</h5>
+                <i className="icon-control fa fa-chevron-down"></i>
+                <h5 className="title">Hãng</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_1">
                 <div className="category-list list-group">
@@ -93,10 +93,8 @@ const ProductPage = () => {
             </article>
             <article className="filter-group">
               <header className="card-header">
-                
-                  <i className="icon-control fa fa-chevron-down"></i>
-                  <h5 className="title">Giá</h5>
-                
+                <i className="icon-control fa fa-chevron-down"></i>
+                <h5 className="title">Giá</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_3">
                 <div className="category-list list-group">
@@ -137,32 +135,54 @@ const ProductPage = () => {
         </aside>
         <main className="col-md-9">
           <div className="row">
-           
-          {data.map((item, index) => (
-            <div className="col-md-4">
-              <figure className="card card-product-grid">
-                <div className="img-wrap" style={{marginBottom: '5px', marginTop: '10px'}}>
-                  <img src={data[index].thumbnail} />
-                </div>
-                <figcaption className="info-wrap">
-                  <div className="fix-height" style={{marginBottom: '5px', marginTop: '5px'}}>
-                    <a href="/ProductDetail" className="title">
-                      {data[index].title}
-                    </a>
-                    <div className="price-wrap mt-2" style={{marginBottom: '0px', marginTop: '5px'}}>
-                      <span className="price">{data[index].price} VND</span>
-                    </div>
-                  </div>
-                  <button style={{marginBottom: '20px', marginTop: '20px'}}
-                    className="btn btn-outline-primary"
-                    onClick={() => handleClick(item)}
+            {data.map((item, index) => (
+              <div className="product-grid col-md-4">
+                <figure className="card card-product-grid">
+                  <div
+                    className="img-wrap"
+                    style={{ marginBottom: "5px", marginTop: "10px" }}
                   >
-                    <i className="bi bi-cart-plus"></i> Thêm vào giỏ hàng
-                  </button>
-                </figcaption>
-              </figure>
-            </div>
-          ))}
+                    <img src={data[index].thumbnail} />
+                  </div>
+                  <figcaption className="info-wrap">
+                    <div
+                      className="fix-height"
+                      style={{
+                        marginBottom: "5px",
+                        marginTop: "5px",
+                        marginLeft: "5px",
+                        marginRight: "5px",
+                      }}
+                    >
+                      <a href="/ProductDetail" className="product-title">
+                        {data[index].title}
+                      </a>
+                      <div
+                        className="price-wrap mt-2"
+                        style={{ marginBottom: "0px", marginTop: "5px" }}
+                      >
+                        <span className="price">
+                          <NumberFormat
+                            value={data[index].price}
+                            displayType="text"
+                            thousandSeparator={"."}
+                            decimalSeparator={","}
+                          />
+                          <span> VND</span>
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      style={{ marginBottom: "20px", marginTop: "20px" }}
+                      className="btn btn-outline-primary"
+                      onClick={() => handleClick(item)}
+                    >
+                      <i className="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                  </figcaption>
+                </figure>
+              </div>
+            ))}
           </div>
           <nav className="navi mt-4" aria-label="Page navigation sample">
             <ul className="pagination">
