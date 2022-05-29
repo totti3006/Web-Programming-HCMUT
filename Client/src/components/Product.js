@@ -91,46 +91,6 @@ const ProductPage = () => {
                 </div>
               </div>
             </article>
-            <article className="filter-group">
-              <header className="card-header">
-                <i className="icon-control fa fa-chevron-down"></i>
-                <h5 className="title">Giá</h5>
-              </header>
-              <div className="filter-content collapse show" id="collapse_3">
-                <div className="category-list list-group">
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Dưới 2 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 2 đến 4 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 4 đến 10 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 10 đến 20 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Trên 20 triệu
-                  </a>
-                </div>
-              </div>
-            </article>
           </div>
         </aside>
         <main className="col-md-9">
