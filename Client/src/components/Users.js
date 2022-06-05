@@ -164,7 +164,7 @@ function User() {
                           >
                             <img
                               src={infoData.avatar}
-                              alt="https://static.wikia.nocookie.net/battle-cats/images/1/10/Divine_Kai.png/revision/latest/scale-to-width-down/480?cb=20210210141631"
+                              alt="Avatar"
                               className="img-fluid rounded-circle w-100"
                             />
                           </button>

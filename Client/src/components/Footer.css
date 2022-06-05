@@ -1,5 +1,9 @@
-.bg {
-    background-color: #929fba;
+/* .bg {
+    background-color: rgba(128, 128, 128, 0.753);
+    bottom: 0;
+    left: 0;
+    right: 0;
+
 }
 @media (max-width: 998px) {
     .col-lg-5 {
@@ -13,4 +17,22 @@
         width: 50%;
       }
     }
+ */
 
+ .footer{
+  background: #696969;
+  color:white;
+  
+  .about-company{
+    i{font-size: 25px;}
+    a{
+      color:white;
+      transition: color .2s;
+      &:hover{color:#4180CB}
+    }
+  } 
+  .location{
+    i{font-size: 18px;}
+  }
+  .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+}

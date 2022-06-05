@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import React from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import Contac from "./pages/Contact/Contact";
+import Contact from "./pages/Contact/Contact";
 import User from "./pages/User/User";
 import Price from "./pages/Price/Price";
 
@@ -13,6 +12,7 @@ import Footer from "./components/Footer";
 import Signup from "./pages/Signup/Signup";
 import IntroPage from "./pages/Introduce/Introduce";
 import News from "./pages/New/New";
+import NewDetail from "./pages/New/NewDetail";
 
 import Signin from "./pages/Signin/Signin";
 import Home from "./pages/Home/Home";
@@ -20,13 +20,14 @@ import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Cart from "./pages/Cart/Cart";
-
+import ProductAdmin from "./components/Admin/Product"
+import OrderAdmin from "./components/Admin/Order";
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/contact" element={<Contac />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
 
         <Routes>
@@ -50,6 +51,10 @@ function App() {
         </Routes>
 
         <Routes>
+          <Route path="/NewDetail" element={<NewDetail />} />
+        </Routes>
+
+        <Routes>
           <Route path="/signin" element={<Signin />} />
         </Routes>
 
@@ -58,7 +63,7 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/Product" element={<Product />} />
+          <Route path="/product" element={<Product />} />
         </Routes>
 
         <Routes>
@@ -66,7 +71,13 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/ProductDetail" element={<ProductDetail />} />
+          <Route path="/productdetail" element={<ProductDetail />} />
+        </Routes>
+        <Routes>
+          <Route path="/admin/productadmin" element={<ProductAdmin />} />
+        </Routes>
+        <Routes>
+          <Route path="/admin/orderadmin" element={<OrderAdmin />} />
         </Routes>
       </Router>
     </div>
