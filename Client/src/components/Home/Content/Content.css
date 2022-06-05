@@ -38,42 +38,22 @@
         padding: 2vh 0;
     }
     #home-content-header{
-        font-size: 50%;
+        font-size: 80%;
     }
     #home-content-banner{
-        height: 35vh;
-        margin: 2vh auto;
-    }
-    #home-content-banner-row1{
-        height: 20vh;
-    }
-    #home-content-banner-row2{
-        height: 15vh;
-    }
-    #home-content-banner-row2 img{
-        height: 15vh;
+        display: none;
     }
 }
 
 @media (min-width: 375px) and (max-width: 576.98px){
     #home-content-header{
-        font-size: 80%;
+        font-size: 100%;
     }
     #home-content{
         padding: 3vh 0;
     }
     #home-content-banner{
-        height: 35vh;
-        margin: 3vh auto;
-    }
-    #home-content-banner-row1{
-        height: 20vh;
-    }
-    #home-content-banner-row2{
-        height: 15vh;
-    }
-    #home-content-banner-row2 img{
-        height: 15vh;
+        display: none;
     }
 }
 @media (min-width: 576px) and (max-width: 767.98px){

@@ -6,22 +6,15 @@ import banner1 from '../../../images/home-content/banner/banner-macbook-pro.jpg'
 import banner2 from '../../../images/home-content/banner/banner-samsung-flip.jpg'
 import banner3 from '../../../images/home-content/banner/banner-thinkpad.jpg'
 
-const Content = () => {
-    const [data, setData] = useState()
-
-    useEffect(() => {
-        const getData = async () =>{
-            await axios("/data/home.json").then((data) => {setData(data.data);})
-        }
-        getData();
-    },[])
+const Content = (props) => {
+    const [data, setData] = useState(props.data)
 
     const showItemList = () => {
         if(data){
             return(<>
-                <ItemList data={data.phone} listName="ĐIỆN THOẠI"/>
-                <ItemList data={data.laptop} listName="LAPTOP"/>
-                <ItemList data={data.watch} listName="ĐỒNG HỒ"/>
+                <ItemList data={data.filter(x => x.category_name === 'Apple')} listName="APPLE"/>
+                <ItemList data={data.filter(x => x.category_name === 'Samsung')} listName="SAMSUNG"/>
+                {/* <ItemList data={data.watch} listName="ĐỒNG HỒ"/> */}
             </>)
         }
     }

@@ -8,30 +8,30 @@ const ItemList = (props) => {
             <ul>
                 <li className="home-itemlist-item">
                     <div>
-                        <img src={props.data[0].url} alt="..."/>
-                        <p className="home-itemlist-item-name">Item 1</p>
-                        <p>Giá: XXXXX</p>
+                        <img src={props.data[0].thumbnail} alt="..."/>
+                        <p className="home-itemlist-item-name">{props.data[0].title}</p>
+                        <p><b>Giá: </b>{Number(props.data[0].price).toLocaleString("vi")} đồng</p>
                     </div>
                 </li>
                 <li className="home-itemlist-item">
                     <div>
-                        <img src={props.data[1].url} alt="..."/>
-                        <p className="home-itemlist-item-name">Item 2</p>
-                        <p>Giá: XXXXX</p>
+                        <img src={props.data[1].thumbnail} alt="..."/>
+                        <p className="home-itemlist-item-name">{props.data[1].title}</p>
+                        <p><b>Giá: </b>{Number(props.data[1].price).toLocaleString("vi")} đồng</p>
                     </div>
                 </li>
                 <li className="home-itemlist-item">
                     <div>
-                        <img src={props.data[2].url} alt="..."/>
-                        <p className="home-itemlist-item-name">Item 3</p>
-                        <p>Giá: XXXXX</p>
+                        <img src={props.data[2].thumbnail} alt="..."/>
+                        <p className="home-itemlist-item-name">{props.data[2].title}</p>
+                        <p><b>Giá: </b>{Number(props.data[2].price).toLocaleString("vi")} đồng</p>
                     </div>
                 </li>
                 <li className="home-itemlist-item home-itemlist-lastitem">
                     <div>
-                        <img src={props.data[3].url} alt="..."/>
-                        <p className="home-itemlist-item-name">Item 4</p>
-                        <p>Giá: XXXXX</p>
+                        <img src={props.data[3].thumbnail} alt="..."/>
+                        <p className="home-itemlist-item-name">{props.data[3].title}</p>
+                        <p><b>Giá: </b>{Number(props.data[3].price).toLocaleString("vi")} đồng</p>
                     </div>
                 </li>
             </ul>

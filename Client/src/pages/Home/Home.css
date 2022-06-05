@@ -1,4 +1,6 @@
 .home-container{
     background-image: linear-gradient(to bottom, black, rgb(41, 39, 39));
+    position: absolute;
+    top: 56px;
     width: 100vw - 15px;
 }
