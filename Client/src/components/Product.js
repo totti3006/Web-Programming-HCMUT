@@ -75,10 +75,7 @@ const ProductPage = () => {
                       {/* <a href="/ProductDetail" className="product-title">
                         {data[index].title}
                       </a> */}
-                      <Link
-                        to={"/productdetail/" + item.id}
-                        className="product-title"
-                      >
+                      <Link to={`${item.id}`} className="product-title">
                         {data[index].title}
                       </Link>
                       <div

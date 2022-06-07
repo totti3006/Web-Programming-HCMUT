@@ -20,13 +20,35 @@ import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Cart from "./pages/Cart/Cart";
-import ProductAdmin from "./components/Admin/Product"
+import ProductAdmin from "./components/Admin/Product";
 import OrderAdmin from "./components/Admin/Order";
 function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
+        <Routes path="/">
+          {" "}
+          <Route index element={<Home />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="user" element={<User />} />
+          <Route path="price" element={<Price />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="intro" element={<IntroPage />} />
+          <Route path="new" element={<News />} />
+          <Route path="NewDetail" element={<NewDetail />} />
+          <Route path="signin" element={<Signin />} />
+          <Route path="product">
+            <Route index element={<Product />} />
+            <Route path=":id" element={<ProductDetail />} />
+          </Route>
+          <Route path="cart" element={<Cart />} />
+          {/* <Route path="productdetail">
+          <Route path=":id" element={<ProductDetail />} />
+</Route> */}
+          <Route path="admin/productadmin" element={<ProductAdmin />} />
+          <Route path="admin/orderadmin" element={<OrderAdmin />} />
+        </Routes>
+        {/* <Routes>
           <Route path="/contact" element={<Contact />} />
         </Routes>
 
@@ -78,7 +100,7 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/admin/orderadmin" element={<OrderAdmin />} />
-        </Routes>
+        </Routes> */}
       </Router>
     </div>
   );

@@ -11,19 +11,20 @@ import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   //const dataProduct = React.useState(DummyProduct[0]);
+  const [product, setProduct] = useState({});
   const { id } = useParams();
   //data is all products
-  const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`http://localhost/ltw-api/product/getall`);
-      setData(res.data.data);
+      const res = await axios.get(
+        `http://localhost/ltw-api/product/getall/${id}`
+      );
+      const data = res.data.data;
+      setProduct(data.find((item) => item.id == id));
     };
     getData();
   }, []);
-
-
-  const product = data.find((item) => item.id === id);
+  console.log(product);
 
   return (
     <div className="productdetail-page">
@@ -44,80 +45,24 @@ const ProductDetail = () => {
               <div className="card1">
                 <article className="filter-group">
                   <header className="card-header">
-                    <a
-                      href="#"
-                      data-toggle="collapse"
-                      data-target="#collapse_1"
-                      aria-expanded="true"
-                      className=""
-                    >
-                      <i className="icon-control fa fa-chevron-down"></i>
-                      <h6 className="title">Hãng</h6>
-                    </a>
+                    <i className="icon-control fa fa-chevron-down"></i>
+                    <h6 className="title">Hãng</h6>
                   </header>
                   <div className="filter-content collapse show" id="collapse_1">
-                  <Categories />
-                  </div>
-                </article>
-                <article className="filter-group">
-                  <header className="card-header">
-                    <a
-                      href="#"
-                      data-toggle="collapse"
-                      data-target="#collapse_3"
-                      aria-expanded="true"
-                      className=""
-                    >
-                      <i className="icon-control fa fa-chevron-down"></i>
-                      <h6 className="title">Giá</h6>
-                    </a>
-                  </header>
-                  <div className="filter-content collapse show" id="collapse_3">
-                    <div className="category-list list-group">
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Dưới 2 triệu
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Từ 2 đến 4 triệu
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Từ 4 đến 10 triệu
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Từ 10 đến 20 triệu
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Trên 20 triệu
-                      </a>
-                    </div>
+                    <Categories />
                   </div>
                 </article>
               </div>
             </aside>
             <div className="col-md-5">
               <div className="col">
-                <img src={product[0].description} />
+                <img src={product.thumbnail} />
               </div>
               <div className="col">
-                <h2 className="">{product[0].name}</h2>
+                <h2 className="">{product.name}</h2>
                 <h5 className="fw-bolder">Mô tả</h5>
-                <p className="lh-lg">{product[0].description}</p>
-                <h5 className="fw-bolder">Giá: {product[0].price}</h5>
+                <p className="lh-lg">{product.description}</p>
+                <h5 className="fw-bolder">Giá: {product.price}</h5>
                 <div className="d-flex justify-content-center mt-md-3 mt-xl-5">
                   <a
                     href="#"
