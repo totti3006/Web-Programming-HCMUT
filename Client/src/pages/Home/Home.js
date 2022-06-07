@@ -8,8 +8,15 @@ import Footer from '../../components/Footer';
 import axios from 'axios';
 
 const Home = () => {
+    const [data, setData] = useState('');
 
     const [className, setClassName] = useState("home-container")
+
+    const getData = async () => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/ltw-api/product/getall`).then(res => {
+            setData(res.data.data)
+        }).catch(err => {console.error(err)})
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +31,7 @@ const Home = () => {
             }
         }
         window.addEventListener('scroll', handleScroll)
+        getData()
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
@@ -35,9 +43,11 @@ const Home = () => {
             <Header />
             <div className={className}>
                 <Slider />
-                <Content />
+                {
+                    data ? <Content data={data} /> : ""
+                }
+                <Footer />
             </div>
-            <Footer />
         </>
     )
 }
