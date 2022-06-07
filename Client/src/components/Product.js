@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import Categories from "./Categories";
 const ProductPage = () => {
   const [data, setData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`http://localhost/ltw-api/product/getall`);
       setData(res.data.data);
+      setDisplayData(res.data.data);
     };
     getData();
   }, []);
@@ -35,6 +37,16 @@ const ProductPage = () => {
       localStorage.setItem("Cart", JSON.stringify(result));
     }
   };
+  const [typ, setTyp] = useState(-1);
+  const filterProduct = (category) => {
+    // const result = data.filter((item) => item.category_id === category);
+    // setData(result);
+    setTyp(category);
+    category === -1 ? setDisplayData(data): setDisplayData(data.filter((item) => item.category_id === category))
+  };
+
+
+
   return (
     <div className="container">
       <div className="row">
@@ -46,14 +58,14 @@ const ProductPage = () => {
                 <h5 className="title">Hãng</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_1">
-                <Categories />
+                <Categories filterProduct={filterProduct} typ={typ}/>
               </div>
             </article>
           </div>
         </aside>
         <main className="col-md-9">
           <div className="row">
-            {data.map((item, index) => (
+            {displayData.map((item, index) => (
               <div className="product-grid col-md-4">
                 <figure className="card card-product-grid">
                   <div

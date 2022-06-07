@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import NumberFormat from "react-number-format";
-import Categories from "./Categories";
 import "./ProductDetail.css";
 // import image from "../images/phone-1.jpg";
 // import DummyProduct from "./DummyProduct";
@@ -24,7 +23,27 @@ const ProductDetail = () => {
     };
     getData();
   }, []);
-  console.log(product);
+
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    const data = localStorage.getItem("Cart")
+      ? JSON.parse(localStorage.getItem("Cart"))
+      : [];
+    setCart(data);
+  }, []);
+
+  const handleClick = (item) => {
+    const temp = [...cart];
+    const itemtemp = temp.find((i) => i.id === item.id);
+    if (itemtemp) {
+      itemtemp.num += 1;
+      localStorage.setItem("Cart", JSON.stringify(temp));
+    } else {
+      const result = [...cart, { ...item, num: 1 }];
+      setCart(result);
+      localStorage.setItem("Cart", JSON.stringify(result));
+    }
+  };
 
   return (
     <div className="productdetail-page">
@@ -41,39 +60,40 @@ const ProductDetail = () => {
             </ol>
           </nav>
           <div className="row">
-            <aside className="col-md-3">
-              <div className="card1">
-                <article className="filter-group">
-                  <header className="card-header">
-                    <i className="icon-control fa fa-chevron-down"></i>
-                    <h6 className="title">Hãng</h6>
-                  </header>
-                  <div className="filter-content collapse show" id="collapse_1">
-                    <Categories />
+            <div className="col-md-9">
+              <div className="row">
+                <div className="col-md-4">
+                  <img src={product.thumbnail} />
+                </div>
+                <div className="col-md-8">
+                  <h2 className="">{product.name}</h2>
+                  <h5 className="fw-bolder">Mô tả</h5>
+                  <p className="lh-lg">{product.description}</p>
+                  <span className="price">
+                    <span>
+                      <h4>Giá: </h4>
+                      <NumberFormat
+                        value={product.price}
+                        displayType="text"
+                        thousandSeparator={"."}
+                        decimalSeparator={","}
+                      />
+                      VND
+                    </span>
+                  </span>
+                  <div className="d-flex justify-content-center">
+                    <button
+                      style={{ marginBottom: "20px", marginTop: "20px" }}
+                      className="btn btn-outline-primary"
+                      onClick={() => handleClick(product)}
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
                   </div>
-                </article>
-              </div>
-            </aside>
-            <div className="col-md-5">
-              <div className="col">
-                <img src={product.thumbnail} />
-              </div>
-              <div className="col">
-                <h2 className="">{product.name}</h2>
-                <h5 className="fw-bolder">Mô tả</h5>
-                <p className="lh-lg">{product.description}</p>
-                <h5 className="fw-bolder">Giá: {product.price}</h5>
-                <div className="d-flex justify-content-center mt-md-3 mt-xl-5">
-                  <a
-                    href="#"
-                    className="btn btn-primary px-5 py-2 rounded-pill"
-                  >
-                    Mua Ngay
-                  </a>
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
               <Comment />
             </div>
           </div>

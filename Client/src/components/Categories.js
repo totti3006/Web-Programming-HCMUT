@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Product.css";
 
-function Categories() {
+function Categories({ filterProduct, typ }) {
   const [categories, setCategories] = useState([]);
   //useEffect
   useEffect(() => {
@@ -17,14 +17,34 @@ function Categories() {
   return (
     <div className="card1">
       <article className="filter-group">
+        <div
+          className="category-list list-group"
+          onClick={() => filterProduct(-1)}
+        >
+          <a
+            className={
+              typ == -1
+                ? "list-group-item list-group-item-action active"
+                : "list-group-item list-group-item-action "
+            }
+          >
+            Tất cả
+          </a>
+        </div>
         {categories.map((item) => (
-          <div className="category-list list-group">
-            <Link
-              to={`/product/${item.id}`}
-              className="list-group-item list-group-item-action"
+          <div
+            className="category-list list-group"
+            onClick={() => filterProduct(item.id)}
+          >
+            <a
+              className={
+                typ == item.id
+                  ? "list-group-item list-group-item-action active"
+                  : "list-group-item list-group-item-action "
+              }
             >
               {item.name}
-            </Link>
+            </a>
           </div>
         ))}
       </article>
