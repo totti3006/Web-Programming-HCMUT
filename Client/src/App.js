@@ -71,7 +71,7 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/productdetail" element={<ProductDetail />} />
+          <Route path="/productdetail/:id" element={<ProductDetail />} />
         </Routes>
         <Routes>
           <Route path="/admin/productadmin" element={<ProductAdmin />} />

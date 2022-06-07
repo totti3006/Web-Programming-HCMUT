@@ -2,6 +2,8 @@ import "./Product.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NumberFormat from "react-number-format";
+import { Link } from "react-router-dom";
+import Categories from "./Categories";
 const ProductPage = () => {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
@@ -44,51 +46,7 @@ const ProductPage = () => {
                 <h5 className="title">Hãng</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_1">
-                <div className="category-list list-group">
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Iphone
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Samsung
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Oppo
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Vivo
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Xiaomi
-                  </a>
-
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Realme
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Nokia
-                  </a>
-                </div>
+                <Categories />
               </div>
             </article>
           </div>
@@ -114,9 +72,15 @@ const ProductPage = () => {
                         marginRight: "5px",
                       }}
                     >
-                      <a href="/ProductDetail" className="product-title">
+                      {/* <a href="/ProductDetail" className="product-title">
                         {data[index].title}
-                      </a>
+                      </a> */}
+                      <Link
+                        to={"/productdetail/" + item.id}
+                        className="product-title"
+                      >
+                        {data[index].title}
+                      </Link>
                       <div
                         className="price-wrap mt-2"
                         style={{ marginBottom: "0px", marginTop: "5px" }}

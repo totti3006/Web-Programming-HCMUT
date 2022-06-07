@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import NumberFormat from "react-number-format";
+import Categories from "./Categories";
 import "./ProductDetail.css";
-import image from "../images/phone-1.jpg";
-import DummyProduct from "./DummyProduct";
+// import image from "../images/phone-1.jpg";
+// import DummyProduct from "./DummyProduct";
 import Comment from "./Comment";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
-  const dataProduct = React.useState(DummyProduct[0]);
+  //const dataProduct = React.useState(DummyProduct[0]);
+  const { id } = useParams();
+  //data is all products
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(`http://localhost/ltw-api/product/getall`);
+      setData(res.data.data);
+    };
+    getData();
+  }, []);
+
+
+  const product = data.find((item) => item.id === id);
 
   return (
     <div className="productdetail-page">
@@ -39,50 +56,7 @@ const ProductDetail = () => {
                     </a>
                   </header>
                   <div className="filter-content collapse show" id="collapse_1">
-                    <div className="category-list list-group">
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Iphone
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Samsung
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Oppo
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Vivo
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Xiaomi
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Realme
-                      </a>
-                      <a
-                        href="#"
-                        className="list-group-item list-group-item-action"
-                      >
-                        Nokia
-                      </a>
-                    </div>
+                  <Categories />
                   </div>
                 </article>
                 <article className="filter-group">
@@ -137,13 +111,13 @@ const ProductDetail = () => {
             </aside>
             <div className="col-md-5">
               <div className="col">
-                <img src={image} />
+                <img src={product[0].description} />
               </div>
               <div className="col">
-                <h2 className="">{dataProduct[0].name}</h2>
+                <h2 className="">{product[0].name}</h2>
                 <h5 className="fw-bolder">Mô tả</h5>
-                <p className="lh-lg">{dataProduct[0].description}</p>
-                <h5 className="fw-bolder">Giá: {dataProduct[0].price}</h5>
+                <p className="lh-lg">{product[0].description}</p>
+                <h5 className="fw-bolder">Giá: {product[0].price}</h5>
                 <div className="d-flex justify-content-center mt-md-3 mt-xl-5">
                   <a
                     href="#"
