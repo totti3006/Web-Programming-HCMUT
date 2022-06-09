@@ -6,7 +6,7 @@ const Comment = () => {
     <div className="comment">
       <h3>Bình luận</h3>
       <div className="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <div className="avatar rounded-circle">
             <img
               src={image}
@@ -16,13 +16,13 @@ const Comment = () => {
             />
           </div>
         </div>
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+        <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
           <div className="form-floating">
             <textarea
               className="form-control"
               placeholder="Leave a comment here"
               id="floatingTextarea"
-              value={"FAKE DATA"}
+              value={""}
               onChange={{}}
             ></textarea>
             <label htmlFor="floatingTextarea">Bình luận</label>
