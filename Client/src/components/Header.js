@@ -19,7 +19,7 @@ const Header = () => {
 
   const getData = async () => {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/ltw-api/user`, environment.headers)
+      .get(`http://localhost/ltw-api/user`, environment.headers)
       .then((res) => {
         setInfoData(res.data.data);
       });
@@ -29,7 +29,7 @@ const Header = () => {
     getData();
   }, []);
 
-  console.log(checkRole())
+  console.log(checkRole());
 
   return (
     <header className="fixed-top ">
@@ -104,19 +104,34 @@ const Header = () => {
                     Liên hệ
                   </a>
                 </li>
-                {
-                  checkRole() === false?
+                {checkRole() === false ? (
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       Quản trị
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <Link to="/admin/product" class="dropdown-item">Sản phẩm</Link>
-                      <Link to="/admin/order" class="dropdown-item">Đơn hàng</Link>
-                      <Link to="/admin/news" class="dropdown-item">Tin tức</Link>
+                      <Link to="/admin/product" class="dropdown-item">
+                        Sản phẩm
+                      </Link>
+                      <Link to="/admin/order" class="dropdown-item">
+                        Đơn hàng
+                      </Link>
+                      <Link to="/admin/news" class="dropdown-item">
+                        Tin tức
+                      </Link>
                     </div>
-                  </li>: ""
-                }
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
 
               <a href="/cart">
@@ -151,12 +166,22 @@ const Header = () => {
                   />
                 )}
               </Link>
-              {
-                (localStorage.getItem('role') === null) ?
+              {localStorage.getItem("role") === null ? (
                 <Link to="/signin">
-                  <AiOutlineLogin style={{ color: "black", fontSize: "30px" }} />
-                </Link> : <Link to="/signin" ><AiOutlineLogout onClick={() => {localStorage.clear();} } style={{ color: "black", fontSize: "30px" }} /></Link>
-              }
+                  <AiOutlineLogin
+                    style={{ color: "black", fontSize: "30px" }}
+                  />
+                </Link>
+              ) : (
+                <Link to="/signin">
+                  <AiOutlineLogout
+                    onClick={() => {
+                      localStorage.clear();
+                    }}
+                    style={{ color: "black", fontSize: "30px" }}
+                  />
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -2,14 +2,18 @@ import "./Product.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NumberFormat from "react-number-format";
+import { Link } from "react-router-dom";
+import Categories from "./Categories";
 const ProductPage = () => {
   const [data, setData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`http://localhost/ltw-api/product/getall`);
       setData(res.data.data);
+      setDisplayData(res.data.data);
     };
     getData();
   }, []);
@@ -33,6 +37,16 @@ const ProductPage = () => {
       localStorage.setItem("Cart", JSON.stringify(result));
     }
   };
+  const [typ, setTyp] = useState(-1);
+  const filterProduct = (category) => {
+    // const result = data.filter((item) => item.category_id === category);
+    // setData(result);
+    setTyp(category);
+    category === -1 ? setDisplayData(data): setDisplayData(data.filter((item) => item.category_id === category))
+  };
+
+
+
   return (
     <div className="container">
       <div className="row">
@@ -44,98 +58,14 @@ const ProductPage = () => {
                 <h5 className="title">Hãng</h5>
               </header>
               <div className="filter-content collapse show" id="collapse_1">
-                <div className="category-list list-group">
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Iphone
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Samsung
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Oppo
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Vivo
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Xiaomi
-                  </a>
-
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Realme
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Nokia
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article className="filter-group">
-              <header className="card-header">
-                <i className="icon-control fa fa-chevron-down"></i>
-                <h5 className="title">Giá</h5>
-              </header>
-              <div className="filter-content collapse show" id="collapse_3">
-                <div className="category-list list-group">
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Dưới 2 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 2 đến 4 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 4 đến 10 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Từ 10 đến 20 triệu
-                  </a>
-                  <a
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                  >
-                    Trên 20 triệu
-                  </a>
-                </div>
+                <Categories filterProduct={filterProduct} typ={typ}/>
               </div>
             </article>
           </div>
         </aside>
         <main className="col-md-9">
           <div className="row">
-            {data.map((item, index) => (
+            {displayData.map((item, index) => (
               <div className="product-grid col-md-4">
                 <figure className="card card-product-grid">
                   <div
@@ -154,9 +84,12 @@ const ProductPage = () => {
                         marginRight: "5px",
                       }}
                     >
-                      <a href="/ProductDetail" className="product-title">
+                      {/* <a href="/ProductDetail" className="product-title">
                         {data[index].title}
-                      </a>
+                      </a> */}
+                      <Link to={`${item.id}`} className="product-title">
+                        {data[index].title}
+                      </Link>
                       <div
                         className="price-wrap mt-2"
                         style={{ marginBottom: "0px", marginTop: "5px" }}
