@@ -40,6 +40,21 @@ function User() {
         setBirth(res.data.data.dateofbirth);
         setPhone(res.data.data.phone_number);
         setMail(res.data.data.email);
+      })
+      .catch((e) => {
+        axios.post(
+          "http://localhost/ltw-api/user",
+          {
+            fullname: "",
+            phone_number: "",
+            address: "",
+            email: "",
+            avatar: "",
+            gender: "",
+            dateofbirth: "2001-01-01",
+          },
+          environment.headers
+        );
       });
   };
 
@@ -75,7 +90,7 @@ function User() {
   //   setAvatar(value);
   // }
 
-  console.log(infoData);
+  // console.log(infoData);
 
   const saveChange = async () => {
     await axios
@@ -86,6 +101,7 @@ function User() {
       )
       .then((res) => {
         getData();
+        alert("Cập nhật thành công");
       })
       .catch((res) => alert(res));
   };
