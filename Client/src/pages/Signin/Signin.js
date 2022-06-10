@@ -38,12 +38,14 @@ const Signin = () => {
             "x-access-token": localStorage.getItem("token"),
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
           },
         };
         logged();
       })
-      .catch((err) => {});
+      .catch((err) => {
+        alert("Sai Tên đăng nhập hoặc Mật khẩu!")
+      });
   };
 
   return (

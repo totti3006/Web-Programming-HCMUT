@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
 import image from "../../images/hero-img.png";
+import environment from "../../components/Environment/Environment";
+import axios from "axios";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -10,21 +12,42 @@ const Signup = () => {
   const navigate = useNavigate();
 
   async function regis() {
-    let item = { name, email, password };
-    console.warn(item);
+    // let item = { name, email, password };
+    // console.warn(item);
 
-    let result = await fetch("http://localhost/ltw-api/users/signup", {
-      method: "POST",
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    const data = {
+      username: name,
+      password: password,
+    };
 
-    result = await result.json();
-    localStorage.setItem("user-infors", JSON.stringify(result));
-    navigate("signin");
+    await axios
+      .post(`http://localhost/ltw-api/users/signup`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Đăng kí thành công. Đang đăng nhập vào tài khoản của bạn ...");
+          localStorage.setItem("id", JSON.stringify(res.data.data.id));
+          localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("role", res.data.data.role);
+          environment.headers = {
+            headers: {
+              "x-access-token": localStorage.getItem("token"),
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          };
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((err) => {
+        alert("Tên đăng nhập đã tồn tại!");
+      });
+    //navigate("signin");
   }
 
   return (
@@ -43,14 +66,14 @@ const Signup = () => {
               placeholder="Tên đăng nhập"
             ></input>
           </div>
-          <div className="signin-box-col2-input">
+          {/* <div className="signin-box-col2-input">
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
             ></input>
-          </div>
+          </div> */}
 
           <div className="signin-box-col2-input">
             <input

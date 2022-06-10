@@ -1,9 +1,12 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 // import React from "react";
 
-import AdminHome from "./Home/Home";
+import {Home as AdminHome} from "./Home/Home";
 import Category from "./Category/Category";
 import User from "./User/User";
+import ProductAdmin from "../../components/Admin/Product"
+import OrderAdmin from "../../components/Admin/Order";
+import NotFoundPage from "../NotFound/NotFound"
 import { useEffect, useState } from "react";
 
 function AdminRouter() {
@@ -27,11 +30,18 @@ function AdminRouter() {
     <>
       {auth === true ? (
         <Routes>
-          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/" element={<AdminHome />} />
 
-          <Route path="/Category" element={<Category />} />
+          {/* <Route path="/category" element={<Category />} /> */}
 
-          <Route path="/User" element={<User />} />
+          <Route path="/user" element={<User />} />
+
+          <Route path="/product" element={<ProductAdmin />} />
+
+          <Route path="/order" element={<OrderAdmin />} />
+
+          <Route path="/*" element={<NotFoundPage />} />
+
         </Routes>
       ) : (
         "Loading..."

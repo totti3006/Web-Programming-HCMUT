@@ -1,30 +1,25 @@
 import React from "react";
 import "./Header.css";
 import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineLogin } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import environment from "./Environment/Environment";
 
 const Header = () => {
   const [infoData, setInfoData] = React.useState({});
-  const [auth, setAuth] = React.useState(false);
 
   const checkRole = () => {
-    if (localStorage.getItem("role") !== "user") {
+    if (localStorage.getItem("role") === "admin") {
       // navigation("/");
       return false;
     }
     return true;
   };
 
-  React.useEffect(() => {
-    setAuth(checkRole());
-  }, [auth]);
-
   const getData = async () => {
     await axios
-      .get(`http://localhost/ltw-api/user`, environment.headers)
+      .get(`${process.env.REACT_APP_API_URL}/ltw-api/user`, environment.headers)
       .then((res) => {
         setInfoData(res.data.data);
       });
@@ -33,6 +28,8 @@ const Header = () => {
   React.useEffect(() => {
     getData();
   }, []);
+
+  console.log(checkRole())
 
   return (
     <header className="fixed-top ">
@@ -107,6 +104,19 @@ const Header = () => {
                     Liên hệ
                   </a>
                 </li>
+                {
+                  checkRole() === false?
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Quản trị
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link to="/admin/product" class="dropdown-item">Sản phẩm</Link>
+                      <Link to="/admin/order" class="dropdown-item">Đơn hàng</Link>
+                      <Link to="/admin/news" class="dropdown-item">Tin tức</Link>
+                    </div>
+                  </li>: ""
+                }
               </ul>
 
               <a href="/cart">
@@ -118,7 +128,7 @@ const Header = () => {
                 </button>
               </a>
               <Link to="/user">
-                {auth == false ? (
+                {checkRole() === false ? (
                   <AiOutlineUser
                     style={{
                       color: "black",
@@ -141,9 +151,12 @@ const Header = () => {
                   />
                 )}
               </Link>
-              <Link to="/signin">
-                <AiOutlineLogin style={{ color: "black", fontSize: "30px" }} />
-              </Link>
+              {
+                (localStorage.getItem('role') === null) ?
+                <Link to="/signin">
+                  <AiOutlineLogin style={{ color: "black", fontSize: "30px" }} />
+                </Link> : <Link to="/signin" ><AiOutlineLogout onClick={() => {localStorage.clear();} } style={{ color: "black", fontSize: "30px" }} /></Link>
+              }
             </div>
           </div>
         </div>

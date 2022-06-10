@@ -21,11 +21,11 @@ function User() {
   // const [avatar, setAvatar] = React.useState("");
 
   const checkRole = () => {
-    if (localStorage.getItem("role") !== "user") {
+    if (localStorage.getItem("role")) {
       // navigation("/");
-      return false;
+      return true;
     }
-    return true;
+    return false;
   };
 
   React.useEffect(() => {

@@ -15,7 +15,6 @@ const Product = () => {
           <TableCategory />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
