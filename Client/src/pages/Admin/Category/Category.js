@@ -3,26 +3,23 @@ import TableCategory from "../../../components/Admin/TableCategory";
 import axios from "axios";
 
 function Category() {
-
-  const [category, setCategory] = useState('');
-  const [data, setData] = useState('');
+  const [category, setCategory] = useState("");
+  const [data, setData] = useState("");
 
   const getData = async () => {
-    await axios.get(`${process.env.REACT_APP_API_URL}/ltw-api/category/getall`).then(res =>{
-      if(res.data.data){
-        setData(res.data.data)
+    await axios.get(`http://localhost/ltw-api/category/getall`).then((res) => {
+      if (res.data.data) {
+        setData(res.data.data);
       }
-    })
-  }
+    });
+  };
 
-  useEffect(() =>{
-    getData()
-  },[])
+  useEffect(() => {
+    getData();
+  }, []);
 
   const deleteHandler = (id) => {
-    if (window.confirm(
-        "Bạn có chắc chắn muốn xoá danh mục này không?"
-    )) {
+    if (window.confirm("Bạn có chắc chắn muốn xoá danh mục này không?")) {
       //deleteCategory(id);
     }
   };
@@ -45,16 +42,18 @@ function Category() {
           >
             Thêm danh mục sản phẩm mới
           </button>
-          
-          {
-            data ? <div className="overflow-auto">
+
+          {data ? (
+            <div className="overflow-auto">
               <TableCategory
                 categories={data}
                 editHandler={editHandler}
                 deleteHandler={deleteHandler}
               />
-            </div> : ""
-          }
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

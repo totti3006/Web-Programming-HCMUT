@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import NumberFormat from "react-number-format";
-import './Home.css'
+import "./Home.css";
 import axios from "axios";
-import environment from '../../../components/Environment/Environment'
+import environment from "../../../components/Environment/Environment";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [adminInfo, setAdminInfo] = useState('');
+  const [adminInfo, setAdminInfo] = useState("");
 
   const getData = async () => {
-    await axios.get(`${process.env.REACT_APP_API_URL}/ltw-api/user`, environment.headers).then(res=>{
-      setAdminInfo(res.data.data)
-    })
-  }
-  
+    await axios
+      .get(`http://localhost/ltw-api/user`, environment.headers)
+      .then((res) => {
+        setAdminInfo(res.data.data);
+      });
+  };
+
   useEffect(() => {
-      getData();
-  },[])
+    getData();
+  }, []);
 
   return (
     <div
@@ -162,11 +164,13 @@ function Home() {
                 <div className=" card card-body shadow">
                   <h5 className="card-title text-secondary">Quản trị viên</h5>
                   <ul className="list-group list-group-flush">
-                    {
-                      adminInfo ? <li className="list-group-item" key={adminInfo.id}>
+                    {adminInfo ? (
+                      <li className="list-group-item" key={adminInfo.id}>
                         <h6>{adminInfo.fullname}</h6>
-                      </li> : ''
-                    }
+                      </li>
+                    ) : (
+                      ""
+                    )}
                   </ul>
                 </div>
               </div>
@@ -174,13 +178,7 @@ function Home() {
           </div>
           <div className="col-lg-6 d-flex align-items-center admin-home-img">
             <div>
-              {
-                adminInfo ? <img
-                  src={adminInfo.avatar}
-                  alt="dashboard"
-                /> : ''
-              }
-              
+              {adminInfo ? <img src={adminInfo.avatar} alt="dashboard" /> : ""}
             </div>
           </div>
         </div>

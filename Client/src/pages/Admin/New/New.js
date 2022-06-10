@@ -8,7 +8,7 @@ function New() {
   const [data, setData] = useState('');
 
   const getData = async () => {
-    await axios.get(`${process.env.REACT_APP_API_URL}/ltw-api/news/getall`).then(res =>{
+    await axios.get(`http://localhost/ltw-api/news/getall`).then(res =>{
       if(res.data.data){
         setData(res.data.data)
       }
