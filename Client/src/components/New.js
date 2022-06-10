@@ -8,16 +8,16 @@ const New = () => {
     const getData = async () => {
       const res = await axios.get(`http://localhost/ltw-api/news/getall`);
       setData(res.data.data);
+      console.log(data);
     };
     getData();
   }, []);
-
   return (
     <div style={{marginTop: '100px'}}>
       <h2 className="text-center">TIN TỨC NỔI BẬT</h2>
     <div  className="row" style={{marginLeft: '40px', marginRight: '40px'}}>
       
-      {data.map((item, index) => (
+      {data && data.length > 0 && data.map((item, index) => (
         <div className="col-6 col-sm-4 col-md-3 p-2" >
           <figure className="card card-product-grid">
             <div className="img-wrap">
@@ -32,7 +32,7 @@ const New = () => {
               <form action="/NewDetail">
               <button style={{marginBottom: '20px', marginTop: '20px'}}
                 className="btn btn-outline-primary"
-                onclick="location.href='/NewDetail'"
+                //onclick={location.href='/NewDetail'}
               >
                 Xem chi tiết
               </button>

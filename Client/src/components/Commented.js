@@ -6,7 +6,7 @@ const Commented = (id, value) => {
   return (
     <div className="commented">
       <div className="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <div className="avatar rounded-circle">
             <img
               src={image}
@@ -16,7 +16,7 @@ const Commented = (id, value) => {
             />
           </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <h5 className="name mb-1">{fakeData[0].name}</h5>
           <p className="content mb-0 text-secondary fst-italic">
             {fakeData[0].comment}

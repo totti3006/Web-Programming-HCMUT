@@ -32,7 +32,7 @@ const Intro  = () =>{
         style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
       >
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>Đội ngũ</h2>
         </div>
           <div className="row">
@@ -95,7 +95,7 @@ const Intro  = () =>{
         style={{ paddingTop: "1rem", paddingBottom: "1rem" }}
       >
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>VỀ CHÚNG TÔI</h2>
         </div>
           <div className="row ">
@@ -136,7 +136,7 @@ const Intro  = () =>{
         style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
       >
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>HÌNH ẢNH CÔNG TY</h2>
         </div>
           <div className="row">
