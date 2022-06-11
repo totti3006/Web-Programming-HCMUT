@@ -27,8 +27,9 @@ import Home from "./pages/Home/Home";
 import { Home as AdminHome } from "./pages/Admin/Home/Home";
 import Product from "./pages/Product/Product";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import Cart from "./pages/Cart/Cart";
+import {Cart} from "./pages/Cart/Cart";
 import AdminRouter from "./pages/Admin/AdminRouter";
+import Checkout from "./pages/Checkout/Checkout";
 
 import ProductAdmin from "./components/Admin/Product";
 import OrderAdmin from "./components/Admin/Order";
@@ -67,6 +68,7 @@ function App() {
             <Route path=":id" element={<ProductDetail />} />
           </Route>
           <Route path="cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin/*" element={<AdminRouter />} />
           <Route path="/*" element={<NotFoundPage />} />
           {/* <Route path="productdetail">

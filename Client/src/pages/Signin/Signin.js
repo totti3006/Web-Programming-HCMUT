@@ -28,7 +28,7 @@ const Signin = () => {
       password: loginData.get("password"),
     };
     await axios
-      .post(`http://localhost/ltw-api/users/login`, data)
+      .post(`http://localhost/ltw-api/users/login`, data, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         localStorage.setItem("id", JSON.stringify(res.data.data.id));
         localStorage.setItem("token", res.data.data.token);

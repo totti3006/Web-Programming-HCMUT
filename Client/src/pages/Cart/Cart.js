@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 
 function Cart() {
   const [cart, setCart] = useState([]);
+  
   useEffect(() => {
     const data = localStorage.getItem("Cart")
       ? JSON.parse(localStorage.getItem("Cart"))
@@ -185,4 +186,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export { Cart };
