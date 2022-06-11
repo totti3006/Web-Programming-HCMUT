@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
+import Table from "react-bootstrap/Table";
 
 function TableUser({ users, handleEdit, handleDelete }) {
   return (
-    <table className="table table-responsive table-hover">
+    <div className="container p-3">
+    <Table responsive="sm">
       <thead>
         <tr>
           <th scope="col">#id</th>
@@ -43,7 +45,8 @@ function TableUser({ users, handleEdit, handleDelete }) {
           </Fragment>
         ))}
       </tbody>
-    </table>
+    </Table>
+    </div>
   );
 }
 

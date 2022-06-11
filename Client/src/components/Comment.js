@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import image from "../images/phone-1.jpg";
 import Commented from "./Commented";
 const Comment = () => {
+  const [content, setContent] = useState("");
+  const changeHandler = (e) => {
+    setContent(e.target.value);
+  };
   return (
     <div className="comment">
       <h3>Bình luận</h3>
@@ -23,7 +27,7 @@ const Comment = () => {
               placeholder="Leave a comment here"
               id="floatingTextarea"
               value={""}
-              onChange={{}}
+              onChange={{changeHandler}}
             ></textarea>
             <label htmlFor="floatingTextarea">Bình luận</label>
           </div>

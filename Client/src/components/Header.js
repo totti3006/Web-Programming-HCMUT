@@ -118,6 +118,12 @@ const Header = () => {
                       Quản trị
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link to="/admin/user" class="dropdown-item">
+                        Người dùng
+                      </Link>
+                      <Link to="/admin/category" class="dropdown-item">
+                        Danh mục
+                      </Link>
                       <Link to="/admin/product" class="dropdown-item">
                         Sản phẩm
                       </Link>
@@ -190,3 +196,4 @@ const Header = () => {
   );
 };
 export default Header;
+

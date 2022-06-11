@@ -1,6 +1,9 @@
 img {
-  width: 200px;
-  height: 200px;
+  /* width: 200px;
+  height: 200px; */
+  height: auto;
+  max-width: 70%;
+  vertical-align: middle;
 }
 
 .container {
@@ -39,10 +42,16 @@ img {
 }
 
 .product-title{
-  text-decoration: none;
+  color: #000000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
 }
 
 /* .card:hover {
   background-color: gray;
   transition: 0.4s;
 } */
+

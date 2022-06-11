@@ -92,11 +92,32 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `content`, `thumbnail`) VALUES
-(1, 'Hi', 'Hi', 'youtube.com'),
-(2, 'Hi', 'blabla', 'youtube.com'),
-(3, 'Hello', 'Hi', 'youtube.com'),
-(4, 'Hello', 'Hi', 'youtube.com'),
-(8, 'Hello', 'Hi', 'youtube.com');
+(1,'OPPO Reno8 Lite ra mắt','OPPO mới đây đã giới thiệu chiếc Reno8 Lite tại thị trường Châu Âu. Mặc dù là sản phẩm thuộc dòng Reno8 nhưng chiếc Reno8 Lite này lại không có điểm chung gì với dòng Reno8 mới ra mắt cách đây không lâu tại thị trường Trung Quốc, trái lại đây lại chỉ là một phiên bản đổi tên của chiếc Reno7 Z và OPPO F21 Pro.',
+'https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/6/4/gsmarena100-1654340619380-165434061969224042867.jpg'),
+(2,'OPPO ra mắt smartphone 5G giá rẻ',
+'OPPO mới đây đã giới thiệu một chiếc smartphone 5G giá rẻ thuộc dòng A series có tên OPPO A77 5G tại thị trường Thái Lan. Chiếc máy này có thiết kế viền vuông khá trendy, màu sắc trẻ trung, có camera 48MP và trang bị viên pin 5000mAh.\r\n\r\nOPPO A77 5G trang bị màn hình 6.56 inch, độ phân giả HD+, sử dụng tấm nền LCD IPS với thiết kế \"giọt nước\". Mặc dù có độ phân giải HD+ nhưng màn hình này lại có tần số quét  90Hz và có độ sáng 600 nits. Camera selfie 16MP đặt ở giữa.',
+'https://cdn.tgdd.vn/Files/2022/03/16/1420586/oppo3410-edit_1280x720-800-resize.jpg'),
+(3,'iPhone 13 Trung Quốc giá chỉ 1.7 triệu đồng',
+'Từ các hình ảnh render, chúng ta có thể LeTV Y1 Pro sở hữu một ngoại hình cực kỳ giống iPhone 13 khi có khung viền vuông, cụm camera kép đặt chéo và có cả \"tai thỏ\" ở mặt trước. Tất nhiên do có giá thành rẻ nên khung máy và mặt lưng chỉ được hoàn thiện từ nhựa mà thôi. Máy có 2 màu trắng và xanh.\r\n\r\nLeTV Y1 Pro trang bị màn hình 6.54 inch LCD với độ phân giải HD+ ở mặt trước. Màn hình này có viền mỏng 2 bên nhưng dày hơn ở cạnh dưới, sử dụng thiết kế \"tai thỏ\" với camera selfie 5MP, tất nhiên sẽ không có cụm camera TrueDepth như iPhone.',
+'https://icdn.dantri.com.vn/thumb_w/770/2022/06/03/letv-y1-pro-1654256247258.jpg'),
+(4,'vivo T2x ra mắt','vivo mới đây đã giới thiệu thế hệ smartphone mới thuộc dòng T series có tên vivo T2x. Đây là mẫu máy tầm trung tiếp theo của vivo kế nhiệm cho dòng T1 và T1x ra mắt cách đây vài tháng. vivo T2x trang bị một thiết kế ổn, hiệu năng khá với chip Dimensity 1300, một con chip mới ra mắt của MediaTek.',
+'https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/5/30/gsmarena003-1653898231860-16538982325321014686612.jpg'),
+(5,'Galaxy M13 ra mắt',
+'Galaxy M13 có 3 tùy chọn màu sắc là xanh đậm, đồng cam và xanh nhạt. Do là dòng máy giá rẻ nên chỉ được hoàn thiện từ nhựa. Mặt lưng nổi bật với hệ thống 3 camera chính gồm camera góc rộng 50MP, góc siêu rộng 5MP và đo chiều sâu 2MP.\r\n\r\nỞ mặt trước, Galaxy M13 trang bị màn hình 6.6 inch sử dụng tấm nền TFT, độ phân giải FHD+ và có thiết kế \"giọt nước\" Infinity-V. Màn hình này có tần số quét 60Hz cơ bản và có camera selfie 8MP.',
+'https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/5/27/010galaxym13orangecopperfrontback-1653630213077-1653630213350463176407.jpg'),
+(6,'realme GT Neo3 Naruto Edition ra mắt',
+'Là một phiên bản đặc biệt nên realme thiết kế bao bì của máy là một hộp đựng vuộn tròn bên trong chứa điện thoại và các phụ kiện khác. Toàn bộ thân máy, ốp lưng, củ sạc, cáp sạc và pin dự phòng đều được tùy chỉnh theo tông màu chủ đạo đen và cam của nhân vật Naruto. Máy đi kèm một hình poster Naruto khổ nhỏ, bên trong cài đặt một bộ giao diện chủ đề độc quyền với hình nền, nhạc chuông và các biểu tượng riêng của bộ phim.',
+            "thumbnail": "https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/5/26/001ucsatgy1h2lk1bw3zzj61900u079m02-1653552789361-1653552789472283817772.jpg"
+),
+(7,
+"Redmi Note 11T Pro/Pro+ ra mắt",
+"Redmi Note 11T Pro và Pro+ có 3 tuỳ chọn màu sắc là abajc, xanh và đen. Ngoài ra bản Pro+ còn có thêm một tuỳ chọn Astro Boy giới hạn với hình của nhân vật Astro Boy in ở mặt lưng.\r\n\r\nGiá bán khởi điểm của Redmi Note 11T Pro và Pro+ tại thị trường Trung Quốc lần lượt từ 1699 tệ và 1999 tệ, tương đương 5.9 triệu đồng và 6.9 triệu đồng. Phiên bản giới hạn Astro Boy có giá 2499 tệ, tương đương 8.7 triệu đồng.",
+"https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/5/24/006ruxyjly1h2jsyro8e3j31900u0jvo-1653405068066-1653405068758121083931.jpg"
+),
+(8,"OPPO Reno8 series ra mắt với thiết kế mới",
+"Sau nhiều thông tin rò rỉ, OPPO ngày hôm nay (23/5) đã chính thức giới thiệu dòng Reno8 hoàn toàn mới bao gồm 3 phiên bản: Reno8, Reno8 Pro và Reno8 Pro+. Thực chất cả 3 phiên bản đều có ngôn ngữ thiết kế giống nhau, khác biệt chỉ tới từ phần cứng bên trong, kích cỡ màn hình và camera.",
+"https://genk.mediacdn.vn/thumb_w/640/139269124445442048/2022/5/23/6bac2f58gy1h2ipeprjcej215o0rsq71-1653318266216-1653318266497859848416.jpg"
+);
 
 -- --------------------------------------------------------
 

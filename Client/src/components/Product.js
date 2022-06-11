@@ -3,27 +3,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 import Categories from "./Categories";
 const ProductPage = () => {
   const [data, setData] = useState([]);
   const [displayData, setDisplayData] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`http://localhost/ltw-api/product/getall`);
       setData(res.data.data);
-      setDisplayData(res.data.data);
+      console.log(data);
     };
     getData();
   }, []);
 
-  useEffect(() => {
-    const data = localStorage.getItem("Cart")
-      ? JSON.parse(localStorage.getItem("Cart"))
-      : [];
-    setCart(data);
-  }, []);
 
   const handleClick = (item) => {
     const temp = [...cart];
@@ -46,7 +43,15 @@ const ProductPage = () => {
   };
 
 
-
+  
+  if (data.length === 0) return <span>Loading...</span>;
+  else {
+  const itemPerPage = 12;
+  const numberPage = Math.ceil(data.length / itemPerPage);
+  const currDisplay = data.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
+  );
   return (
     <div className="container">
       <div className="row">
@@ -65,14 +70,14 @@ const ProductPage = () => {
         </aside>
         <main className="col-md-9">
           <div className="row">
-            {displayData.map((item, index) => (
+            {currDisplay.map((item, index) => (
               <div className="product-grid col-md-4">
                 <figure className="card card-product-grid">
                   <div
                     className="img-wrap"
                     style={{ marginBottom: "5px", marginTop: "10px" }}
                   >
-                    <img src={data[index].thumbnail} />
+                    <img src={currDisplay[index].thumbnail} />
                   </div>
                   <figcaption className="info-wrap">
                     <div
@@ -88,7 +93,7 @@ const ProductPage = () => {
                         {data[index].title}
                       </a> */}
                       <Link to={`${item.id}`} className="product-title">
-                        {data[index].title}
+                        {currDisplay[index].title}
                       </Link>
                       <div
                         className="price-wrap mt-2"
@@ -116,39 +121,19 @@ const ProductPage = () => {
                 </figure>
               </div>
             ))}
+            
           </div>
-          <nav className="navi mt-4" aria-label="Page navigation sample">
-            <ul className="pagination">
-              <li className="page-item disabled">
-                <a className="page-link" href="#">
-                  Previous
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
+          {numberPage > 1 ? (
+                  <Pagination
+                    numberPage={numberPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                ) : null}
         </main>
       </div>
     </div>
   );
+          }
 };
 export default ProductPage;
