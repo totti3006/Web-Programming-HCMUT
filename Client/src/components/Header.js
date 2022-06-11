@@ -142,8 +142,11 @@ const Header = () => {
                   <i className="bi bi-cart"></i>
                 </button>
               </a>
+              {/* <Link to="/cart">
+                  {}
+              </Link> */}
               <Link to="/user">
-                {checkRole() === false ? (
+                {localStorage.getItem("role") === null ? (
                   <AiOutlineUser
                     style={{
                       color: "black",
