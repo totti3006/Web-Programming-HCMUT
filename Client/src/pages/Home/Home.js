@@ -14,7 +14,7 @@ const Home = () => {
 
   const getData = async () => {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/ltw-api/product/getall`)
+      .get(`http://localhost/ltw-api/product/getall`)
       .then((res) => {
         setData(res.data.data);
       })

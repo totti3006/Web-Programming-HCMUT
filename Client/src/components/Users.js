@@ -601,7 +601,7 @@ function User() {
                   </div>
                   <div className="col-lg-5 px-3">
                     <div className="row">
-                      <h5 className="text-start">Số điện thoại và email</h5>
+                      <h5 className="text-start">Số điện thoại và Email</h5>
                       <div className="col-12">
                         <div className="row">
                           <div className="col-2">
@@ -811,7 +811,7 @@ function User() {
                         </div>
                       </div>
 
-                      <h5 className="mt-3 text-start">Bảo mật</h5>
+                      {/* <h5 className="mt-3 text-start">Bảo mật</h5>
                       <div className="col-12">
                         <div className="row">
                           <div className="col-2">
@@ -894,7 +894,7 @@ function User() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* <h5 className="mt-3">Liên kết mạng xã hội</h5>
                     <div className="col-12"></div> */}

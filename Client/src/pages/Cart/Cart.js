@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
@@ -192,7 +192,7 @@ function Cart() {
               <hr />
               <div className="cart-footer d-flex justify-content-end mb-3">
                 <Link to="/checkout" className="btn btn-success my-1">
-                  Proceed to Checkout
+                  Thanh toán
                   <i className="bi bi-arrow-right ms-2"></i>
                 </Link>
               </div>
@@ -222,4 +222,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export { Cart };
