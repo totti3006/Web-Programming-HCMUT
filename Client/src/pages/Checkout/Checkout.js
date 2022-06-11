@@ -60,39 +60,43 @@ function Checkout() {
               <div className="card-body">
                 <form action="">
                     <div class="mb-3 row">
-                        <label for="staticName" class="col-sm-2 col-form-label">Họ tên</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticName" value={userInfo.fullname} />
+                        <label for="staticName" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Họ tên</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="staticName" value={userInfo.fullname} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticEmail" value={userInfo.email} />
+                        <label for="staticEmail" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="staticEmail" value={userInfo.email} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticPhone" value={userInfo.phone_number} />
+                        <label for="staticPhone" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="staticPhone" value={userInfo.phone_number} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticAddress" class="col-sm-2 col-form-label">Địa chỉ</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="staticAddress" value={userInfo.address} />
+                        <label for="staticAddress" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="staticAddress" value={userInfo.address} disabled/>
                         </div>
                     </div>
-                    <select
-                        name="payment"
-                        id="payment"
-                        className="form-select"
-                        defaultValue="1"
-                        style={{textAlign: 'center', fontWeight: 'bold'}}
-                    >
-                        <option value="0">--- Hình thức thanh toán ---</option>
-                        <option value="1">Thanh toán khi nhận hàng</option>
-                    </select>
+                    <div class="mb-3 row">
+                        <label for="staticAddress" class="col-sm-4 col-form-label">Hình thức thanh toán</label>
+                        <div class="col-sm-8">
+                            <select
+                                name="payment"
+                                id="payment"
+                                className="form-select"
+                                defaultValue="1"
+                                style={{textAlign: 'center', fontWeight: 'bold'}}
+                            >
+                                <option value="1">Thanh toán khi nhận hàng</option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
                 <div className="text-center">
                   <button
@@ -231,7 +235,17 @@ function Checkout() {
                   data-bs-dismiss="modal"
                   //onClick={resetCart}
                 >
-                  Tiếp tục mua sắm <i className="bi bi-arrow-right"></i>
+                  Tiếp tục mua sắm
+                </button>
+              </Link>
+              <Link to="/">
+                <button
+                  type="button"
+                  className="btn btn-primary mb-2 me-2"
+                  data-bs-dismiss="modal"
+                  //onClick={resetCart}
+                >
+                  Quay lại trang chủ <i className="bi bi-arrow-right"></i>
                 </button>
               </Link>
             </div>
