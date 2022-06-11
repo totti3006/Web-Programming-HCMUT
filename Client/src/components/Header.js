@@ -35,7 +35,7 @@ const Header = () => {
     <header className="fixed-top ">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand text-black md" href="#">
+          <a className="navbar-brand text-black md" href="/">
             PINE@APPLE
           </a>
           <button
@@ -143,7 +143,7 @@ const Header = () => {
                 </button>
               </a>
               <Link to="/user">
-                {checkRole() === false ? (
+                {!localStorage.getItem("role") ? (
                   <AiOutlineUser
                     style={{
                       color: "black",

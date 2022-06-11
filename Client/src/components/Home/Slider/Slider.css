@@ -1,6 +1,6 @@
 .slider{
     width: 100%;
-    height: 100vh;
+    height: 100vh - 59px;
     transition: .7s ease all;
 }
 
@@ -83,10 +83,10 @@
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     .slider{
-        height: 100vh;
+        height: calc(100vh - 59px);
     }
     .slider img{
-        height: 100vh;
+        height: calc(100vh - 59px);
     }
     .slider-scrolled{
         height: 50vh;

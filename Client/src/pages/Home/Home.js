@@ -13,7 +13,7 @@ const Home = () => {
     const [className, setClassName] = useState("home-container")
 
     const getData = async () => {
-        await axios.get(`${process.env.REACT_APP_API_URL}/ltw-api/product/getall`).then(res => {
+        await axios.get(`http://localhost/ltw-api/product/getall`).then(res => {
             setData(res.data.data)
         }).catch(err => {console.error(err)})
     }
@@ -46,7 +46,7 @@ const Home = () => {
                 {
                     data ? <Content data={data} /> : ""
                 }
-                <Footer />
+            <Footer />
             </div>
         </>
     )
