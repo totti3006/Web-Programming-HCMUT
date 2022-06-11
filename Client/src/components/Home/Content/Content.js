@@ -10,6 +10,7 @@ const Content = (props) => {
     const [data, setData] = useState(props.data)
 
     const showItemList = () => {
+        console.log(data)
         if(data){
             return(<>
                 <ItemList data={data.filter(x => x.category_name === 'Apple')} listName="APPLE"/>

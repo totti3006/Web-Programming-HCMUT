@@ -1,49 +1,83 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 import axios from "axios";
 
 const New = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`http://localhost/ltw-api/news/getall`);
       setData(res.data.data);
+      console.log(data);
     };
     getData();
   }, []);
 
+  if (data.length === 0) return <span>Loading...</span>;
+  else {
+  const itemPerPage = 12;
+  const numberPage = Math.ceil(data.length / itemPerPage);
+  const currDisplay = data.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
+  );
   return (
-    <div style={{marginTop: '100px'}}>
-      <h2 className="text-center">TIN TỨC NỔI BẬT</h2>
-    <div  className="row" style={{marginLeft: '40px', marginRight: '40px'}}>
-      
-      {data.map((item, index) => (
-        <div className="col-6 col-sm-4 col-md-3 p-2" >
-          <figure className="card card-product-grid">
-            <div className="img-wrap">
-              <img src={data[index].thumbnail} />
+    <div className="container">
+            <div className="section-title">
+              <h2>TIN TỨC NỔI BẬT</h2>
             </div>
-            <figcaption className="info-wrap">
-              <div className="fix-height">
-                <h5 className="card-title">
-                  {data[index].title}
-                </h5>
+      <div className="row">
+        <main >
+          <div className="row">
+            {currDisplay.map((item, index) => (
+              <div className="product-grid col-md-3">
+                <figure className="card card-product-grid">
+                  <div
+                    className="img-wrap"
+                    style={{ marginBottom: "5px", marginTop: "10px" }}
+                  >
+                    <img src={currDisplay[index].thumbnail} />
+                  </div>
+                  <figcaption className="info-wrap">
+                    <div
+                      className="fix-height"
+                      style={{
+                        marginBottom: "5px",
+                        marginTop: "5px",
+                        marginLeft: "5px",
+                        marginRight: "5px",
+                      }}
+                    >
+                      <div className="fix-height">
+                        <h5 className="card-title">
+                          {currDisplay[index].title}
+                        </h5>
+                      </div>
+                      <Link to={`${item.id}`} >
+                        Xem chi tiết
+                      </Link>
+                      
+                    </div>
+                    
+                  </figcaption>
+                </figure>
               </div>
-              <form action="/NewDetail">
-              <button style={{marginBottom: '20px', marginTop: '20px'}}
-                className="btn btn-outline-primary"
-                onclick="location.href='/NewDetail'"
-              >
-                Xem chi tiết
-              </button>
-              </form>
-              
-            </figcaption>
-          </figure>
-        </div>
-      ))}
-    </div>
+            ))}
+          </div>
+          {numberPage > 1 ? (
+                  <Pagination
+                    numberPage={numberPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                ) : null}
+        </main>
+      </div>
     </div>
   );
+}
 };
 export default New;

@@ -18,8 +18,6 @@ function User() {
 
   const [auth, setAuth] = React.useState(false);
 
-  // const [avatar, setAvatar] = React.useState("");
-
   const checkRole = () => {
     if (localStorage.getItem("role")) {
       // navigation("/");

@@ -1,6 +1,7 @@
 import React from "react";
 import TableUser from "../../../components/Admin/TableUser";
 import axios from "axios";
+import Header from "../../../components/Header";
 import environment from "../../../components/Environment/Environment";
 
 function User() {
@@ -73,6 +74,7 @@ function User() {
 
   return (
     <div className="container py-5 mt-5">
+      <Header/>
       <div className="row">
         <div className="col-12">
           <h4 className="text-center my-4">Quản lý thành viên</h4>

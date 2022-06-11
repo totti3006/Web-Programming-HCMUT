@@ -28,74 +28,62 @@ const Intro  = () =>{
         </div>
       </header>
       <section
-        className="testimonials text-center bg-light"
-        style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
+        
       >
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>Đội ngũ</h2>
         </div>
-          <div className="row">
-            <div className="col-lg-3">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image4}
-                  alt="..."
-                />
-                <div className="member">
-                <h5>Nguyễn Diệu Ái</h5>
-                <p className="font-weight-light mb-0">"Frontend"</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image1}
-                  alt="..."
-                />
-                <h5>Nguyễn Kế Đạt</h5>
-                <p className="font-weight-light mb-0">"Backend Director"</p>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image2}
-                  alt="..."
-                />
-                <h5>Nguyễn Hải Đăng</h5>
-                <p className="font-weight-light mb-0">
-                  "Half-Frontend Director"
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image3}
-                  alt="..."
-                />
-                <h5>Nguyễn Thanh Thịnh</h5>
-                <p className="font-weight-light mb-0">
-                  "Half-Frontend Director"
-                </p>
-              </div>
-            </div> 
-          </div>
-         
         </div>
       </section>
+          
+        <div class="main">
+        <ul class="cards">
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image4}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Nguyễn Diệu Ái</h2>
+                <p class="card_text">Frontend Developer</p>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={ image2 } /></div>
+              <div class="card_content">
+                <h2 class="card_title">Nguyễn Kế Đạt</h2>
+                <p class="card_text">Frontend Developer</p>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image2}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Nguyễn Thanh Thịnh</h2>  
+                <p class="card_text">Frontend Developer</p>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image3}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Nguyễn Đăng Hải</h2>  
+                <p class="card_text">Frontend Developer</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+       
       <section
-        className="testimonials text-center bg-light"
+        className="testimonials text-center"
         style={{ paddingTop: "1rem", paddingBottom: "1rem" }}
       >
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>VỀ CHÚNG TÔI</h2>
         </div>
           <div className="row ">
@@ -131,53 +119,51 @@ const Intro  = () =>{
           </div>
         </div>
       </section>
-      <section
-        className="testimonials text-center bg-light"
-        style={{ paddingTop: "5rem", paddingBottom: "5rem" }}
-      >
+     
+      <section>
         <div className="container">
-        <div class="section-title">
+        <div className="section-title">
           <h2>HÌNH ẢNH CÔNG TY</h2>
         </div>
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image5}
-                  alt="..."
-                />
-                <div className="member">
-                <h5>Tập thể</h5>
-                </div>
-              </div>
-            </div>
-            
-            <div className="col-lg-4">
-              <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image6}
-                  alt="..."
-                />
-                <h5>Party</h5>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div className="testimonial-item mx-auto mb-8 mb-lg-0">
-                <img
-                  className="mb-3"
-                  src={image7}
-                  alt="..."
-                />
-                <h5>Training</h5>
-              </div>
-            </div> 
-          </div>
-         
         </div>
       </section>
-    </div>
+      <div class="main ">
+        <ul class="cards">
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image5}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Tập thể</h2>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image6}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Party</h2>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image5}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Training</h2>  
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src={image7}/></div>
+              <div class="card_content">
+                <h2 class="card_title">Training</h2>  
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      </div>
   );
 }
 export default Intro;
