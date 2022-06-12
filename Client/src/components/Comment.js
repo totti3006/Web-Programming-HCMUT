@@ -38,7 +38,7 @@ const Comment = ({comments, product_id, setForceRerender}) => {
 
 
   const handleDelete = async (id) => {
-console.log("delete comment", id)
+    console.log("delete comment", id)
     try {
     const res = await axios.delete(`http://localhost/ltw-api/comment?id=${id}`, environment.headers)
     setForceRerender(prev=>!prev)

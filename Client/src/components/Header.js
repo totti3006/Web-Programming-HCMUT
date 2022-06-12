@@ -229,6 +229,9 @@ const Header = () => {
                       <Link to="/admin/news" className="dropdown-item">
                         Tin tức
                       </Link>
+                      <Link to="/admin/comment" className="dropdown-item">
+                        Bình luận
+                      </Link>
                     </div>
                   </li>
                 ) : (

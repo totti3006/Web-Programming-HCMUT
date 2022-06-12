@@ -3,7 +3,7 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import environment from "../Environment/Environment"
 
-function TableComment() {
+function TableComment({setForceRerender}) {
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -19,16 +19,35 @@ function TableComment() {
   }, []);
 
   
-  const deleteCmt = async (id) => {
-    await axios.delete('http://localhost/ltw-api/comment?id=${id}', environment.headers)
-        .then(response => alert('Delete successful'))
-    };
+//   const deleteCmt = async (id) => {
+//     await axios.delete('http://localhost/ltw-api/comment?id=${id}', {id: id}, environment.headers)
+//         .then(response => alert('Delete successful'))
+//     };
 
+
+// const deleteHandler = (id) => {
+//   var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
+//   if (option) {
+//     deleteCmt(id);
+//   }
+// };
+
+const handleDelete = async (id) => {
+  //console.log("delete comment", id)
+  try {
+  const res = await axios.delete(`http://localhost/ltw-api/comment?id=${id}`, environment.headers)
+  //setForceRerender(prev=>!prev)
+  } catch (error) {
+  console.log(error)  
+  }
+}
 
 const deleteHandler = (id) => {
-  var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
+  var option = window.confirm(
+    "Bạn có chắc chắn muốn xoá bình luận này không?"
+  );
   if (option) {
-    deleteCmt(id);
+    handleDelete(id);
   }
 };
 
