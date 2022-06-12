@@ -1,51 +1,48 @@
 import React, {useState} from "react";
 import Header from "../../components/Header";
-//import SunEditor from "suneditor-react";
 import TableCategory from "./TableProduct";
 import axios from "axios";
+import environment from "../Environment/Environment"
+
 
 const Product = () => {
 
-const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [numProductInCart, setNumProductInCart] = useState();
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
-    axios
-      .post('http://localhost/ltw-api/category/')
-      .then((response) => setCategories(response.data));
-  };
-  const getProducts = async () => {
-    axios
-      .post('http://localhost/ltw-api/product/')
-      .then((response) => setProducts(response.data))
-      .catch((res) => {
-        alert(res);
+    await axios
+      .get(`http://localhost/ltw-api/category/getall`, environment.headers)
+      .then((res) => {
+        setCategories(res.data.data);
       });
   };
 
+  React.useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getProducts = async () => {
+    await axios
+      .get(`http://localhost/ltw-api/product/getall`, environment.headers)
+      .then((res) => {
+        setProducts(res.data.data);
+      });
+  };
+
+  React.useEffect(() => {
+    getProducts();
+  }, []);
+
   const addProduct = (product) => {
     axios
-      .post('http://localhost/ltw-api/product/')
+      .post('http://localhost/ltw-api/product/', product, environment.headers)
       .then((response) => getProducts())
       .catch((res) => alert(res));
   };
 
-  const editProduct = (id, product) => {
-    axios
-      .post('http://localhost/ltw-api/product/', {
-        id: id,
-        ...product,
-      })
-      .then((response) =>
-        setProducts((prev) => {
-          const idx = prev.findIndex((item) => item.id === id);
-          prev[idx] = { ...prev[idx], ...product };
-          return [...prev];
-        })
-      )
-      .catch((res) => alert(res));
-  };
+  
 
   const deleteProduct = (id) => {
     axios
@@ -92,8 +89,6 @@ const [currentPage, setCurrentPage] = useState(1);
   const submitHandler = () => {
     if (status.action === "Thêm") {
       addProduct(product);
-    } else {
-      editProduct(status.id, product);
     }
     setProduct({
       title: "",
@@ -197,7 +192,7 @@ price: "",
                     value={product.description || ""}
                     onChange={changeHandler}
                   ></textarea>
-<label htmlFor="thmbnail" className="form-label">
+                  <label htmlFor="thmbnail" className="form-label">
                     Hình ảnh
                   </label>
                   <input

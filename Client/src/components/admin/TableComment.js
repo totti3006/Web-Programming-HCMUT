@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Table from "react-bootstrap/Table";
+import environment from "../Environment/Environment"
 
-function TableComment({ comments, deleteHandler, offset }) {
+function TableComment() {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    await axios
+      .get(`http://localhost/ltw-api/comment/getall`, environment.headers)
+      .then((res) => {
+        setData(res.data.data);
+      });
+  };
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+  
+  const deleteCmt = async (id) => {
+    await axios.delete('http://localhost/ltw-api/comment${id}',{id: id}, environment.headers)
+        .then(response => alert('Delete successful'))
+    };
+
+
+const deleteHandler = (id) => {
+  var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
+  if (option) {
+    deleteCmt(id);
+  }
+};
+
+
   return (
-    <table className="table table-hover table-responsive">
+    <div className="container p-3">
+        <h2 className="text-center my-4">Quản lý bình luận</h2>
+      <Table responsive="sm">
       <thead>
         <tr>
           <th>STT</th>
@@ -14,11 +48,11 @@ function TableComment({ comments, deleteHandler, offset }) {
         </tr>
       </thead>
       <tbody>
-        {comments.map((item, index) => (
+        {data.map((item, index) => (
           <tr key={item.id}>
-            <td>{index + 1 + offset}</td>
-            <td>{item.fullname}</td>
-            <td>{item.title}</td>
+            <td>{index + 1}</td>
+            <td>{item.user_id}</td>
+            <td>{item.product_id}</td>
             <td>{item.content}</td>
             <td>{item.created_at}</td>
             <td>
@@ -32,8 +66,9 @@ function TableComment({ comments, deleteHandler, offset }) {
           </tr>
         ))}
       </tbody>
-    </table>
+      </Table>
+    </div>
   );
-}
+};
 
 export default TableComment;

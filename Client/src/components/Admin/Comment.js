@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../../components/Header'
-import TableOrder from "./TableOrder";
+import TableComment from "./TableComment";
 
-const Order = () => {
+const Comment = () => {
   return (
     <div>
       <Header />
-      <TableOrder/>
+      <TableComment/>
     </div>
   )
 }
 
-export default Order
+export default Comment
