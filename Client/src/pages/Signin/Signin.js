@@ -9,10 +9,8 @@ const Signin = () => {
   const location = useNavigate();
 
   const logged = () => {
-    if (localStorage.getItem("role") === "user") {
+    if (localStorage.getItem("role")) {
       location("/");
-    } else if (localStorage.getItem("role") === "admin") {
-      location("/admin");
     }
   };
 

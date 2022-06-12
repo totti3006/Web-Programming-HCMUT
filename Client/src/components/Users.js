@@ -154,9 +154,6 @@ function User() {
       {auth === true ? (
         <div className="container py-5 mt-5">
           <div className="row">
-            <div className="col-12">
-              <h4>Thông tin tài khoản</h4>
-            </div>
             <div className="col-12 mt-2">
               <div
                 className="card card-body border-1 py-3 px-3 shadow rounded-3"

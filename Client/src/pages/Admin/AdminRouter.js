@@ -30,7 +30,6 @@ function AdminRouter() {
     <>
       {auth === true ? (
         <Routes>
-          <Route path="/" element={<AdminHome />} />
 
           {/* <Route path="/category" element={<Category />} /> */}
 

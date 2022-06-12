@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   const renderAvatar = () => {
-    if(!localStorage.getItem("role")){
+    if(!localStorage.getItem("role") || localStorage.getItem("role") === "admin"){
       return ""
     }
     else{
