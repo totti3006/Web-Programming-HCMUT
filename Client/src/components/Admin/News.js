@@ -21,28 +21,6 @@ const New = () => {
       .catch((res) => alert(res));
   };
 
-  const editNews = (id, news) => {
-    axios
-      .put('http://localhost/ltw-api/news/', {
-        news_id: id,
-        ...news,
-      }, environment.headers)
-      .then((response) =>
-        setData((prev) => {
-          prev[prev.findIndex((item) => item.id === id)] = news;
-          return [...prev];
-        })
-      ).catch(err => console.log(err));
-  };
-
-  const deleteNews = (id) => {
-    axios
-      .get('http://localhost/ltw-api/news/getall', { id: id })
-      .then((response) =>
-        setData((prev) => prev.filter((item) => item.id !== id))
-      )
-      .catch((res) => alert(res));
-  };
 
   const [status, setStatus] = useState({
     id: "",
@@ -59,32 +37,16 @@ const New = () => {
   };
 
   const submitHandler = () => {
-    if (status.action === "Thêm") { // No van la them chu khong phải sửa idol, mà thêm cũng k được 
+    if (status.action === "Thêm") {
       addNews(news);
-    } else {
-      editNews(status.id, news);
-    }
+    } 
     setNews({news_id: "", title: "", content: "", thumbnail: ""});
     setStatus({
       id: "",
       action: "Thêm",
     });
   };
-  const deleteHandler = (id) => {
-    var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
-    if (option) {
-      deleteNews(id);
-    }
-  };
-
-  const editHandler = (id, news) => {
-    // setStatus({
-    //   id: id,
-    //   action: "Sửa",
-    // });
-    setNews(news);
-    //document.querySelector(".openmodal").click();
-  };
+ 
   const setContent = (e, content) => {
     setNews((prev) => ({ ...prev, content: content }));
   };
@@ -216,10 +178,7 @@ const New = () => {
             </div>
           </div>
           <div className="overflow-auto">
-            <TableNews
-              //editHandler={editHandler}
-              deleteHandler={deleteHandler}
-            />
+            <TableNews/>
           </div>
           
           

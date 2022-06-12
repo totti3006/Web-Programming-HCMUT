@@ -26,6 +26,19 @@ const NewsItem = (props) =>{
         })
     }
 
+    const deleteNew = async (id) => {
+        await axios.delete('http://localhost/ltw-api/news?id=${id}', {id: id}, environment.headers)
+            .then(response => alert('Delete successful'))
+        };
+    
+    
+    const deleteHandler = (id) => {
+      var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
+      if (option) {
+        deleteNew(id);
+      }
+    };
+
     return(
         data ? 
         (<tr>
@@ -66,7 +79,7 @@ const NewsItem = (props) =>{
             </button>
             </td>
             <td>
-            <button className="btn btn-danger" onClick={() => {}}>
+            <button className="btn btn-danger" onClick={() => deleteHandler(data.id)}>
                 Xóa
             </button>
             </td>

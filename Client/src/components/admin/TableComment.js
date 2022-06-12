@@ -20,7 +20,7 @@ function TableComment() {
 
   
   const deleteCmt = async (id) => {
-    await axios.delete('http://localhost/ltw-api/comment${id}',{id: id}, environment.headers)
+    await axios.delete('http://localhost/ltw-api/comment?id=${id}', environment.headers)
         .then(response => alert('Delete successful'))
     };
 
@@ -49,7 +49,7 @@ const deleteHandler = (id) => {
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={item.id}>
+          <tr>
             <td>{index + 1}</td>
             <td>{item.user_id}</td>
             <td>{item.product_id}</td>

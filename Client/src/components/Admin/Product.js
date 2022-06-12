@@ -44,26 +44,20 @@ const Product = () => {
 
   
 
-  const deleteProduct = (id) => {
-    axios
-      .post('http://localhost/ltw-api/product/', { id: id })
-      .then((response) =>
-        setProducts((prev) => prev.filter((item) => item.id !== id))
-      )
-      .catch((res) => alert(res));
-  };
 const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState({
     id: "",
     action: "Thêm",
   });
   const [product, setProduct] = useState({
-    title: "",
-    description: "",
+    id: "",
     category_id: "",
-    thumbnail: "",
+    category_name: "",
+    title: "",
     price: "",
     discount: "",
+    thumbnail: "",
+    description: ""
   });
 
   const changeHandler = (e) => {
@@ -73,12 +67,14 @@ const [currentPage, setCurrentPage] = useState(1);
 
   const closeHandler = () => {
     setProduct({
-      title: "",
-      description: "",
+      id: "",
       category_id: "",
-      thumbnail: "",
+      category_name: "",
+      title: "",
       price: "",
       discount: "",
+      thumbnail: "",
+      description: "",
     });
     setStatus({
       id: "",
@@ -91,12 +87,14 @@ const [currentPage, setCurrentPage] = useState(1);
       addProduct(product);
     }
     setProduct({
-      title: "",
-      description: "",
+      id: "",
       category_id: "",
-      thumbnail: "",
-price: "",
+      category_name: "",
+      title: "",
+      price: "",
       discount: "",
+      thumbnail: "",
+      description: "",
     });
     setStatus({
       id: "",
@@ -104,14 +102,14 @@ price: "",
     });
   };
 
-  const deleteHandler = (id) => {
-    var option = window.confirm(
-      "Bạn có chắc chắn muốn xoá sản phẩm này không?"
-    );
-    if (option) {
-      deleteProduct(id);
-    }
-  };
+  // const deleteHandler = (id) => {
+  //   var option = window.confirm(
+  //     "Bạn có chắc chắn muốn xoá sản phẩm này không?"
+  //   );
+  //   if (option) {
+  //     deleteProduct(id);
+  //   }
+  // };
 
   const editHandler = (id, product) => {
     setStatus({
@@ -167,7 +165,46 @@ price: "",
                     onClick={closeHandler}
                   ></button>
                 </div>
+                
                 <div className="modal-body">
+                <label htmlFor="title" className="form-label">
+                    ID
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="ID"
+                    name="title"
+                    value={product.id}
+                    onChange={(e) =>
+                      setProduct((prev) => ({ ...prev, id: e.target.value }))
+                    }
+                  />
+                  <label htmlFor="title" className="form-label">
+                    ID danh mục
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="ID danh mục"
+                    name="title"
+                    value={product.category_id}
+                    onChange={changeHandler}
+                  />
+                  <label htmlFor="name" className="form-label">
+                    Tên danh mục
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="Tên sản phẩm"
+                    name="title"
+                    value={product.category_name}
+                    onChange={changeHandler}
+                  />
                   <label htmlFor="name" className="form-label">
                     Tên sản phẩm
                   </label>
@@ -178,6 +215,42 @@ price: "",
                     placeholder="Tên sản phẩm"
                     name="title"
                     value={product.title}
+                    onChange={changeHandler}
+                  />
+                  <label htmlFor="price" className="form-label">
+                    Giá
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="Giá sản phẩm"
+                    name="price"
+                    value={product.price}
+                    onChange={changeHandler}
+                  />
+                  <label htmlFor="price" className="form-label">
+                    Giảm giá
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="Giảm giá"
+                    name="price"
+                    value={product.discount}
+                    onChange={changeHandler}
+                  />
+                  <label htmlFor="thmbnail" className="form-label">
+                    Hình ảnh
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    placeholder="Link hình ảnh"
+                    name="thumbnail"
+                    value={product.thumbnail}
                     onChange={changeHandler}
                   />
                   <label htmlFor="description" className="form-label">
@@ -192,55 +265,9 @@ price: "",
                     value={product.description || ""}
                     onChange={changeHandler}
                   ></textarea>
-                  <label htmlFor="thmbnail" className="form-label">
-                    Hình ảnh
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="form-control"
-                    placeholder="Link hình ảnh"
-                    name="thumbnail"
-                    value={product.thumbnail}
-                    onChange={changeHandler}
-                  />
-                  <label htmlFor="name" className="form-label">
-                    Danh mục sản phẩm
-                  </label>
-                  <select
-                    name="category_id"
-                    id="category_id"
-                    className="form-control"
-                    onChange={(e) => {
-                      changeHandler(e);
-                      setProduct((prev) => ({
-                        ...prev,
-                        category_name: categories.find(
-                          (item) => item.id === e.target.value
-                        ).name,
-                      }));
-                    }}
-                    value={product.category_id}
-                  >
-                    <option value="">-- Chọn --</option>
-                    {categories.map((category) => (
-                      <option value={category.id} key={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-                  <label htmlFor="price" className="form-label">
-                    Giá
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="form-control"
-                    placeholder="Giá sản phẩm"
-                    name="price"
-                    value={product.price}
-                    onChange={changeHandler}
-                  />
+                  
+                 
+                  
                 </div>
 
                 <div className="modal-footer">
@@ -268,7 +295,7 @@ price: "",
             <TableCategory
               products={currProducts}
               editHandler={editHandler}
-              deleteHandler={deleteHandler}
+              //deleteHandler={deleteHandler}
               offset={(currentPage - 1) * productPerPage}
             />
           </div>
