@@ -168,7 +168,7 @@ function User() {
                   <div className="col-lg-7 border-end px-4">
                     <h5 className="text-start">Thông tin cá nhân</h5>
                     <div className="row pt-2">
-                      <div className="col-3">
+                      <div className="col-lg-3">
                         <div>
                           <button
                             className="btn btn-light rounded-circle"
@@ -245,19 +245,19 @@ function User() {
                           </div>
                         </div>
                       </div>
-                      <div className="col-9">
+                      <div className="col-lg-9">
                         <form>
                           <div
                             className="row align-items-center"
                             style={{ height: "163px" }}
                           >
                             <label
-                              className="col-3 col-form-label"
+                              className="col-lg-3 col-form-label"
                               htmlFor="user-name"
                             >
                               Họ và tên
                             </label>
-                            <div className="col-9">
+                            <div className="col-lg-9">
                               <input
                                 type="text"
                                 className="form-control"
@@ -271,12 +271,12 @@ function User() {
                         </form>
                       </div>
 
-                      <div className="col-12 mt-4">
+                      <div className="col-lg-12 mt-4">
                         <div className="row">
-                          <label className="col-3 col-form-label">
+                          <label className="col-lg-3 col-form-label">
                             Ngày sinh
                           </label>
-                          <div className="col-3">
+                          <div className="col-lg-3">
                             <select
                               className="form-select"
                               aria-label="Default select example"
@@ -380,7 +380,7 @@ function User() {
                               </option>
                             </select>
                           </div>
-                          <div className="col-3">
+                          <div className="col-lg-3">
                             <select
                               className="form-select"
                               aria-label="Default select example"
@@ -475,7 +475,7 @@ function User() {
                               </option>
                             </select>
                           </div>
-                          <div className="col-3">
+                          <div className="col-lg-3">
                             <select
                               className="form-select"
                               aria-label="Default select example"
@@ -501,12 +501,12 @@ function User() {
                         </div>
                       </div>
 
-                      <div className="col-12 mt-4">
+                      <div className="col-lg-12 mt-4">
                         <div className="row">
-                          <label className="col-3 col-form-label">
+                          <label className="col-lg-3 col-form-label">
                             Giới tính
                           </label>
-                          <div className="col-9 col-form-label">
+                          <div className="col-lg-9 col-form-label">
                             <div className="form-check form-check-inline ">
                               <input
                                 className="form-check-input"
@@ -562,7 +562,7 @@ function User() {
                         </div>
                       </div>
 
-                      <div className="col-12 mt-4">
+                      <div className="col-lg-12 mt-4">
                         <form>
                           <div className="row ">
                             <label
@@ -571,7 +571,7 @@ function User() {
                             >
                               Địa chỉ
                             </label>
-                            <div className="col-9">
+                            <div className="col-lg-9">
                               <input
                                 type="text"
                                 className="form-control"
@@ -587,7 +587,7 @@ function User() {
                       </div>
                     </div>
 
-                    <div className="d-grid col-4 py-2 mx-auto mt-5">
+                    <div className="d-grid col-lg-4 py-2 mx-auto mt-5">
                       <button
                         type="submit"
                         className="btn btn-primary"
@@ -600,9 +600,9 @@ function User() {
                   <div className="col-lg-5 px-3">
                     <div className="row">
                       <h5 className="text-start">Số điện thoại và Email</h5>
-                      <div className="col-12">
+                      <div className="col-lg-12">
                         <div className="row">
-                          <div className="col-2">
+                          <div className="col-lg-2">
                             <img
                               src={Phone}
                               alt="phone"
@@ -610,7 +610,7 @@ function User() {
                               style={{ width: "48px", height: "48px" }}
                             ></img>
                           </div>
-                          <div className="col-7">
+                          <div className="col-lg-7">
                             <div
                               className="row align-items-center"
                               style={{ height: "48px" }}
@@ -620,7 +620,7 @@ function User() {
                               </p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          <div className="col-lg-3">
                             <div
                               className="row align-items-center"
                               style={{ height: "48px" }}
@@ -705,16 +705,16 @@ function User() {
                         </div>
                       </div>
 
-                      <div className="col-12 mt-3">
+                      <div className="col-lg-12 mt-3">
                         <div className="row">
-                          <div className="col-2">
+                          <div className="col-lg-2">
                             <img
                               src={Mail}
                               alt="mail"
                               style={{ width: "48px", height: "48px" }}
                             ></img>
                           </div>
-                          <div className="col-7">
+                          <div className="col-lg-7">
                             <div
                               className="row align-items-center"
                               style={{ height: "48px" }}
@@ -724,7 +724,7 @@ function User() {
                               </p>
                             </div>
                           </div>
-                          <div className="col-3">
+                          <div className="col-lg-3">
                             <div
                               className="row align-items-center"
                               style={{ height: "48px" }}
