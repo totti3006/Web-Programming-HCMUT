@@ -26,37 +26,36 @@ const Header = () => {
   };
 
   const renderAvatar = () => {
-    if (!localStorage.getItem("role")) {
-      return "";
-    } else {
-      if (infoData.avatar) {
-        return (
-          <img
-            src={infoData.avatar}
-            alt="avatar"
-            className="img-responsive rounded-circle"
-            style={{
-              width: "38px",
-              height: "38px",
-              marginLeft: "10px",
-              marginRight: "10px",
-            }}
-          />
-        );
-      } else {
-        return (
-          <AiOutlineUser
-            style={{
-              color: "black",
-              marginLeft: "10px",
-              marginRight: "10px",
-              fontSize: "30px",
-            }}
-          />
-        );
+
+    if(!localStorage.getItem("role")){
+      return ""
+    }
+    else{
+      if(infoData.avatar){
+        return <img
+          src={infoData.avatar}
+          alt="avatar"
+          className="img-responsive rounded-circle"
+          style={{
+            width: "38px",
+            height: "38px",
+            marginLeft: "10px",
+            marginRight: "10px",
+          }}
+        />
+      }
+      else{
+        return <AiOutlineUser
+          style={{
+            color: "black",
+            marginLeft: "10px",
+            marginRight: "10px",
+            fontSize: "30px",
+          }}
+        />
       }
     }
-  };
+  }
 
   React.useEffect(() => {
     getData();
@@ -242,6 +241,8 @@ const Header = () => {
                   className={"btn btn-outline-secondary position-relative ms-4"}
                   onClick={{}}
                   style={{ marginRight: "0.5rem" }}
+
+                  style={{marginRight: "0.5rem"}}
                 >
                   <i className="bi bi-cart"></i>
                 </button>
@@ -273,7 +274,9 @@ const Header = () => {
                   />
                 )}
               </Link> */}
-              <Link to="/user">{renderAvatar()}</Link>
+              <Link to="/user">
+                {renderAvatar()}
+              </Link>
               {localStorage.getItem("role") === null ? (
                 <Link to="/signin">
                   <AiOutlineLogin

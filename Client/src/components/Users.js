@@ -843,7 +843,6 @@ function User() {
                                 >
                                   Cập nhật
                                 </button>
-
                                 <div
                                   className="modal fade"
                                   id="staticPassword"
