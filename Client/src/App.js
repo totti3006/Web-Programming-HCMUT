@@ -31,7 +31,7 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Checkout from "./pages/Checkout/Checkout";
 // import Checkout from "./pages/Checkout";
 // import NewDetail from "./pages/New/NewDetail";
-import { Cart } from "./pages/Cart/Cart";
+import Cart from "./pages/Cart/Cart";
 import AdminRouter from "./pages/Admin/AdminRouter";
 import NewAdmin from "./components/Admin/News";
 

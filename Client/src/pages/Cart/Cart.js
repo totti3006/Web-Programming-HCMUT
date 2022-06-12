@@ -222,4 +222,4 @@ function Cart() {
   );
 }
 
-export { Cart };
+export default Cart ;
