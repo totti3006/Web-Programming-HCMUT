@@ -12,7 +12,27 @@ const ProductDetail = () => {
   //const dataProduct = React.useState(DummyProduct[0]);
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  const [comments, setComments] = useState([])
+  const [cart, setCart] = useState([]);
+  const [forceRerender, setForceRerender] = useState(false) 
   //data is all products
+  useEffect(() => {
+    const getComment = async () => {
+      try {
+        
+      const res = await axios.get(
+        `http://localhost/ltw-api/comment?product_id=${id}`
+      );
+      console.log(res.data.data)
+      setComments(res.data.data);
+      } catch (error) {
+      console.log("looix",error)  
+      }
+    }
+
+    getComment();
+  }, [forceRerender]);
+
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(
@@ -23,8 +43,9 @@ const ProductDetail = () => {
     };
     getData();
   }, []);
+  
 
-  const [cart, setCart] = useState([]);
+
   useEffect(() => {
     const data = localStorage.getItem("Cart")
       ? JSON.parse(localStorage.getItem("Cart"))
@@ -44,7 +65,6 @@ const ProductDetail = () => {
       localStorage.setItem("Cart", JSON.stringify(result));
     }
   };
-
   return (
     <div className="productdetail-page">
       <section className="section-content padding-y">
@@ -94,7 +114,7 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <Comment />
+              <Comment comments={comments} product_id={id} setForceRerender={setForceRerender}/>
             </div>
           </div>
         </div>
