@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import DummyComment from "./DummyComment";
 import image from "../images/phone-1.jpg";
 const Commented = ({comment, user_id, handleDelete, handleUpdate}) => {
   const [editComment, setEditComment] = useState("")
-  const fakeData = React.useState(DummyComment[0]);
+  console.log(comment)
   return (
     <div className="commented mb-3">
       <div className="row">
         <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
           <div className="avatar rounded-circle">
             <img
-              src={image}
+              src={comment.avatar||"https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg"}
               alt="avatar"
               className="rounded-circle mx-auto d-block"
               style={{ width: "55px", height: "55px" }}
@@ -18,7 +17,7 @@ const Commented = ({comment, user_id, handleDelete, handleUpdate}) => {
           </div>
         </div>
         <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-          <h5 className="name mb-1">{comment.fullname||"Chuwa laay duowcj teen"}</h5>
+          <h5 className="name mb-1">{comment.fullname||"Người dùng chưa đặt tên"}</h5>
           <p className="content mb-0 text-secondary fst-italic">
             {comment.content}
           </p>
@@ -30,7 +29,7 @@ const Commented = ({comment, user_id, handleDelete, handleUpdate}) => {
         </div>
 {
   user_id === comment.user_id&&<div className="col-xs-1 col-sm-1 col-md-1 col-lg-1 d-flex align-items-center justify-content-between flex-column">
-  <button className="btn btn-warning rounded-circle btn-sm" onClick={()=>{setEditComment(comment.content)}} data-bs-toggle="modal" data-bs-target={"#staticBackdrop"+comment.id}>
+  <button className="btn btn-warning rounded-circle btn-sm mb-1" onClick={()=>{setEditComment(comment.content)}} data-bs-toggle="modal" data-bs-target={"#staticBackdrop"+comment.id}>
   <i className="bi bi-pencil-fill "></i>
   </button>
   <button className="btn btn-danger rounded-circle btn-sm"   onClick={()=>handleDelete(comment.id)}>
