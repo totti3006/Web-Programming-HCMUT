@@ -70,18 +70,19 @@ const Header = () => {
             PINE@APPLE
           </a>
 
-          <div className="navbar-toggler nav-item dropdown" id="responsiveNav">
+          <div className="navbar-toggler nav-item dropdown right" id="responsiveNav">
             <a
               className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
-              data-bs-toggle="dropdown"
+              data-toggle="dropdown"
+              aria-haspopup="true"
               aria-expanded="false"
             >
               Điều hướng
             </a>
-            <div className="dropdown-menu">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <Link to="/" className="dropdown-item">
                 Trang chủ
               </Link>
@@ -115,7 +116,7 @@ const Header = () => {
               <Link to="/contact" className="dropdown-item">
                 Liên hệ
               </Link>
-
+              
               <hr className="dropdown-divider"></hr>
 
               <Link to="/user" className="dropdown-item">
@@ -139,8 +140,51 @@ const Header = () => {
                   Đăng xuất
                 </Link>
               )}
+
+              
             </div>
+            
           </div>
+          <div className="rightt">
+            {checkRole() === false ? (
+                  <div className="navbar-toggler nav-item dropdown " id="responsiveNav">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Quản trị
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link to="/admin/user" className="dropdown-item">
+                        Người dùng
+                      </Link>
+                      <Link to="/admin/category" className="dropdown-item">
+                        Danh mục
+                      </Link>
+                      <Link to="/admin/product" className="dropdown-item">
+                        Sản phẩm
+                      </Link>
+                      <Link to="/admin/order" className="dropdown-item">
+                        Đơn hàng
+                      </Link>
+                      <Link to="/admin/news" className="dropdown-item">
+                        Tin tức
+                      </Link>
+                      <Link to="/admin/comment" className="dropdown-item">
+                        Bình luận
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+            </div>
+          
 
           <div className="d-flex align-items-center">
             <div className="collapse navbar-collapse ">

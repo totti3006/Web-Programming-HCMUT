@@ -9,14 +9,17 @@
     font-size: 18px;
 }
 
-.button {
-    background-color: #ffffff;
-    border-radius: 5px;
-    color: #0072bc;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 4px 2px;
-}
+.right {
+    position: absolute;
+    right: 5px;
+    width: 145px;
+    /* padding: 10px; */
+  }
+
+  .rightt {
+    position: absolute;
+    right: 155px;
+    width: 120px;
+    /* padding: 10px; */
+  }
 
