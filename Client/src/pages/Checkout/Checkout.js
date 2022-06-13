@@ -8,6 +8,12 @@ import environment from "../../components/Environment/Environment";
 function Checkout() {
   const [cart, setCart] = useState([]);
   const [userInfo, setUserInfo] = useState('');
+  const [order, setOrder] = useState({
+    note: "",
+    status: 0,
+    total_money: 0,
+    products: []
+  })
 
   const navigation = useNavigate();
 
@@ -25,12 +31,45 @@ function Checkout() {
     })
   }
 
+  const onClickHandle = async () => {
+    const products = cart.map((p) => ({
+      product_id: p.id,
+      num: p.num,
+      total_money: p.price
+    }))
+
+    const post_order = {
+      ...order,
+      products: products,
+      total_money: totalProductMoney
+    }
+  
+    await axios.post("http://localhost/ltw-api/order", post_order, environment.headers).then(() => {
+      localStorage.removeItem("Cart");
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   useEffect(() => {
     const data = localStorage.getItem("Cart")
       ? JSON.parse(localStorage.getItem("Cart"))
       : [];
     setCart(data);
-    getUserInfo()
+
+    const products = cart.map((p) => ({
+      product_id: p.id,
+      num: p.num,
+      total_money: p.price
+    }))
+
+    setOrder(prev => ({
+      ...prev,
+      products: products,
+      total_money: totalProductMoney
+    }))
+
+    getUserInfo();
   }, []);
   
   return (
@@ -62,29 +101,35 @@ function Checkout() {
                     <div class="mb-3 row">
                         <label for="staticName" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Họ tên</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="staticName" value={userInfo.fullname} disabled/>
+                            <input type="text" class="form-control" id="staticName" value={userInfo ? userInfo.fullname : ""} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Email</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="staticEmail" value={userInfo.email} disabled/>
+                            <input type="text" class="form-control" id="staticEmail" value={userInfo ?  userInfo.email : ""} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticPhone" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Số điện thoại</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="staticPhone" value={userInfo.phone_number} disabled/>
+                            <input type="text" class="form-control" id="staticPhone" value={userInfo ?  userInfo.phone_number : ""} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="staticAddress" class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Địa chỉ</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="staticAddress" value={userInfo.address} disabled/>
+                            <input type="text" class="form-control" id="staticAddress" value={userInfo ?  userInfo.address : ""} disabled/>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="staticAddress" class="col-sm-4 col-form-label">Hình thức thanh toán</label>
+                        <label class="col-sm-4 col-form-label" style={{textAlign: 'left'}}>Ghi chú</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" class="form-control" onChange={(e) => setOrder(prev => ({...prev, note: e.target.value}))} />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label">Hình thức thanh toán</label>
                         <div class="col-sm-8">
                             <select
                                 name="payment"
@@ -99,13 +144,16 @@ function Checkout() {
                     </div>
                 </form>
                 <div className="text-center">
-                  <button
+                  {
+                    cart.length > 0 ? <button
                     className="btn btn-outline-success mt-3 w-100"
                     data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop"
+                    onClick={onClickHandle}
                   >
                     <i className="bi bi-check2-square"></i> Xác nhận đơn hàng
-                  </button>
+                  </button> : ""
+                  }
                 </div>
               </div>
             </div>
