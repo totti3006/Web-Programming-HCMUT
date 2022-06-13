@@ -69,15 +69,79 @@ const Header = () => {
           <a className="navbar-brand text-black md" href="/">
             PINE@APPLE
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+
+          <div className="navbar-toggler nav-item dropdown" id="responsiveNav">
+            <a
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Điều hướng
+            </a>
+            <div className="dropdown-menu">
+              <Link to="/" className="dropdown-item">
+                Trang chủ
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/intro" className="dropdown-item">
+                Giới thiệu
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/product" className="dropdown-item">
+                Sản phẩm
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/price" className="dropdown-item">
+                Bảng giá
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/new" className="dropdown-item">
+                Tin tức
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/contact" className="dropdown-item">
+                Liên hệ
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              <Link to="/user" className="dropdown-item">
+                Tài khoản
+              </Link>
+
+              <hr className="dropdown-divider"></hr>
+
+              {localStorage.getItem("role") === null ? (
+                <Link to="/signin" className="dropdown-item">
+                  Đăng nhập
+                </Link>
+              ) : (
+                <Link
+                  to="/signin"
+                  onClick={() => {
+                    localStorage.clear();
+                  }}
+                  className="dropdown-item"
+                >
+                  Đăng xuất
+                </Link>
+              )}
+            </div>
+          </div>
+
           <div className="d-flex align-items-center">
             <div className="collapse navbar-collapse ">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
@@ -136,9 +200,9 @@ const Header = () => {
                   </a>
                 </li>
                 {checkRole() === false ? (
-                  <li class="nav-item dropdown">
+                  <li className="nav-item dropdown">
                     <a
-                      class="nav-link dropdown-toggle"
+                      className="nav-link dropdown-toggle"
                       href="#"
                       id="navbarDropdown"
                       role="button"
@@ -149,14 +213,23 @@ const Header = () => {
                       Quản trị
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <Link to="/admin/product" class="dropdown-item">
+                      <Link to="/admin/user" className="dropdown-item">
+                        Người dùng
+                      </Link>
+                      <Link to="/admin/category" className="dropdown-item">
+                        Danh mục
+                      </Link>
+                      <Link to="/admin/product" className="dropdown-item">
                         Sản phẩm
                       </Link>
-                      <Link to="/admin/order" class="dropdown-item">
+                      <Link to="/admin/order" className="dropdown-item">
                         Đơn hàng
                       </Link>
-                      <Link to="/admin/news" class="dropdown-item">
+                      <Link to="/admin/news" className="dropdown-item">
                         Tin tức
+                      </Link>
+                      <Link to="/admin/comment" className="dropdown-item">
+                        Bình luận
                       </Link>
                     </div>
                   </li>
@@ -169,11 +242,38 @@ const Header = () => {
                 <button
                   className={"btn btn-outline-secondary position-relative ms-4"}
                   onClick={{}}
-                  style={{marginRight: "0.5rem"}}
+                  style={{ marginRight: "0.5rem" }}
                 >
                   <i className="bi bi-cart"></i>
                 </button>
               </a>
+              {/* <Link to="/cart">
+                  {}
+              </Link> */}
+              {/* <Link to="/user">
+                {localStorage.getItem("role") === null ? (
+                  <AiOutlineUser
+                    style={{
+                      color: "black",
+                      marginLeft: "10px",
+                      marginRight: "10px",
+                      fontSize: "30px",
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={infoData.avatar}
+                    alt="avatar"
+                    className="img-responsive rounded-circle"
+                    style={{
+                      width: "38px",
+                      height: "38px",
+                      marginLeft: "10px",
+                      marginRight: "10px",
+                    }}
+                  />
+                )}
+              </Link> */}
               <Link to="/user">
                 {renderAvatar()}
               </Link>

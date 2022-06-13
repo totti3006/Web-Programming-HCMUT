@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import TableUser from "../../../components/Admin/TableUser";
 import axios from "axios";
+import Header from "../../../components/Header";
 import environment from "../../../components/Environment/Environment";
 
 function User() {
@@ -8,14 +9,7 @@ function User() {
 
   const [data, setData] = React.useState([]);
 
-  const [user, setUser] = React.useState({
-    fullname: "",
-    role: "",
-    email: "",
-    phone_number: "",
-    address: "",
-    password: "",
-  });
+  
 
   const getData = async () => {
     await axios
@@ -29,29 +23,55 @@ function User() {
     getData();
   }, []);
 
-  console.log(data);
+  const addUser = (user) => {
+    axios
+      .post('http://localhost/ltw-api/user', user, environment.headers)
+      .then((response) => getData())
+      .catch((res) => alert(res));
+  };
 
-  function handleClose() {
+  const [status, setStatus] = useState({
+    id: "",
+    action: "Thêm",
+  });
+
+  const [user, setUser] = React.useState({
+    fullname: "",
+    phone_number: "",
+    address: "",
+    avatar: "",
+  });
+
+  const handleClose = () => {
+    setUser({
+    fullname: "",
+    phone_number: "",
+    address: "",
+    avatar: "",
+    });
+    setStatus({
+      id: "",
+      action: "Thêm",
+    });
+  };
+
+  const handleSubmit = () => {
+    if (status.action === "Thêm") { 
+      addUser(user);
+    } 
     setUser({
       fullname: "",
-      role: "",
-      email: "",
       phone_number: "",
       address: "",
-      password: "",
+      avatar: "",
+      });
+    setStatus({
+      id: "",
+      action: "Thêm",
     });
-  }
+  };
 
-  function handleSubmit() {
-    setUser({
-      fullname: "",
-      role: "",
-      email: "",
-      phone_number: "",
-      address: "",
-      password: "",
-    });
-  }
+  
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -59,20 +79,11 @@ function User() {
     setUser((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleDelete(id) {
-    var option = window.confirm("Bạn có chắc muốn xóa thành viên này?");
-    if (option) {
-      //   deleteUser(id);
-    }
-  }
-
-  function handleEdit(id, user) {
-    setUser({ ...user, password: "" });
-    document.querySelector(".openmodal").click();
-  }
+  
 
   return (
     <div className="container py-5 mt-5">
+      <Header/>
       <div className="row">
         <div className="col-12">
           <h4 className="text-center my-4">Quản lý thành viên</h4>
@@ -126,30 +137,8 @@ function User() {
                     onChange={handleChange}
                   />
 
-                  <label htmlFor="role" className="form-label">
-                    Cấp quyền
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="form-control"
-                    placeholder="Quyền"
-                    name="role"
-                    value={user.role}
-                    onChange={handleChange}
-                  />
 
-                  <label className="form-label" htmlFor="email">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    placeholder="Email"
-                    value={user.email}
-                    onChange={handleChange}
-                  />
+          
                   <label htmlFor="phone_number" className="form-label">
                     Số điện thoại
                   </label>
@@ -176,15 +165,16 @@ function User() {
                     onChange={handleChange}
                   />
 
-                  <label className="form-label" htmlFor="password">
-                    Mật khẩu
+                  <label className="form-label" htmlFor="ava">
+                    Avatar
                   </label>
                   <input
-                    type="password"
-                    name="password"
+                    required
+                    type="text"
                     className="form-control"
-                    placeholder="Mật khẩu"
-                    value={user.password}
+                    name="avatar"
+                    placeholder="Avatar"
+                    value={user.avatar}
                     onChange={handleChange}
                   />
                 </div>
@@ -213,8 +203,8 @@ function User() {
         <div className="overflow-auto">
           <TableUser
             users={data}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            //handleEdit={handleEdit}
+            //handleDelete={handleDelete}
           />
         </div>
       </div>

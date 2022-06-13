@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
+import environment from "../Environment/Environment";
+import NewsItem from "./NewsItem";
+
 const TableNews = () => {
   const [data, setData] = useState([]);
   
@@ -12,7 +15,7 @@ const TableNews = () => {
   };
   getData();
   },[])
-  console.log(data);
+ 
   return (
     <div className="container p-3">
       <Table responsive="sm">
@@ -20,35 +23,14 @@ const TableNews = () => {
           <tr>
             <th>STT</th>
             <th>Tiêu đề</th>
-            <th>Hình ảnh</th>
+            <th style={{ width: "120px" }}>Hình ảnh</th>
             <th>Nội dung</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
-          <tr>
-            <td>1</td>
-            <td>{data[index].title}</td>
-            <td>
-              <img
-                src={data[index].thumbnail}
-                alt="imagea"
-                style={{ width: "70px", height: "70px" }}
-              />
-            </td>
-            <td>{data[index].content}</td>
-            <td>
-              <button className="btn btn-warning" onClick={{}}>
-                Sửa
-              </button>
-            </td>
-            <td>
-              <button className="btn btn-danger" onClick={{}}>
-                Xóa
-              </button>
-            </td>
-          </tr>
+            <NewsItem data={data[index]}/>
           ))}
         </tbody>
       </Table>

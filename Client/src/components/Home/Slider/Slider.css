@@ -1,12 +1,12 @@
 .slider{
     width: 100%;
-    height: 100vh - 59px;
+    height: calc(100vh);
     transition: .7s ease all;
 }
 
 .slider img{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh);
 }
 
 .slider-scrolled{
@@ -89,7 +89,7 @@
         height: calc(100vh - 59px);
     }
     .slider-scrolled{
-        height: 50vh;
+        height: calc(50vh);
         transform: translateY(-50vh);
     }
 }

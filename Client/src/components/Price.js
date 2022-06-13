@@ -16,7 +16,7 @@ function Price() {
   }, []);
 
   return (
-    <div className="container py-5 mt-3">
+    <div className="container py-5 mt-3 table-responsive">
       <div className="text-center py-2 mt-3">
         <h3>Bảng giá sản phẩm</h3>
       </div>

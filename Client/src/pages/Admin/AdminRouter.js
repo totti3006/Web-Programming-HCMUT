@@ -6,6 +6,8 @@ import Category from "./Category/Category";
 import User from "./User/User";
 import ProductAdmin from "../../components/Admin/Product"
 import OrderAdmin from "../../components/Admin/Order";
+import CommentAdmin from "../../components/Admin/Comment";
+import NewAdmin from "../../components/Admin/News";
 import NotFoundPage from "../NotFound/NotFound"
 import { useEffect, useState } from "react";
 
@@ -31,15 +33,20 @@ function AdminRouter() {
       {auth === true ? (
         <Routes>
 
-          {/* <Route path="/category" element={<Category />} /> */}
+          <Route path="/category" element={<Category />} />
 
           <Route path="/user" element={<User />} />
 
           <Route path="/product" element={<ProductAdmin />} />
 
           <Route path="/order" element={<OrderAdmin />} />
+          
+          <Route path="/comment" element={<CommentAdmin />} />
 
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="/news" element={<NewAdmin />} />
+
+          {/* <Route path="/*" element={<NotFoundPage />} /> */}
+
 
         </Routes>
       ) : (
