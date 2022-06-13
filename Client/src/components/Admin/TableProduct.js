@@ -17,22 +17,7 @@ const TableCategory = () => {
   getData();
   },[])
 
-  const deleteProduct = (id) => {
-    axios
-      .get('http://localhost/ltw-api/product/getall', { id: id })
-      .then((response) =>
-        setData((prev) => prev.filter((item) => item.id !== id))
-      )
-      .catch((res) => alert(res));
-  };
-  const deleteHandler = (id) => {
-    var option = window.confirm(
-      "Bạn có chắc chắn muốn xoá sản phẩm này không?"
-    );
-    if (option) {
-      deleteProduct(id);
-    }
-  };
+  
   return (
     <div className="container p-3">
       <Table responsive="sm">

@@ -45,14 +45,12 @@ const Product = () => {
   
 
   const [currentPage, setCurrentPage] = useState(1);
-//   const [status, setStatus] = useState({
-//     id: "",
-//     action: "Thêm",
-//   });
-  const [product, setProduct] = useState({
+  const [status, setStatus] = useState({
     id: "",
+    action: "Thêm",
+  });
+  const [product, setProduct] = useState({
     category_id: "",
-    category_name: "",
     title: "",
     price: "",
     discount: "",
@@ -67,58 +65,39 @@ const Product = () => {
 
   const closeHandler = () => {
     setProduct({
-      id: "",
       category_id: "",
-      category_name: "",
       title: "",
       price: "",
       discount: "",
       thumbnail: "",
       description: "",
     });
-    // setStatus({
-    //   id: "",
-    //   action: "Thêm",
-    // });
+    setStatus({
+      id: "",
+      action: "Thêm",
+    });
   };
 
   const submitHandler = () => {
-    // if (status.action === "Thêm") {
+    if (status.action === "Thêm") {
+      console.log(product);
       addProduct(product);
-    // }
+    }
     setProduct({
-      id: "",
       category_id: "",
-      category_name: "",
       title: "",
       price: "",
       discount: "",
       thumbnail: "",
       description: "",
     });
-    // setStatus({
-    //   id: "",
-    //   action: "Thêm",
-    // });
+    setStatus({
+      id: "",
+      action: "Thêm",
+    });
   };
 
-  // const deleteHandler = (id) => {
-  //   var option = window.confirm(
-  //     "Bạn có chắc chắn muốn xoá sản phẩm này không?"
-  //   );
-  //   if (option) {
-  //     deleteProduct(id);
-  //   }
-  // };
-
-  const editHandler = (id, product) => {
-    // setStatus({
-    //   id: id,
-    //   action: "Sửa",
-    // });
-    setProduct(product);
-    document.querySelector(".openmodal").click();
-  };
+  
 
   const productPerPage = 5;
   const numberPage = Math.ceil(products.length / productPerPage);
@@ -167,21 +146,8 @@ const Product = () => {
                 </div>
                 
                 <div className="modal-body">
-                <label htmlFor="title" className="form-label">
-                    ID
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="form-control"
-                    placeholder="ID"
-                    name="title"
-                    value={product.id}
-                    onChange={(e) =>
-                      setProduct((prev) => ({ ...prev, id: e.target.value }))
-                    }
-                  />
-                  <label htmlFor="title" className="form-label">
+                
+                  <label htmlFor="category_id" className="form-label">
                     ID danh mục
                   </label>
                   <input
@@ -189,23 +155,12 @@ const Product = () => {
                     type="text"
                     className="form-control"
                     placeholder="ID danh mục"
-                    name="title"
-                    value={product.category_id}
+                    name="category_id"
+                    defaultValue={product.category_id}
                     onChange={changeHandler}
                   />
-                  <label htmlFor="name" className="form-label">
-                    Tên danh mục
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="form-control"
-                    placeholder="Tên sản phẩm"
-                    name="title"
-                    value={product.category_name}
-                    onChange={changeHandler}
-                  />
-                  <label htmlFor="name" className="form-label">
+                  
+                  <label htmlFor="title" className="form-label">
                     Tên sản phẩm
                   </label>
                   <input
@@ -229,7 +184,7 @@ const Product = () => {
                     value={product.price}
                     onChange={changeHandler}
                   />
-                  <label htmlFor="price" className="form-label">
+                  <label htmlFor="discount" className="form-label">
                     Giảm giá
                   </label>
                   <input
@@ -237,8 +192,8 @@ const Product = () => {
                     type="text"
                     className="form-control"
                     placeholder="Giảm giá"
-                    name="price"
-                    value={product.discount}
+                    name="discount"
+                    defaultValue={product.discount}
                     onChange={changeHandler}
                   />
                   <label htmlFor="thmbnail" className="form-label">
@@ -294,8 +249,6 @@ const Product = () => {
           <div className="overflow-auto">
             <TableCategory
               products={currProducts}
-              editHandler={editHandler}
-              //deleteHandler={deleteHandler}
               offset={(currentPage - 1) * productPerPage}
             />
           </div>

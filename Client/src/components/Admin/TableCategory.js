@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import environment from "../Environment/Environment";
+import CategoryItem from "./CategoryItem";
+
 
 const TableCategory = () => {
   const [data, setData] = useState([]);
@@ -14,20 +16,6 @@ const TableCategory = () => {
   };
   getData();
   },[])
-
-  const deleteCategory = async (id) => {
-    //console.log("delete comment", id)
-    await axios.delete(`http://localhost/ltw-api/category?id=${id}`, environment.headers)
-    .then(response =>alert('Delete successful'))
-  }
-  const deleteHandler = (id) => {
-  var option = window.confirm(
-    "Bạn có chắc chắn muốn xoá sản phẩm này không?"
-  );
-  if (option) {
-    deleteCategory(id);
-  }
-  };
 
 
   
@@ -44,21 +32,7 @@ const TableCategory = () => {
       </thead>
         <tbody>
           {data.map((item, index) => (
-          <tr>
-            <td>{index+1}</td>
-            <td>{data[index].name}</td>
-            
-            <td>
-              <button className="btn btn-warning" onClick={{}}>
-                Sửa
-              </button>
-            </td>
-            <td>
-              <button className="btn btn-danger" onClick={() => deleteHandler(item.id)}>
-                Xóa
-              </button>
-            </td>
-          </tr>
+            <CategoryItem data={data[index]}/>
           ))}
         </tbody>
       </Table>

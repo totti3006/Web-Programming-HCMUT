@@ -23,22 +23,7 @@ const ProductItem = (props) => {
         
     },[data])
     
-    const deleteProduct = (id) => {
-        axios
-          .get('http://localhost/ltw-api/product/getall', { id: id })
-          .then((response) =>
-            setData((prev) => prev.filter((item) => item.id !== id))
-          )
-          .catch((res) => alert(res));
-    };
-    const deleteHandler = (id) => {
-        var option = window.confirm(
-            "Bạn có chắc chắn muốn xoá sản phẩm này không?"
-        );
-        if (option) {
-            deleteProduct(id);
-        }
-    };
+    
 
     const handleSubmit = async () => {
         await axios.put("http://localhost/ltw-api/product/", changedData, environment.headers).then(() => {
@@ -50,6 +35,20 @@ const ProductItem = (props) => {
             alert("Đã xảy ra lỗi khi cập nhật sản phẩm. Vui lòng thử lại ...")
         })
     }
+
+    const deleteProduct = async (id) => {
+        //console.log("delete comment", id)
+        await axios.delete(`http://localhost/ltw-api/product?id=${id}`, environment.headers)
+        .then(response =>alert('Delete successful'))
+      }
+  const deleteHandler = (id) => {
+    var option = window.confirm(
+      "Bạn có chắc chắn muốn xoá sản phẩm này không?"
+    );
+    if (option) {
+      deleteProduct(id);
+    }
+  };
 
     return(
         <tr>
@@ -85,7 +84,10 @@ const ProductItem = (props) => {
                 <button hidden={!hidden} className="btn btn-success" onClick={handleSubmit}>
                 Cập nhật
                 </button>
-                <button className="btn btn-danger" onClick={() => {}}>
+            </td>
+            <td>
+
+                <button className="btn btn-danger" onClick={() => deleteHandler(data.product_id)}>
                 Xóa
                 </button>
             </td>

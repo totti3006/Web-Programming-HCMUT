@@ -66,7 +66,7 @@ const NewsItem = (props) =>{
             <td>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-warning"
                 onClick={() => setHidden(true)}
                 hidden={hidden}
             >
@@ -74,7 +74,7 @@ const NewsItem = (props) =>{
             </button>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-success"
                 hidden={!hidden}
                 onClick={handleSubmit}
             >
