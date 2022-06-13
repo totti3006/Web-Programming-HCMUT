@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import axios from "axios";
+import "./New.css"
 
 const New = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,16 +26,16 @@ const New = () => {
     currentPage * itemPerPage
   );
   return (
-    <div className="container" style={{minHeight: "calc(100vh - 59px - 248px)"}}>
+    <div className="container" style={{minHeight: "calc(100vh - 55px - 248px)"}} >
             <div className="section-title">
-              <h2 style={{color: "white"}}>TIN TỨC NỔI BẬT</h2>
+              <h2>TIN TỨC NỔI BẬT</h2>
             </div>
       <div className="row">
         <main >
           <div className="row">
             {currDisplay.map((item, index) => (
               <div className="product-grid col-md-3">
-                <figure style={{borderRadius: "15px"}} className="card card-product-grid">
+                <figure style={{borderRadius: "15px", backgroundImage: "light"}} className="card card-product-grid">
                   <div
                     className="img-wrap"
                     style={{ marginBottom: "5px", marginTop: "10px" }}

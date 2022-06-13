@@ -6,7 +6,7 @@ function News() {
   return (
     <>
       
-      <div className="news-page" style={{backgroundImage: "linear-gradient(to bottom, black, rgb(41, 39, 39))"}}>
+      <div>
         <Header/>
         <New />
         <Footer/>

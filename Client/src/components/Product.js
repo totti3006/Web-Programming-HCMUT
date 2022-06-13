@@ -70,7 +70,7 @@ const ProductPage = () => {
                   <i className="icon-control fa fa-chevron-down"></i>
                   <div style={{display: "flex", alignItems: "center", fontWeight: 'bold'}}>
                     <AiOutlineMenu />
-                    <span className="title">Danh mục</span>
+                    <span className="title">DANH MỤC</span>
                   </div>
                 </header>
                 <div className="filter-content collapse show" id="collapse_1">

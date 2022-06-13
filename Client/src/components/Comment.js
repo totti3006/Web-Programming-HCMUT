@@ -7,6 +7,7 @@ import environment from "./Environment/Environment";
 const Comment = ({comments, product_id, setForceRerender}) => {
   const [content, setContent] = useState("");
   const [user_id, setUser_id] = useState();
+  const [avatar, setAvatar] = useState();
 
   useEffect(() => {
     const getUserId = async () => {
@@ -14,6 +15,7 @@ const Comment = ({comments, product_id, setForceRerender}) => {
       const res = await axios.get(`http://localhost/ltw-api/user`, environment.headers);
       console.log(res)
       setUser_id(res.data.data.user_id);
+      setAvatar(res.data.data.avatar);
       } catch (error) {
       console.log(error)  
       }}
@@ -65,7 +67,7 @@ const Comment = ({comments, product_id, setForceRerender}) => {
         <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <div className="avatar rounded-circle">
             <img
-              src={image}
+              src={avatar}
               alt="avatar"
               className="rounded-circle mx-auto d-block"
               style={{ width: "55px", height: "55px" }}

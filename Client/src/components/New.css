@@ -1,4 +1,4 @@
-.section-title {
+/* .section-title {
   padding-bottom: 30px;
 }
 .section-title h2 {
@@ -36,8 +36,9 @@
 }
 *, ::after, ::before {
   box-sizing: border-box;
-}
+} */
 
 .container{
-  min-height: 2000px;
+  /* min-height: 2000px; */
+  background-Image: "linear-gradient(to bottom, black, rgb(41, 39, 39))";
 }

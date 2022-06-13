@@ -284,7 +284,7 @@ const Header = () => {
                 )}
               </ul>
 
-              <a href="/cart">
+              {checkRole() === true ? (<a href="/cart">
                 <button
                   className={"btn btn-outline-secondary position-relative ms-4"}
                   onClick={{}}
@@ -293,33 +293,9 @@ const Header = () => {
                   <i className="bi bi-cart"></i>
                 </button>
               </a>
-              {/* <Link to="/cart">
-                  {}
-              </Link> */}
-              {/* <Link to="/user">
-                {localStorage.getItem("role") === null ? (
-                  <AiOutlineUser
-                    style={{
-                      color: "black",
-                      marginLeft: "10px",
-                      marginRight: "10px",
-                      fontSize: "30px",
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={infoData.avatar}
-                    alt="avatar"
-                    className="img-responsive rounded-circle"
-                    style={{
-                      width: "38px",
-                      height: "38px",
-                      marginLeft: "10px",
-                      marginRight: "10px",
-                    }}
-                  />
-                )}
-              </Link> */}
+              ) : (
+                ""
+              )}
               <Link to="/user">
                 {renderAvatar()}
               </Link>
