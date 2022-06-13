@@ -4,11 +4,15 @@ import Footer from "../../components/Footer";
 
 function News() {
   return (
-    <div className="news-page">
-      <Header/>
-      <New />
-      <Footer/>
-    </div>
+    <>
+      
+      <div className="news-page" style={{backgroundImage: "linear-gradient(to bottom, black, rgb(41, 39, 39))"}}>
+        <Header/>
+        <New />
+        <Footer/>
+      </div>
+    </>
+    
   );
 }
 

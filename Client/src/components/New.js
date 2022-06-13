@@ -25,16 +25,16 @@ const New = () => {
     currentPage * itemPerPage
   );
   return (
-    <div className="container">
+    <div className="container" style={{minHeight: "calc(100vh - 59px - 248px)"}}>
             <div className="section-title">
-              <h2>TIN TỨC NỔI BẬT</h2>
+              <h2 style={{color: "white"}}>TIN TỨC NỔI BẬT</h2>
             </div>
       <div className="row">
         <main >
           <div className="row">
             {currDisplay.map((item, index) => (
               <div className="product-grid col-md-3">
-                <figure className="card card-product-grid">
+                <figure style={{borderRadius: "15px"}} className="card card-product-grid">
                   <div
                     className="img-wrap"
                     style={{ marginBottom: "5px", marginTop: "10px" }}

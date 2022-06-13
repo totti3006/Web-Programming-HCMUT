@@ -2,14 +2,17 @@ import React from "react";
 import ProductPage from "../../components/Product";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import "./Product.css"
 
 const Product = () => {
   return (
-    <div className="product-page">
+    <>
       <Header />
-      <ProductPage />
-      <Footer />
-    </div>
+      <div className="product-page">
+        <ProductPage />
+        <Footer />
+      </div>
+    </>
   );
 };
 

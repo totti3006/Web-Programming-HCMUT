@@ -5,6 +5,7 @@ import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import environment from "./Environment/Environment";
+import image from "../pages/Signin/images/signin-img.png";
 
 const Header = () => {
   const [infoData, setInfoData] = React.useState({});
@@ -66,8 +67,9 @@ const Header = () => {
     <header className="fixed-top ">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand text-black md" href="/">
-            PINE@APPLE
+          <a className="navbar-brand text-black md" href="/" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <img style={{height: "35px", width: "50px"}} src={image} alt="Home" />
+            <span>PINE@APPLE</span>
           </a>
 
           <div className="navbar-toggler nav-item dropdown right" id="responsiveNav">

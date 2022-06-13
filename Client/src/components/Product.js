@@ -5,6 +5,8 @@ import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import Categories from "./Categories";
+import {AiOutlineMenu} from "react-icons/ai";
+
 const ProductPage = () => {
   const [data, setData] = useState([]);
   const [displayData, setDisplayData] = useState([]);
@@ -64,9 +66,12 @@ const ProductPage = () => {
           <aside className="d-none d-sm-block col-sm-3 col-md-2">
             <div className="">
               <article className="filter-group">
-                <header className="card-header">
+                <header style={{backgroundColor: "gray"}} className="card-header">
                   <i className="icon-control fa fa-chevron-down"></i>
-                  <h5 className="title">Hãng</h5>
+                  <div style={{display: "flex", alignItems: "center", fontWeight: 'bold'}}>
+                    <AiOutlineMenu />
+                    <span className="title">Danh mục</span>
+                  </div>
                 </header>
                 <div className="filter-content collapse show" id="collapse_1">
                   <Categories filterProduct={filterProduct} typ={typ} />
@@ -78,7 +83,7 @@ const ProductPage = () => {
             <div className="row">
               {currDisplay.map((item, index) => (
                 <div className="product-grid col-sm-6 col-md-4">
-                  <figure className="card card-product-grid">
+                  <figure style={{borderRadius: '15px'}} className="card card-product-grid">
                     <div
                       className="img-wrap"
                       style={{ marginBottom: "5px", marginTop: "10px" }}

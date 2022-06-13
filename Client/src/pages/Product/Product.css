@@ -1,7 +1,6 @@
-img {
-    width: 200px;
-    height: 200px;
-}
-.section-pagetop {
-    margin-top: 60px;
+.product-page{
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    background-image: linear-gradient(to bottom, black, rgb(41, 39, 39))
 }

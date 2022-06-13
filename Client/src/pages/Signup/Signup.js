@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
-import image from "../../images/hero-img.png";
+import image from "../Signin/images/signin-img.png";
 import environment from "../../components/Environment/Environment";
 import axios from "axios";
 
