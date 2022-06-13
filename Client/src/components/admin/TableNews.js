@@ -56,4 +56,4 @@ const TableNews = () => {
   );
 };
 
-export default TableNew;
+export default TableNews;
