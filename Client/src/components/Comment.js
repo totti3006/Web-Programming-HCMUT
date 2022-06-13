@@ -62,7 +62,7 @@ const Comment = ({comments, product_id, setForceRerender}) => {
     <div className="comment">
       <h3>Bình luận</h3>
       <div className="row">
-        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <div className="avatar rounded-circle">
             <img
               src={image}
@@ -72,7 +72,7 @@ const Comment = ({comments, product_id, setForceRerender}) => {
             />
           </div>
         </div>
-        <div className="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div className="form-floating">
             <textarea
               className="form-control"

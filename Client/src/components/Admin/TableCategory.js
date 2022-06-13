@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
+import environment from "../Environment/Environment";
+
 const TableCategory = () => {
   const [data, setData] = useState([]);
 
@@ -13,22 +15,22 @@ const TableCategory = () => {
   getData();
   },[])
 
-  const deleteCategory = (id) => {
-    axios
-      .get('http://localhost/ltw-api/category/getall', { id: id })
-      .then((response) =>
-        setData((prev) => prev.filter((item) => item.id !== id))
-      )
-      .catch((res) => alert(res));
-  };
+  const deleteCategory = async (id) => {
+    //console.log("delete comment", id)
+    await axios.delete(`http://localhost/ltw-api/category?id=${id}`, environment.headers)
+    .then(response =>alert('Delete successful'))
+  }
   const deleteHandler = (id) => {
-    var option = window.confirm(
-      "Bạn có chắc chắn muốn xoá danh mục này không?"
-    );
-    if (option) {
-      deleteCategory(id);
-    }
+  var option = window.confirm(
+    "Bạn có chắc chắn muốn xoá sản phẩm này không?"
+  );
+  if (option) {
+    deleteCategory(id);
+  }
   };
+
+
+  
   return (
     <div className="container p-3">
       <Table responsive="sm">
@@ -43,7 +45,7 @@ const TableCategory = () => {
         <tbody>
           {data.map((item, index) => (
           <tr>
-            <td>1</td>
+            <td>{index+1}</td>
             <td>{data[index].name}</td>
             
             <td>

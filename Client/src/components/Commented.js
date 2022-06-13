@@ -4,9 +4,9 @@ const Commented = ({comment, user_id, handleDelete, handleUpdate}) => {
   const [editComment, setEditComment] = useState("")
   console.log(comment)
   return (
-    <div className="commented mb-3">
+    <div className="commented mb-4">
       <div className="row">
-        <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <div className="avatar rounded-circle">
             <img
               src={comment.avatar||"https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg"}
@@ -16,8 +16,8 @@ const Commented = ({comment, user_id, handleDelete, handleUpdate}) => {
             />
           </div>
         </div>
-        <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-          <h5 className="name mb-1">{comment.fullname||"Người dùng chưa đặt tên"}</h5>
+        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <h6 className="name mb-1">{comment.fullname||"Người dùng chưa đặt tên"}</h6>
           <p className="content mb-0 text-secondary fst-italic">
             {comment.content}
           </p>

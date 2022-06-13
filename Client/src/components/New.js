@@ -18,7 +18,7 @@ const New = () => {
 
   if (data.length === 0) return <span>Loading...</span>;
   else {
-  const itemPerPage = 12;
+  const itemPerPage = 8;
   const numberPage = Math.ceil(data.length / itemPerPage);
   const currDisplay = data.slice(
     (currentPage - 1) * itemPerPage,

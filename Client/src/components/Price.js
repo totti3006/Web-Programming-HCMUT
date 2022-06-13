@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
 import axios from "axios";
-import Data from "./DummyProduct";
+import Pagination from "./Pagination";
+
 
 function Price() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
   const [products, setProducts] = React.useState([]);
 
   const getData = async () => {
@@ -14,6 +17,15 @@ function Price() {
   React.useEffect(() => {
     getData();
   }, []);
+
+  if (products.length === 0) return <span>Loading...</span>;
+  else {
+  const itemPerPage = 6;
+  const numberPage = Math.ceil(products.length / itemPerPage);
+  const currDisplay = products.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
+  );
 
   return (
     <div className="container py-5 mt-3 table-responsive">
@@ -31,7 +43,7 @@ function Price() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {currDisplay.map((product) => (
             <Fragment>
               <tr>
                 <th scope="row">{product.id}</th>
@@ -44,8 +56,16 @@ function Price() {
           ))}
         </tbody>
       </table>
+      {numberPage > 1 ? (
+                  <Pagination
+                    numberPage={numberPage}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                  />
+                ) : null}
     </div>
   );
+}
 }
 
 export default Price;

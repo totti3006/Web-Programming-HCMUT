@@ -39,7 +39,7 @@ const Intro = () => {
 
       <div className="main">
         <ul className="cards row">
-          <li className="cards_item col-lg-4">
+          <li className="cards_item col-lg-3">
             <div className="card">
               <div className="card_image">
                 <img src={image4} />
@@ -50,7 +50,7 @@ const Intro = () => {
               </div>
             </div>
           </li>
-          <li className="cards_item col-lg-4">
+          <li className="cards_item col-lg-3">
             <div className="card">
               <div className="card_image">
                 <img src={image2} />
@@ -61,7 +61,7 @@ const Intro = () => {
               </div>
             </div>
           </li>
-          <li className="cards_item col-lg-4">
+          <li className="cards_item col-lg-3">
             <div className="card">
               <div className="card_image">
                 <img src={image2} />
@@ -72,7 +72,7 @@ const Intro = () => {
               </div>
             </div>
           </li>
-          <li className="cards_item col-lg-4">
+          <li className="cards_item col-lg-3">
             <div className="card">
               <div className="card_image">
                 <img src={image3} />
@@ -83,6 +83,7 @@ const Intro = () => {
               </div>
             </div>
           </li>
+          
         </ul>
       </div>
 
@@ -159,16 +160,6 @@ const Intro = () => {
               </div>
               <div className="card_content">
                 <h2 className="card_title">Party</h2>
-              </div>
-            </div>
-          </li>
-          <li className="cards_item col-lg-4">
-            <div className="card">
-              <div className="card_image">
-                <img src={image5} />
-              </div>
-              <div className="card_content">
-                <h2 className="card_title">Training</h2>
               </div>
             </div>
           </li>

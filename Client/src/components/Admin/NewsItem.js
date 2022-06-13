@@ -26,27 +26,13 @@ const NewsItem = (props) =>{
         })
     }
 
-    const deleteNew = async (id) => {
-        await axios.delete(`http://localhost/ltw-api/news?id=${id}`, {id: id}, environment.headers)
-            .then(response => alert('Delete successful'))
-        };
     
     
-    // const deleteHandler = (id) => {
-    //   var option = window.confirm("Bạn có chắc chắn muốn xoá tin tức này không?");
-    //   if (option) {
-    //     deleteNew(id);
-    //   }
-    // };
-
-    // const deleteNew = (id) => {
-    //     axios
-    //       .get('http://localhost/ltw-api/news/getall', { id: id })
-    //       .then((response) =>
-    //         setData((prev) => prev.find((item) => item.id !== id))
-    //       )
-    //       .catch((res) => alert(res));
-    //   };
+        const deleteNew = async (id) => {
+            //console.log("delete comment", id)
+            await axios.delete(`http://localhost/ltw-api/news?id=${id}`, environment.headers)
+            .then(response =>alert('Delete successful'))
+          }
       const deleteHandler = (id) => {
         var option = window.confirm(
           "Bạn có chắc chắn muốn xoá sản phẩm này không?"
@@ -96,7 +82,7 @@ const NewsItem = (props) =>{
             </button>
             </td>
             <td>
-            <button className="btn btn-danger" onClick={() => deleteNew(data.id)}>
+            <button className="btn btn-danger" onClick={() => deleteHandler(data.news_id)}>
                 Xóa
             </button>
             </td>

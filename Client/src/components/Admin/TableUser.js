@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import Table from "react-bootstrap/Table";
+import environment from "../Environment/Environment";
 
-function TableUser({ users, handleEdit, handleDelete }) {
+function TableUser({ users, handleDelete, handleEdit }) {
+  
   return (
     <div className="container p-3">
     <Table responsive="sm">
@@ -25,22 +27,6 @@ function TableUser({ users, handleEdit, handleDelete }) {
               <td>{user.email}</td>
               <td>{user.phone_number}</td>
               <td>{user.address}</td>
-              <td>
-                <button
-                  className="btn btn-warning"
-                  onClick={() => handleEdit(user.id, user)}
-                >
-                  Sửa
-                </button>
-              </td>
-              <td>
-                <button
-                  className={"btn btn-danger"}
-                  onClick={() => handleDelete(user.id)}
-                >
-                  Xóa
-                </button>
-              </td>
             </tr>
           </Fragment>
         ))}

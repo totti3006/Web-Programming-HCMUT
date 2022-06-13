@@ -34,12 +34,8 @@ function TableComment({setForceRerender}) {
 
 const handleDelete = async (id) => {
   //console.log("delete comment", id)
-  try {
-  const res = await axios.delete(`http://localhost/ltw-api/comment?id=${id}`, environment.headers)
-  //setForceRerender(prev=>!prev)
-  } catch (error) {
-  console.log(error)  
-  }
+  await axios.delete(`http://localhost/ltw-api/comment?id=${id}`, environment.headers)
+  .then(response =>alert('Delete successful'))
 }
 
 const deleteHandler = (id) => {
