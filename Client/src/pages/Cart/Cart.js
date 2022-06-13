@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import TableOrder from "../../components/TableOrder";
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -198,6 +199,7 @@ function Cart() {
               </div>
             </div>
           </div>
+          <TableOrder/>
         </div>
       ) : (
         <div className="container py-5 mt-5">
