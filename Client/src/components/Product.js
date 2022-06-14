@@ -109,7 +109,7 @@ const ProductPage = () => {
                         >
                           <span className="price">
                             <NumberFormat
-                              value={data[index].price}
+                              value={currDisplay[index].price}
                               displayType="text"
                               thousandSeparator={"."}
                               decimalSeparator={","}
